@@ -24,11 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-<<<<<<< HEAD
 PROJECTNAME=Practica_2
-=======
-PROJECTNAME=Practica_3
->>>>>>> origin/master
 
 # Active Configuration
 DEFAULTCONF=Debug

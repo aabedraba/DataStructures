@@ -2,7 +2,6 @@
  * File:   main.cpp
  * Author: aabedraba
  *
-<<<<<<< HEAD
  * Created on September 19, 2017, 9:55 AM
  */
 
@@ -83,21 +82,6 @@ int main(int argc, char** argv) {
     catch (std::exception& exception) {
       std::cerr << exception.what() << std::endl;
     }
-=======
- * Created on October 10, 2017, 9:44 AM
- */
-
-#include <cstdlib>
-
-using namespace std;
-
-/*
- * @brief Funcion principal
- * @param argc Numero de argumentos
- * @param argv Caracteres que forman dichos argumentos
- */
-int main(int argc, char** argv) {
->>>>>>> origin/master
 
     return 0;
 }

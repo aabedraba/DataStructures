@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-<<<<<<< HEAD
 	${OBJECTDIR}/Diccionario.o \
 	${OBJECTDIR}/main.o
 
@@ -68,34 +67,6 @@ ${OBJECTDIR}/Diccionario.o: Diccionario.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Diccionario.o Diccionario.cpp
-=======
-	${OBJECTDIR}/main.o
-
-
-# C Compiler Flags
-CFLAGS=
-
-# CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
-
-# Fortran Compiler Flags
-FFLAGS=
-
-# Assembler Flags
-ASFLAGS=
-
-# Link Libraries and Options
-LDLIBSOPTIONS=
-
-# Build Targets
-.build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica_3
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica_3: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica_3 ${OBJECTFILES} ${LDLIBSOPTIONS}
->>>>>>> origin/master
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
