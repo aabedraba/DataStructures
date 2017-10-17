@@ -5,6 +5,9 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Diccionario.h</itemPath>
+      <itemPath>Iterador.h</itemPath>
+      <itemPath>ListaEnlazada.h</itemPath>
+      <itemPath>Nodo.h</itemPath>
       <itemPath>Palabra.h</itemPath>
       <itemPath>VDinamico.h</itemPath>
     </logicalFolder>
@@ -44,6 +47,12 @@
       </item>
       <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Iterador.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ListaEnlazada.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Nodo.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Palabra.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="VDinamico.h" ex="false" tool="3" flavor2="0">
@@ -74,6 +83,12 @@
       <item path="Diccionario.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Iterador.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ListaEnlazada.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Nodo.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Palabra.h" ex="false" tool="3" flavor2="0">
       </item>
