@@ -64,9 +64,9 @@ public:
      * @param num numero de posiciones que queremos copiar.
      */
     VDinamico ( const VDinamico<T>& orig, unsigned int inicio, unsigned int num )
-        : _tamF ( orig._tamF ),
-          _tamL ( num )
+        : _tamL ( num )
     {
+        _tamF = pow (2, std::ceil( log2( _tamL ) ) );
         _vectorD = new T[_tamF];
         int contador = 0;
         for ( int i = inicio; i < inicio+num; i++ ) {
@@ -104,7 +104,7 @@ public:
         _tamF = orig._tamF;
         _tamL = orig._tamL;
         _vectorD = new T[_tamF];
-        for (int i=0; i < _tamF; i++)
+        for (int i=0; i < _tamL; i++)
             _vectorD[i] = orig._vectorD[i];
         
         return *this;
@@ -117,6 +117,9 @@ public:
      * @return posicion del vector pedida.
      */
     T& operator[] ( int pos ) {
+        if ( (pos < 0) || (pos > _tamL) )
+            throw std::out_of_range("[VDinamico::operator[]] Posicion fuera"
+                    " de rango");
         return _vectorD[pos];
     };
     
@@ -141,13 +144,11 @@ public:
         //Caso donde el Vector se ha llenado, doblo el tamaño del mismo
         if ( _tamL == _tamF ){ 
             _tamF *= 2;
-            T auxiliar[_tamL]; //Creando en la pila
+            T auxiliar[_tamF];
             for (int i = 0; i < _tamL; i++)
                 auxiliar[i] = _vectorD[i];
             delete []_vectorD;
-            _vectorD = new T[_tamF]; //Vector con el doble del tamaño
-            for (int i = 0; i < _tamL; i++)
-                _vectorD[i] = auxiliar[i];
+            _vectorD = auxiliar;
         }
         //Caso donde hay que meter en mitad del vector, desplazamos todo a la derecha desde la posicion dada
         if ( ( pos < (_tamL) ) ){
@@ -189,10 +190,6 @@ public:
         _vectorD = new T[_tamF];
         for (int i = 0; i < GetTamL(); i++)
             _vectorD[i] = aux[i];
-    }
-
-    void SetTamF(unsigned int _tamF) {
-        this->_tamF = _tamF;
     }
     
 private:
