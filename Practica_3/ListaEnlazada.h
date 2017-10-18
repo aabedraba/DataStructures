@@ -17,18 +17,82 @@
 template<typename T>
 class ListaEnlazada {
 public:
-    ListaEnlazada<T>();
+    
+    ListaEnlazada<T>():
+        cabecera(0),
+        cola(0)
+    {}
+    
     ListaEnlazada<T>( const ListaEnlazada<T>& orig ); 
     ListaEnlazada<T> operator= ( const ListaEnlazada<T> &orig );
     T& inicio();
     T& fin();
     
-    void insertaInicio (T &dato);
-    void insertaFin (T &dato);
-    void inserta (Iterador &i, T &dato);
-    void borraInicio ();
-    void borraFinal ();
-    void borra (Iterador &i);
+    void insertaInicio (T &dato) {
+        Nodo<T> *nuevo;
+        nuevo = new Nodo<T> (dato, cabecera);
+        if ( cola == 0 )
+            cola = nuevo;
+        cabecera = nuevo;
+    }
+    
+    void insertaFin (T &dato) {
+        Nodo<T> *nuevo;
+        nuevo = new Nodo<T> ( dato, 0 );
+        if ( cola != 0 )
+            cola->sig = nuevo;
+        if ( cabecera == 0 )
+            cabecera = nuevo;
+        cola = nuevo;
+    }
+    
+    void inserta ( Iterador &i, T &dato ) {
+        Nodo<T> *anterior = 0;
+        if ( cabecera != cola ) {
+            anterior = cabecera;
+            while ( anterior->sig != i )
+                anterior = anterior->sig;
+        }
+        Nodo<T> *nuevo;
+        nuevo = new Nodo<T> ( dato, i );
+        anterior->sig = nuevo;
+        if ( cabecera == 0 )
+            cabecera = cola = nuevo;
+    }
+    
+    void borraInicio () {
+        Nodo<T> *borrado = cabecera;
+        cabecera = cabecera->sig;
+        delete borrado;
+        if ( cabecera == 0 )
+            cola = 0;
+    }
+    
+    void borraFinal () {
+        Nodo<T> *anterior =0;
+        if ( cabecera != cola ) {
+            anterior = cabecera;
+            while ( anterior->sig != cola )
+                anterior = anterior->sig;
+        }
+        delete cola;
+        cola = anterior;
+        if ( anterior != 0 )
+            anterior->sig = 0;
+        else
+            cabecera = 0;
+    }
+    
+    void borra ( Iterador &i ) {
+        Nodo<T> *anterior = 0;
+        if ( cabecera != cola ) {
+            anterior = cabecera;
+            while ( anterior->sig != i )
+                anterior = anterior->sig;
+        }
+        anterior->sig = i->siguiente;
+        delete i;
+    }
     
     ListaEnlazada(const ListaEnlazada& orig);
     virtual ~ListaEnlazada();
@@ -37,25 +101,40 @@ private:
 
 private:
     class Nodo {
-        friend class ListaEnlazada;
         public:
             T dato;
             Nodo *sig;
-            Nodo( T &aDato, Nodo *asig = 0 );
+            
+            Nodo( T &aDato, Nodo *aSig = 0 ):
+                dato ( aDato ),
+                sig ( aSig )
+            {}
+            
             Nodo( const Nodo& orig );
-            virtual ~Nodo( );
-        private:
-
+            virtual ~Nodo ();
     };
     
 public:
     class Iterador {
         friend class ListaEnlazada;
-        friend class Nodo;
         public:
-            Iterador( );
+            Iterador( Nodo<T> *aNodo ):
+                nodo ( aNodo )
+            {};
             Iterador( const Iterador& orig );
             virtual ~Iterador( );
+            
+            bool fin () {
+                return nodo == 0;
+            }
+            
+            void siguiente () {
+                nodo = nodo->sig;
+            }
+            
+            T &dato () {
+                return nodo->dato;
+            }
         private:
             Nodo<T> *nodo;
     };
