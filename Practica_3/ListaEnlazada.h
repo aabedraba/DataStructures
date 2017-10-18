@@ -14,8 +14,6 @@
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
 
-#include "Nodo.h"
-
 template<typename T>
 class ListaEnlazada {
 public:
@@ -24,6 +22,13 @@ public:
     ListaEnlazada<T> operator= ( const ListaEnlazada<T> &orig );
     T& inicio();
     T& fin();
+    
+    void insertaInicio (T &dato);
+    void insertaFin (T &dato);
+    void inserta (Iterador &i, T &dato);
+    void borraInicio ();
+    void borraFinal ();
+    void borra (Iterador &i);
     
     ListaEnlazada(const ListaEnlazada& orig);
     virtual ~ListaEnlazada();
@@ -54,7 +59,6 @@ public:
         private:
             Nodo<T> *nodo;
     };
-    
 
 };
 
