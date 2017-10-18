@@ -30,6 +30,32 @@ public:
 private:
     Nodo<T> *cabecera, *cola;
 
+private:
+    class Nodo {
+        friend class ListaEnlazada;
+        public:
+            T dato;
+            Nodo *sig;
+            Nodo( T &aDato, Nodo *asig = 0 );
+            Nodo( const Nodo& orig );
+            virtual ~Nodo( );
+        private:
+
+    };
+    
+public:
+    class Iterador {
+        friend class ListaEnlazada;
+        friend class Nodo;
+        public:
+            Iterador( );
+            Iterador( const Iterador& orig );
+            virtual ~Iterador( );
+        private:
+            Nodo<T> *nodo;
+    };
+    
+
 };
 
 #endif /* LISTAENLAZADA_H */
