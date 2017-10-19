@@ -52,7 +52,7 @@ private:
             Nodo( const Nodo& orig );
             virtual ~Nodo ();
     };
-    
+
 public:
     class Iterador {
         friend class ListaEnlazada;
@@ -85,11 +85,11 @@ ListaEnlazada<T>::operator =( const ListaEnlazada<T>& orig ){
     
 }
 
-ListaEnlazada<T>::ListaEnlazada (const ListaEnlazada<T>& orig) {
+ListaEnlazada<T>::ListaEnlazada ( const ListaEnlazada<T>& orig ) {
     
 }
 
-ListaEnlazada<T>::insertaInicio( T& dato ) {
+ListaEnlazada<T>::insertaInicio ( T& dato ) {
     Nodo<T> *nuevo;
     nuevo = new Nodo<T> ( dato, cabecera );
     if ( cola == 0 )
@@ -97,7 +97,7 @@ ListaEnlazada<T>::insertaInicio( T& dato ) {
     cabecera = nuevo;
 }
 
-ListaEnlazada<T>::insertaFin( T& dato ) {
+ListaEnlazada<T>::insertaFin ( T& dato ) {
     Nodo<T> *nuevo;
     nuevo = new Nodo<T> ( dato, 0 );
     if ( cola != 0 )
@@ -107,7 +107,7 @@ ListaEnlazada<T>::insertaFin( T& dato ) {
     cola = nuevo;
 }
 
-ListaEnlazada<T>::inserta( Iterador& i, T& dato ) {
+ListaEnlazada<T>::inserta ( Iterador& i, T& dato ) {
     Nodo<T> *anterior = 0;
     if ( cabecera != cola ) {
         anterior = cabecera;
@@ -121,7 +121,7 @@ ListaEnlazada<T>::inserta( Iterador& i, T& dato ) {
         cabecera = cola = nuevo;
 }
 
-ListaEnlazada<T>::borraInicio() {
+ListaEnlazada<T>::borraInicio () {
     Nodo<T> *borrado = cabecera;
     cabecera = cabecera->sig;
     delete borrado;
@@ -129,7 +129,7 @@ ListaEnlazada<T>::borraInicio() {
         cola = 0;
 }
 
-ListaEnlazada<T>::borraFinal() {
+ListaEnlazada<T>::borraFinal () {
     Nodo<T> *anterior =0;
     if ( cabecera != cola ) {
         anterior = cabecera;
@@ -155,7 +155,7 @@ ListaEnlazada<T>::borra ( Iterador& i ) {
     delete i;
 }
 
-ListaEnlazada<T>::inicio() {
+ListaEnlazada<T>::inicio () {
     
 }
 
@@ -164,4 +164,3 @@ ListaEnlazada<T>::fin () {
 }
 
 #endif /* LISTAENLAZADA_H */
-
