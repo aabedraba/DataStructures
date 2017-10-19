@@ -14,153 +14,176 @@
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
 
+#include "Diccionario.h"
+
+template<typename T>
+class Iterador {
+private:
+    Nodo<T> *_nodo;
+    friend class ListaEnlazada;
+public:
+    Iterador( Nodo<T> *aNodo )
+        : _nodo ( aNodo )
+    {};
+    Iterador( const Iterador& orig )
+        : _nodo ( orig._nodo )
+    {};
+    virtual ~Iterador( ){};
+    bool fin () {
+        return _nodo == 0;
+    };
+    void siguiente () {
+        _nodo = _nodo->_sig;
+    };
+    T &dato () {
+        return _nodo->_dato;
+    };       
+};
+
+template<typename T>
+class Nodo {
+    public:
+        T _dato;
+        Nodo *_sig;
+
+        Nodo( T &aDato, Nodo *aSig = 0 ):
+            _dato ( aDato ),
+            _sig ( aSig )
+        {}
+        Nodo( const Nodo& orig )
+           : _dato ( orig._dato ),
+             _sig ( orig._sig )
+        {};
+        virtual ~Nodo (){};
+}; 
+
 template<typename T>
 class ListaEnlazada {
 public:
-    
-    ListaEnlazada<T>():
-        cabecera(0),
-        cola(0)
-    {}
-    
+    ListaEnlazada<T>();
     ListaEnlazada<T>( const ListaEnlazada<T>& orig ); 
+    virtual ~ListaEnlazada();
     ListaEnlazada<T> operator= ( const ListaEnlazada<T> &orig );
+    
+    Iterador<T> interador();
     T& inicio();
     T& fin();
     void insertaInicio ( T &dato );
     void insertaFin ( T &dato );
-    void inserta ( Iterador &i, T &dato );
+    void inserta ( Iterador &iter, T &dato );
     void borraInicio ();
     void borraFinal ();
-    void borra ( Iterador &i );
-    ListaEnlazada(const ListaEnlazada& orig);
-    virtual ~ListaEnlazada();
+    void borra ( Iterador &iter );
+    
+    
 private:
-    Nodo<T> *cabecera, *cola;
-
-private:
-    class Nodo {
-        public:
-            T dato;
-            Nodo *sig;
-            
-            Nodo( T &aDato, Nodo *aSig = 0 ):
-                dato ( aDato ),
-                sig ( aSig )
-            {}
-            
-            Nodo( const Nodo& orig );
-            virtual ~Nodo ();
-    };
-
-public:
-    class Iterador {
-        friend class ListaEnlazada;
-        public:
-            Iterador( Nodo<T> *aNodo ):
-                nodo ( aNodo )
-            {};
-            Iterador( const Iterador& orig );
-            virtual ~Iterador( );
-            
-            bool fin () {
-                return nodo == 0;
-            }
-            
-            void siguiente () {
-                nodo = nodo->sig;
-            }
-            
-            T &dato () {
-                return nodo->dato;
-            }
-        private:
-            Nodo<T> *nodo;
-    };
+    Nodo<T> *_cabecera, *_cola; 
     
 };
 
-
-ListaEnlazada<T>::operator =( const ListaEnlazada<T>& orig ){
-    
+ListaEnlazada<T>::ListaEnlazada()
+    : _cabecera( 0 ),
+      _cola( 0 )
+{
 }
 
-ListaEnlazada<T>::ListaEnlazada ( const ListaEnlazada<T>& orig ) {
-    
+ListaEnlazada<T>::ListaEnlazada ( const ListaEnlazada<T>& orig ) 
+    : _cabecera ( orig._cabecera ),
+      _cola ( orig._cola )
+{
 }
 
-ListaEnlazada<T>::insertaInicio ( T& dato ) {
+ListaEnlazada<T>::~ListaEnlazada()
+{   
+    while ( _cabecera != 0 ){
+        Nodo<T> *aux = _cabecera;
+        _cabecera = _cabecera->_sig;
+        delete aux;
+    }
+}
+
+
+ListaEnlazada<T>::operator =( const ListaEnlazada<T>& orig ) {
+    _cabecera = orig._cabecera;
+    _cola = orig._cola;
+}
+
+void ListaEnlazada<T>::insertaInicio ( T& dato ) {
     Nodo<T> *nuevo;
-    nuevo = new Nodo<T> ( dato, cabecera );
-    if ( cola == 0 )
-        cola = nuevo;
-    cabecera = nuevo;
+    nuevo = new Nodo<T> ( dato, _cabecera );
+    if ( _cola == 0 )
+        _cola = nuevo;
+    _cabecera = nuevo;
 }
 
-ListaEnlazada<T>::insertaFin ( T& dato ) {
+void ListaEnlazada<T>::insertaFin ( T& dato ) {
     Nodo<T> *nuevo;
-    nuevo = new Nodo<T> ( dato, 0 );
-    if ( cola != 0 )
-        cola->sig = nuevo;
-    if ( cabecera == 0 )
-        cabecera = nuevo;
-    cola = nuevo;
+    nuevo = new Nodo<T> ( dato );
+    if ( _cola != 0 )
+        _cola->_sig = nuevo;
+    if ( _cabecera == 0 )
+        _cabecera = nuevo;
+    _cola = nuevo;
 }
 
-ListaEnlazada<T>::inserta ( Iterador& i, T& dato ) {
+void ListaEnlazada<T>::inserta ( Iterador& iter, T& dato ) {
     Nodo<T> *anterior = 0;
-    if ( cabecera != cola ) {
-        anterior = cabecera;
-        while ( anterior->sig != i )
-            anterior = anterior->sig;
+    if ( _cabecera != _cola ) {
+        anterior = _cabecera;
+        while ( anterior->_sig != iter )
+            anterior = anterior->_sig;
     }
     Nodo<T> *nuevo;
-    nuevo = new Nodo<T> ( dato, i );
-    anterior->sig = nuevo;
-    if ( cabecera == 0 )
-        cabecera = cola = nuevo;
+    nuevo = new Nodo<T> ( dato, iter );
+    anterior->_sig = nuevo;
+    if ( _cabecera == 0 )
+        _cabecera = _cola = nuevo;
 }
 
-ListaEnlazada<T>::borraInicio () {
-    Nodo<T> *borrado = cabecera;
-    cabecera = cabecera->sig;
+void ListaEnlazada<T>::borraInicio () {
+    Nodo<T> *borrado = _cabecera;
+    _cabecera = _cabecera->_sig;
     delete borrado;
-    if ( cabecera == 0 )
-        cola = 0;
+    if ( _cabecera == 0 )
+        _cola = 0;
 }
 
-ListaEnlazada<T>::borraFinal () {
+void ListaEnlazada<T>::borraFinal () {
     Nodo<T> *anterior =0;
-    if ( cabecera != cola ) {
-        anterior = cabecera;
-        while ( anterior->sig != cola )
-            anterior = anterior->sig;
+    if ( _cabecera != _cola ) {
+        anterior = _cabecera;
+        while ( anterior->_sig != _cola )
+            anterior = anterior->_sig;
     }
-    delete cola;
-    cola = anterior;
+    delete _cola;
+    _cola = anterior;
     if ( anterior != 0 )
-        anterior->sig = 0;
+        anterior->_sig = 0;
     else
-        cabecera = 0;
+        _cabecera = 0;
 }
 
-ListaEnlazada<T>::borra ( Iterador& i ) {
+void ListaEnlazada<T>::borra ( Iterador& iter ) {
     Nodo<T> *anterior = 0;
-    if ( cabecera != cola ) {
-        anterior = cabecera;
-        while ( anterior->sig != i )
-            anterior = anterior->sig;
+    if ( _cabecera != _cola ) {
+        anterior = _cabecera;
+        while ( anterior->_sig != iter )
+            anterior = anterior->_sig;
     }
-    anterior->sig = i->siguiente;
-    delete i;
+    anterior->_sig = iter._nodo->_sig;
+    delete iter;
 }
 
-ListaEnlazada<T>::inicio () {
-    
+T& ListaEnlazada<T>::inicio () {
+    return _cabecera->_dato;
 }
 
-ListaEnlazada<T>::fin () {
-    
+T& ListaEnlazada<T>::fin () {
+    return _cola->_dato;
+}
+
+Iterador<T> ListaEnlazada<T>::interador(){
+    return Iterador<T>( _cabecera );
 }
 
 #endif /* LISTAENLAZADA_H */
