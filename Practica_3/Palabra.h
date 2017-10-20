@@ -9,6 +9,7 @@
 #define PALABRA_H
 
 #include <string>
+#include "ListaEnlazada.h"
 
 class Palabra {
 public:
@@ -63,6 +64,26 @@ public:
     }
 private:
     std::string _termino;
+    ListaEnlazada<Sucesor> sucesores;
+    
+};
+
+class Sucesor{
+public:
+    Sucesor( std::string termino )
+        : _termino ( termino )
+    {};
+    
+    Sucesor( const Sucesor &orig )
+        : _termino ( orig._termino ),
+          _numOcurrencias ( orig._numOcurrencias )
+    {};
+    virtual ~Sucesor( ) {
+    }
+
+private:
+    std::string _termino;
+    int _numOcurrencias;
 };
 
 #endif /* PALABRA_H */
