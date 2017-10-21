@@ -11,6 +11,24 @@
 #include <string>
 #include "ListaEnlazada.h"
 
+class Sucesor{
+public:
+    Sucesor( std::string termino )
+        : _termino ( termino )
+    {};
+    
+    Sucesor( const Sucesor &orig )
+        : _termino ( orig._termino ),
+          _numOcurrencias ( orig._numOcurrencias )
+    {};
+    virtual ~Sucesor( ) {
+    }
+
+private:
+    std::string _termino;
+    int _numOcurrencias;
+};
+
 class Palabra {
 public:
     Palabra()
@@ -30,14 +48,13 @@ public:
     
     Palabra &operator =( const Palabra &otro ) {
         if ( *this != otro )
-            this->_termino = otro._termino;
-        
+            this->_termino = otro._termino;      
         return *this;
     }
     
     bool operator !=( const Palabra &otro ){
         if ( this->GetTermino() != otro.GetTermino() ) 
-            return true;
+                 return true;
         return false;
     };
     
@@ -66,24 +83,6 @@ private:
     std::string _termino;
     ListaEnlazada<Sucesor> sucesores;
     
-};
-
-class Sucesor{
-public:
-    Sucesor( std::string termino )
-        : _termino ( termino )
-    {};
-    
-    Sucesor( const Sucesor &orig )
-        : _termino ( orig._termino ),
-          _numOcurrencias ( orig._numOcurrencias )
-    {};
-    virtual ~Sucesor( ) {
-    }
-
-private:
-    std::string _termino;
-    int _numOcurrencias;
 };
 
 #endif /* PALABRA_H */
