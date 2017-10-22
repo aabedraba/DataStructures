@@ -11,7 +11,25 @@
 Diccionario::Diccionario( std::string nomFich )
     : _vectorPalabras()
 {
-    cargaPalabras( nomFich );
+    std::ifstream fe;
+    std::string linea;
+    int total = 0;
+    fe.open( nomFich.c_str() ); //convierte nomFich en legible por ifstream::open
+    if ( !fe.good() ) {
+        fe.close();
+        throw std::invalid_argument("[Diccionario::cargaPalabras]No se pudo abrir"
+                " el fichero. Sugerencia: ¿nombre de archivo invalido?");
+    }
+    
+    while ( !fe.eof() ) {
+        getline( fe, linea );
+        if ( linea != "" ) {
+            Palabra *palabra = new Palabra(linea);
+            _vectorPalabras.insertar( *palabra ); //La lista está ordenada
+            total++;
+        }
+    }
+    fe.close();
 }
 
 Diccionario::Diccionario( const Diccionario& orig )
@@ -22,28 +40,29 @@ Diccionario::Diccionario( const Diccionario& orig )
 Diccionario::~Diccionario() {
 }
 
-void Diccionario::cargaPalabras( const std::string &nomFich ) {
-    std::ifstream fe;
-    std::string linea;
-    int total = 0;
-    fe.open( nomFich.c_str() ); //convierte nomFich en legible por ifstream::open
-    if ( fe.good() ) {
-        while ( !fe.eof() ) {
-            getline( fe, linea );
-            if ( linea != "" ) {
-                Palabra palabra( linea );
-                _vectorPalabras.insertar( palabra ); //La lista está ordenada
-                total++;
-            }
-        }
-            fe.close();
-    } else {
-        fe.close();
-        throw std::invalid_argument("[Diccionario::cargaPalabras]No se pudo abrir"
-                " el fichero. Sugerencia: ¿nombre de archivo invalido?");
-    }
-    
-}
+//Quizás no se necesite
+//void Diccionario::cargaPalabras( const std::string &nomFich ) {
+//    std::ifstream fe;
+//    std::string linea;
+//    int total = 0;
+//    fe.open( nomFich.c_str() ); //convierte nomFich en legible por ifstream::open
+//    if ( fe.good() ) {
+//        while ( !fe.eof() ) {
+//            getline( fe, linea );
+//            if ( linea != "" ) {
+//                Palabra palabra( linea );
+//                _vectorPalabras.insertar( palabra ); //La lista está ordenada
+//                total++;
+//            }
+//        }
+//            fe.close();
+//    } else {
+//        fe.close();
+//        throw std::invalid_argument("[Diccionario::cargaPalabras]No se pudo abrir"
+//                " el fichero. Sugerencia: ¿nombre de archivo invalido?");
+//    }
+//    
+//}
 
 int Diccionario::busca( const std::string &termino ) {
     Palabra aBuscar( termino );
@@ -69,4 +88,25 @@ void Diccionario::eliminar(const std::string& palabra) {
             _vectorPalabras.eliminar( i );
     }
 
+}
+
+void Diccionario::usaCorpus(std::string nomFich) {
+    std::ifstream fe;
+    std::string frase;
+    int totalLeido =  0;
+    fe.open( nomFich.c_str() );
+    if ( fe.good() ){
+        while ( !fe.eof() ){
+            getline( fe, frase );
+            entrena( frase );
+        }
+    } else {
+        fe.close();
+        throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
+                " el archivo. (¿Archivo incorrecto?)");
+    }
+}
+
+void Diccionario::entrena(const std::string frase) {
+    
 }
