@@ -14,7 +14,8 @@
 class Sucesor{
 public:
     Sucesor( std::string termino )
-        : _termino ( termino )
+        : _termino ( termino ),
+          _numOcurrencias ( 1 )
     {};
     
     Sucesor( const Sucesor &orig )
@@ -22,6 +23,10 @@ public:
           _numOcurrencias ( orig._numOcurrencias )
     {};
     virtual ~Sucesor( ) {
+    }
+    
+    void aumenta(){
+        _numOcurrencias++;
     }
 
 private:
@@ -32,15 +37,18 @@ private:
 class Palabra {
 public:
     Palabra()
-        : _termino ("")
+        : _termino (""),
+          _sucesores()
     {};
     
     Palabra( std::string termino )
-        : _termino ( termino )
+        : _termino ( termino ),
+          _sucesores ()
     {};
     
     Palabra(const Palabra& orig)
-        : _termino( orig._termino )
+        : _termino( orig._termino ),
+          _sucesores ( orig._sucesores )
     {};
     
     virtual ~Palabra()
@@ -79,10 +87,18 @@ public:
     std::string GetTermino() const {
         return _termino;
     }
+
+    void SetSucesores( ListaEnlazada<Sucesor> sucesores ) {
+        this->_sucesores = _sucesores;
+    }
+
+    ListaEnlazada<Sucesor> GetSucesores( ) const {
+        return _sucesores;
+    }
+
 private:
     std::string _termino;
-    ListaEnlazada<Sucesor> sucesores;
-    
+    ListaEnlazada<Sucesor> _sucesores;
 };
 
 #endif /* PALABRA_H */
