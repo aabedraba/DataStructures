@@ -7,6 +7,7 @@
 
 #include "Diccionario.h"
 #include <stdexcept>
+#include <sstream>
 
 Diccionario::Diccionario( std::string nomFich )
     : _vectorPalabras()
@@ -32,6 +33,7 @@ Diccionario::Diccionario( std::string nomFich )
     fe.close();
 }
 
+//TODO hacer más tarde
 Diccionario::Diccionario( const Diccionario& orig )
 {
     throw std::runtime_error("Vector de copia no implementado");
@@ -39,30 +41,6 @@ Diccionario::Diccionario( const Diccionario& orig )
 
 Diccionario::~Diccionario() {
 }
-
-//Quizás no se necesite
-//void Diccionario::cargaPalabras( const std::string &nomFich ) {
-//    std::ifstream fe;
-//    std::string linea;
-//    int total = 0;
-//    fe.open( nomFich.c_str() ); //convierte nomFich en legible por ifstream::open
-//    if ( fe.good() ) {
-//        while ( !fe.eof() ) {
-//            getline( fe, linea );
-//            if ( linea != "" ) {
-//                Palabra palabra( linea );
-//                _vectorPalabras.insertar( palabra ); //La lista está ordenada
-//                total++;
-//            }
-//        }
-//            fe.close();
-//    } else {
-//        fe.close();
-//        throw std::invalid_argument("[Diccionario::cargaPalabras]No se pudo abrir"
-//                " el fichero. Sugerencia: ¿nombre de archivo invalido?");
-//    }
-//    
-//}
 
 int Diccionario::busca( const std::string &termino ) {
     Palabra aBuscar( termino );
@@ -108,5 +86,18 @@ void Diccionario::usaCorpus(std::string nomFich) {
 }
 
 void Diccionario::entrena(const std::string frase) {
+    std::stringstream ss( frase );
+    std::string palabra;
+    std::string sucesor;
     
+    while ( getline( ss, palabra, ' ') ){
+        int pos = busca( palabra );
+        if ( pos == -1 )
+            insertar( palabra );
+        getline(ss, sucesor, ' ');
+        pos = busca( sucesor );
+        if ( pos == -1 )
+            insertar( sucesor );
+        
+    }
 }
