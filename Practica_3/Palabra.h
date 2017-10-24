@@ -22,11 +22,29 @@ public:
         : _termino ( orig._termino ),
           _numOcurrencias ( orig._numOcurrencias )
     {};
-    virtual ~Sucesor( ) {
+    virtual ~Sucesor() {
+    };
+    
+    bool operator !=( const Sucesor &otro ){
+        if ( this->getTermino() != otro.getTermino() ) 
+                 return true;
+        return false;
+    };
+    
+    bool operator ==( const Sucesor &otro ){
+        return !(operator !=( otro ));
     }
     
-    void aumenta(){
+    void aumentaOcurrencias(){
         _numOcurrencias++;
+    }
+
+    std::string getTermino( ) const {
+        return _termino;
+    }
+
+    int getNumOcurrencias( ) const {
+        return _numOcurrencias;
     }
 
 private:
@@ -88,11 +106,25 @@ public:
         return _termino;
     }
 
-    void SetSucesores( ListaEnlazada<Sucesor> sucesores ) {
-        this->_sucesores = _sucesores;
+    //TODO mirar forma más elegante
+    void SetSucesores( std::string sucesor ) {
+        ListaEnlazada<Sucesor>::Iterador iter = _sucesores.iterador();
+        bool insertado = false;
+        while ( !iter.fin() ){
+            if ( sucesor == iter.dato().getTermino() ){
+                iter.dato().aumentaOcurrencias();
+                insertado = true;
+                break;
+            }
+            iter.siguiente();
+        }
+        if ( !insertado ){ //iter.fin()
+            Sucesor s( sucesor );
+            _sucesores.insertaFin( s );
+        }
     }
 
-    ListaEnlazada<Sucesor> GetSucesores( ) const {
+    ListaEnlazada<Sucesor> sucesores() const {
         return _sucesores;
     }
 
