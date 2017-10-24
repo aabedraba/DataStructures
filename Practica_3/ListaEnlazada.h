@@ -18,19 +18,19 @@
 
 template<typename T>
 class Nodo {
-    public:
-        T _dato;
-        Nodo *_sig;
-
-        Nodo( T &aDato, Nodo *aSig = 0 ):
-            _dato ( aDato ),
-            _sig ( aSig )
-        {}
-        Nodo( const Nodo& orig )
-           : _dato ( orig._dato ),
-             _sig ( orig._sig )
-        {};
-        virtual ~Nodo (){};
+public:
+    T _dato;
+    Nodo *_sig;
+    
+    Nodo( T &aDato, Nodo *aSig = 0 ):
+        _dato ( aDato ),
+        _sig ( aSig )
+    {};
+    Nodo( const Nodo& orig )
+       : _dato ( orig._dato ),
+         _sig ( orig._sig )
+    {};
+    virtual ~Nodo (){};
 }; 
 
 template<typename T>
@@ -44,6 +44,7 @@ public:
     class Iterador {
     private:
         Nodo<T> *_nodo;
+        friend class ListaEnlazada<T>;
     public:
         Iterador( Nodo<T> *aNodo )
             : _nodo ( aNodo )
@@ -60,7 +61,11 @@ public:
         };
         T& dato () {
             return _nodo->_dato;
-        };       
+        }
+
+        Nodo<T>* getNodo( ) const {
+            return _nodo;
+        };
     };
     
     Iterador iterador();
@@ -96,11 +101,8 @@ ListaEnlazada<T>::ListaEnlazada ( const ListaEnlazada<T>& orig )
 template<typename T>
 ListaEnlazada<T>::~ListaEnlazada()
 {   
-    while ( _cabecera != 0 ){
-        Nodo<T> *aux = _cabecera;
-        _cabecera = _cabecera->_sig;
-        delete aux;
-    }
+    while ( _cabecera != 0 )
+        borraInicio();
 }
 
 template<typename T>
@@ -130,16 +132,10 @@ void ListaEnlazada<T>::insertaFin ( T& dato ) {
 }
 
 template<typename T>
-void ListaEnlazada<T>::inserta ( Iterador& iter, T& dato ) {
-    Nodo<T> *anterior = 0;
-    if ( _cabecera != _cola ) {
-        anterior = _cabecera;
-        while ( anterior->_sig != iter )
-            anterior = anterior->_sig;
-    }
+void ListaEnlazada<T>::inserta ( Iterador& iter, T& dato ) { //El iterador apunta al anterior
     Nodo<T> *nuevo;
-    nuevo = new Nodo<T> ( dato, iter );
-    anterior->_sig = nuevo;
+    nuevo = new Nodo<T> ( dato, iter.getNodo() );
+    iter.getNodo()->_sig = nuevo;
     if ( _cabecera == 0 )
         _cabecera = _cola = nuevo;
 }
@@ -148,7 +144,9 @@ template<typename T>
 void ListaEnlazada<T>::borraInicio () {
     Nodo<T> *borrado = _cabecera;
     _cabecera = _cabecera->_sig;
-    delete borrado;
+    if (borrado)
+//    delete borrado;
+    borrado = 0;
     if ( _cabecera == 0 )
         _cola = 0;
 }
@@ -177,7 +175,7 @@ void ListaEnlazada<T>::borra ( Iterador& iter ) {
         while ( anterior->_sig != iter )
             anterior = anterior->_sig;
     }
-    anterior->_sig = iter._nodo->_sig;
+    anterior->_sig = iter.getNodo()->_sig;
     delete iter;
 }
 
