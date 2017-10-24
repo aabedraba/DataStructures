@@ -20,8 +20,8 @@ public:
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
     
-    int busca( const std::string &termino );
-    void insertar( const std::string &palabra );
+    Palabra& busca( const std::string &termino, int &pos);
+    void insertar( Palabra &p, int& pos );
     void eliminar ( const std::string &palabra );
     void entrena ( const std::string frase );
     void usaCorpus ( std::string nomFich );
