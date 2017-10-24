@@ -42,18 +42,13 @@ Diccionario::Diccionario( const Diccionario& orig )
 Diccionario::~Diccionario() {
 }
 
-int Diccionario::busca( const std::string &termino ) {
-    Palabra aBuscar( termino );
-    return _vectorPalabras.busquedaBin( aBuscar );
-}
 
-void Diccionario::insertar( const std::string &palabra ) { //Const no funciona
-    Palabra p( palabra );
-    for (int i = 0; i < _vectorPalabras.GetTamL(); i++) {
-        if ( p == _vectorPalabras[i] ) //Evitamos duplicado
+void Diccionario::insertar( Palabra &p, int& pos ) { //Const no funciona
+    for ( pos = 0; pos < _vectorPalabras.GetTamL(); pos++) {
+        if ( p == _vectorPalabras[pos] ) //Evitamos duplicado
             break;
-        if ( p < _vectorPalabras[i] ){
-            _vectorPalabras.insertar( p, i ); //Insertar en la posición correspondiente
+        if ( p < _vectorPalabras[pos] ){
+            _vectorPalabras.insertar( p, pos ); //Insertar en la posición correspondiente
             break;
         }
     }
@@ -71,33 +66,44 @@ void Diccionario::eliminar(const std::string& palabra) {
 void Diccionario::usaCorpus(std::string nomFich) {
     std::ifstream fe;
     std::string frase;
-    int totalLeido =  0;
     fe.open( nomFich.c_str() );
-    if ( fe.good() ){
-        while ( !fe.eof() ){
-            getline( fe, frase );
-            entrena( frase );
-        }
-    } else {
+    if ( !fe.good() ){
         fe.close();
         throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
                 " el archivo. (¿Archivo incorrecto?)");
     }
+    while ( !fe.eof() ){
+        getline( fe, frase );
+        entrena( frase );
+    }
+    fe.close();
 }
 
 void Diccionario::entrena(const std::string frase) {
     std::stringstream ss( frase );
-    std::string palabra;
-    std::string sucesor;
+    std::string palabra, sucesor;
     
-    while ( getline( ss, palabra, ' ') ){
-        int pos = busca( palabra );
-        if ( pos == -1 )
-            insertar( palabra );
-        getline(ss, sucesor, ' ');
-        pos = busca( sucesor );
-        if ( pos == -1 )
-            insertar( sucesor );
+    ss >> palabra; 
+    while ( !ss.eof() ){
+        ss >> sucesor;
+        if ( sucesor != "" ){
+            int posP;
+            busca( palabra, posP );
+            _vectorPalabras[posP].SetSucesores( sucesor );
+            palabra = sucesor;
+            sucesor = "";
+        }
         
     }
+}
+
+Palabra &Diccionario::busca( const std::string &termino, int &pos ) {
+    Palabra aBuscar( termino );
+    int p = _vectorPalabras.busquedaBin( aBuscar );
+    if ( p == -1 ){
+        insertar( aBuscar, pos );
+        return _vectorPalabras[pos];
+    }
+    pos = p;
+    return _vectorPalabras[pos];
 }
