@@ -145,13 +145,23 @@ void VDinamico<T>::insertar ( const T& dato, unsigned int pos){
     if ( _tamL == _tamF )
         aumenta();
     //Caso donde hay que meter en mitad del vector, desplazamos todo a la derecha desde la posicion dada
-    if ( pos < (_tamL - 1) ) {
-        for (int i = _tamL; i > pos; i--)
-            _vectorD[i] = _vectorD[i-1];
-        _vectorD[pos] = dato;
+    if ( pos < _tamL ) {
+        T *aux = new T[_tamF];
+        int j = 0;
+        for ( int i = 0; i < _tamL; i++ ){
+            if ( j == pos){
+                j++;
+                continue;
+            }
+            aux[j] = _vectorD[i];
+            j++;
+        }
+        aux[pos] = dato;
+        delete []_vectorD;
+        _vectorD = aux;
         _tamL++;
     }
-    else if ( pos == UINT_MAX ){ //En caso de que sea menor que el tamaño físico, meter al final del vector
+    else if ( pos == UINT_MAX ){ 
         _vectorD[_tamL] = dato;
         _tamL++;
     }
