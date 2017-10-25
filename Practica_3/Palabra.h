@@ -24,17 +24,14 @@ public:
     {};
     virtual ~Sucesor() {
     };
-    
     bool operator !=( const Sucesor &otro ){
         if ( this->getTermino() != otro.getTermino() ) 
                  return true;
         return false;
     };
-    
     bool operator ==( const Sucesor &otro ){
         return !(operator !=( otro ));
     }
-    
     void aumentaOcurrencias(){
         _numOcurrencias++;
     }
@@ -73,8 +70,10 @@ public:
     {};
     
     Palabra &operator =( const Palabra &otro ) {
-        if ( *this != otro )
-            this->_termino = otro._termino;      
+        if ( *this != otro ){
+            this->_termino = otro._termino; 
+            this->_sucesores = otro._sucesores;
+        }
         return *this;
     }
     
@@ -106,19 +105,16 @@ public:
         return _termino;
     }
 
-    //TODO mirar forma más elegante
-    void SetSucesores( std::string sucesor ) {
+    void introducirSucesor( std::string sucesor ) {
         ListaEnlazada<Sucesor>::Iterador iter = _sucesores.iterador();
-        bool insertado = false;
         while ( !iter.fin() ){
             if ( sucesor == iter.dato().getTermino() ){
                 iter.dato().aumentaOcurrencias();
-                insertado = true;
                 break;
             }
             iter.siguiente();
         }
-        if ( !insertado ){ //iter.fin()
+        if ( iter.fin() ){ //no se ha insertado nada
             Sucesor s( sucesor );
             _sucesores.insertaFin( s );
         }
