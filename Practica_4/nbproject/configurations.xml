@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Diccionario.h</itemPath>
-      <itemPath>ListaEnlazada.h</itemPath>
       <itemPath>Palabra.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -44,8 +43,6 @@
       </item>
       <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ListaEnlazada.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Palabra.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -74,8 +71,6 @@
       <item path="Diccionario.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ListaEnlazada.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Palabra.h" ex="false" tool="3" flavor2="0">
       </item>
