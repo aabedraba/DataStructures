@@ -32,9 +32,10 @@ public:
     VDinamico<T>& operator= (const VDinamico<T>& orig);
     T& operator[] ( int pos );
     int busquedaBin( const T &aBuscar );
-    void insertar ( const T& dato, unsigned int pos = UINT_MAX);
-    void aumenta ();   
+    void insertar ( const T& dato, unsigned int pos = UINT_MAX);  
     void eliminar ( unsigned int pos = UINT_MAX );
+    void aumenta (); 
+    void reducir ();
     
 private:
     T *_vectorD;
@@ -115,7 +116,7 @@ VDinamico<T>& VDinamico<T>::operator= (const VDinamico<T>& orig) {
 
 template<typename T>
 T& VDinamico<T>::operator[] ( int pos ) {
-    if ( (pos < 0) || (pos > _tamL) )
+    if ( (pos < 0) || (pos >= _tamL) )
         throw std::out_of_range("[VDinamico::operator[]] Posicion fuera"
                 " de rango");
     return _vectorD[pos];
@@ -146,19 +147,10 @@ void VDinamico<T>::insertar ( const T& dato, unsigned int pos){
         aumenta();
     //Caso donde hay que meter en mitad del vector, desplazamos todo a la derecha desde la posicion dada
     if ( pos < _tamL ) {
-        T *aux = new T[_tamF];
-        int j = 0;
-        for ( int i = 0; i < _tamL; i++ ){
-            if ( j == pos){
-                j++;
-                continue;
-            }
-            aux[j] = _vectorD[i];
-            j++;
+        for ( long int i = (_tamL-1); i >= pos; i-- ){
+            _vectorD[i+1] = _vectorD[i];
         }
-        aux[pos] = dato;
-        delete []_vectorD;
-        _vectorD = aux;
+        _vectorD[pos] = dato;
         _tamL++;
     }
     else if ( pos == UINT_MAX ){ 
@@ -179,10 +171,9 @@ void VDinamico<T>::aumenta (){
     _vectorD = auxiliar;
 }
 
-/*@TODO rewrite this code*/
 template<typename T>
 void VDinamico<T>::eliminar ( unsigned int pos ){
-    T aux[_tamL];
+    T *aux = new T[_tamF];
     if ( pos == UINT_MAX ){ //Caso de borrar al final
         for (int i = 0; i < (_tamL-1); i++)
             aux[i] = _vectorD[i];
@@ -201,11 +192,20 @@ void VDinamico<T>::eliminar ( unsigned int pos ){
     
     delete []_vectorD;
     _tamL--;
-    if (_tamL <= _tamF/3)
-        _tamF /= 2;
-    _vectorD = new T[_tamF];
-    for (int i = 0; i < GetTamL(); i++)
-        _vectorD[i] = aux[i];
+    _vectorD = aux;
+    if (_tamL <= _tamF/3){
+        reducir();
+    }
+}
+
+template<typename T>
+void VDinamico<T>::reducir(){
+    _tamF /= 2;
+    T *aux = new T[_tamF];
+    for ( int i = 0; i < _tamL; i++ )
+        aux[i] = _vectorD[i];
+    delete []_vectorD;
+    _vectorD = aux;
 }
 
 #endif /* VDINAMICO_H */
