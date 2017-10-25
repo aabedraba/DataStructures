@@ -9,7 +9,7 @@
 #define PALABRA_H
 
 #include <string>
-#include "ListaEnlazada.h"
+#include <list>
 
 class Sucesor{
 public:
@@ -106,27 +106,27 @@ public:
     }
 
     void introducirSucesor( std::string sucesor ) {
-        ListaEnlazada<Sucesor>::Iterador iter = _sucesores.iterador();
-        while ( !iter.fin() ){
-            if ( sucesor == iter.dato().getTermino() ){
-                iter.dato().aumentaOcurrencias();
+        Sucesor suces( sucesor );
+        std::list<Sucesor>::iterator iter = _sucesores.begin();
+        while ( !iter._M_node != 0 ){
+            if ( suces == (*iter) ){
+                (*iter).aumentaOcurrencias();
                 break;
             }
-            iter.siguiente();
+            iter++;
         }
-        if ( iter.fin() ){ //no se ha insertado nada
-            Sucesor s( sucesor );
-            _sucesores.insertaFin( s );
-        }
+        if ( iter._M_node->_M_next )//no se ha insertado nada
+            _sucesores.push_back( suces );
     }
 
-    ListaEnlazada<Sucesor> sucesores() const {
+    //Mirar que no se esté copiando
+    std::list<Sucesor> sucesores() const {
         return _sucesores;
     }
 
 private:
     std::string _termino;
-    ListaEnlazada<Sucesor> _sucesores;
+    std::list<Sucesor> _sucesores;
 };
 
 #endif /* PALABRA_H */

@@ -41,9 +41,7 @@ Diccionario::Diccionario( const Diccionario& orig ) {
 Diccionario::~Diccionario() {
 }
 
-
-//TODO eligir buen throw
-void Diccionario::insertar( std::string palabra, unsigned int &pos ) { //Const no funciona
+void Diccionario::insertar( const std::string palabra, unsigned int &pos ) { //Const no funciona
     Palabra pal( palabra );
     std::vector<Palabra>::iterator iter = _vectorPalabras.begin();
     for ( pos = 0; pos < _vectorPalabras.size(); pos++) {
@@ -57,7 +55,6 @@ void Diccionario::insertar( std::string palabra, unsigned int &pos ) { //Const n
     }
 }
 
-//TODO eligir buen throw
 void Diccionario::eliminar( const std::string &palabra, unsigned int &pos ) {
     Palabra pal( palabra );
     std::vector<Palabra>::iterator iter = _vectorPalabras.begin();
@@ -90,40 +87,43 @@ Palabra &Diccionario::busca( const std::string &termino, unsigned int &pos ) {
     throw std::invalid_argument ("[Diccionario::busca]Palabra no encontrada");
 }
 
-//void Diccionario::usaCorpus(std::string nomFich) {
-//    std::ifstream fe;
-//    std::string frase;
-//    fe.open( nomFich.c_str() );
-//    if ( !fe.good() ){
-//        fe.close();
-//        throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
-//                " el archivo. (¿Archivo incorrecto?)");
-//    }
-//    while ( !fe.eof() ){
-//        getline( fe, frase );
-//        entrena( frase );
-//    }
-//    fe.close();
-//}
+void Diccionario::usaCorpus(std::string nomFich) {
+    std::ifstream fe;
+    std::string frase;
+    fe.open( nomFich.c_str() );
+    if ( !fe.good() ){
+        fe.close();
+        throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
+                " el archivo. (¿Archivo incorrecto?)");
+    }
+    while ( !fe.eof() ){
+        getline( fe, frase );
+        entrena( frase );
+    }
+    fe.close();
+}
 
-//void Diccionario::entrena(const std::string frase) {
-//    std::stringstream ss( frase );
-//    std::string palabra, sucesor;
-//    
-//    ss >> palabra; 
-//    while ( !ss.eof() ){
-//        ss >> sucesor;
-//        if ( sucesor != "" ){
-//            int posP;
-//            busca( palabra, posP );
-//            if ( posP == -1 )
-//                insertar( palabra, posP);
-//            _vectorPalabras[posP].introducirSucesor( sucesor );
-//            palabra = sucesor;
-//            sucesor = "";
-//        }
-//        
-//    }
-//}
+//TODO preguntar la parte del catch al profesor
+void Diccionario::entrena(const std::string frase) {
+    std::stringstream ss( frase );
+    std::string palabra, sucesor;
+    
+    ss >> palabra; 
+    while ( !ss.eof() ){
+        ss >> sucesor;
+        if ( sucesor != "" ){
+            unsigned int posP;
+            try {
+                busca( palabra, posP );
+            } catch (std::invalid_argument  &e) {
+                insertar( palabra, posP);
+            }
+            _vectorPalabras[posP].introducirSucesor( sucesor );
+            palabra = sucesor;
+            sucesor = "";
+        }
+        
+    }
+}
 
 

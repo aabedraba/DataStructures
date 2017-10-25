@@ -21,7 +21,7 @@ public:
     virtual ~Diccionario();
     
     Palabra& busca( const std::string &termino, unsigned int &pos);
-    void insertar( std::string palabra, unsigned int& pos );
+    void insertar( const std::string palabra, unsigned int& pos );
     void eliminar ( const std::string &palabra, unsigned int &pos );
     void entrena ( const std::string frase );
     void usaCorpus ( std::string nomFich );
