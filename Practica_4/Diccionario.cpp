@@ -16,6 +16,7 @@ Diccionario::Diccionario( std::string nomFich )
     std::string linea;
     int total = 0;
     fe.open( nomFich.c_str() ); //convierte nomFich en legible por ifstream::open
+    
     if ( !fe.good() ) {
         fe.close();
         throw std::invalid_argument("[Diccionario::cargaPalabras]No se pudo abrir"
@@ -26,7 +27,7 @@ Diccionario::Diccionario( std::string nomFich )
         getline( fe, linea );
         if ( linea != "" ) {
             Palabra palabra(linea);
-            _vectorPalabras.insertar( palabra ); //La lista está ordenada
+            _vectorPalabras.push_back( palabra ); //La lista está ordenada
             total++;
         }
     }
@@ -41,68 +42,88 @@ Diccionario::~Diccionario() {
 }
 
 
-void Diccionario::insertar( std::string palabra, int &pos ) { //Const no funciona
-    Palabra p( palabra );
-    for ( pos = 0; pos < _vectorPalabras.GetTamL(); pos++) {
-        if ( p == _vectorPalabras[pos] ) //Evitamos duplicado
-            break;
-        if ( p < _vectorPalabras[pos] ){
-            _vectorPalabras.insertar( p, pos ); //Insertar en la posición correspondiente
+//TODO eligir buen throw
+void Diccionario::insertar( std::string palabra, unsigned int &pos ) { //Const no funciona
+    Palabra pal( palabra );
+    std::vector<Palabra>::iterator iter = _vectorPalabras.begin();
+    for ( pos = 0; pos < _vectorPalabras.size(); pos++) {
+        if ( pal == _vectorPalabras[pos] ) //Evitamos duplicado
+            throw std::invalid_argument("[Diccionario::insertar] Ya se encuentra en el diccionario");
+        if ( pal < _vectorPalabras[pos] ){
+            _vectorPalabras.insert( iter, pal ); //Insertar en la posición correspondiente
             break;
         }
+        iter++;
     }
 }
 
-void Diccionario::eliminar(const std::string& palabra) {
-    Palabra p( palabra );
-    for (unsigned int i = 0; i < _vectorPalabras.GetTamL(); i++) {
-        if ( p == _vectorPalabras[i] )
-            _vectorPalabras.eliminar( i );
-    }
-
-}
-
-void Diccionario::usaCorpus(std::string nomFich) {
-    std::ifstream fe;
-    std::string frase;
-    fe.open( nomFich.c_str() );
-    if ( !fe.good() ){
-        fe.close();
-        throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
-                " el archivo. (¿Archivo incorrecto?)");
-    }
-    while ( !fe.eof() ){
-        getline( fe, frase );
-        entrena( frase );
-    }
-    fe.close();
-}
-
-void Diccionario::entrena(const std::string frase) {
-    std::stringstream ss( frase );
-    std::string palabra, sucesor;
-    
-    ss >> palabra; 
-    while ( !ss.eof() ){
-        ss >> sucesor;
-        if ( sucesor != "" ){
-            int posP;
-            busca( palabra, posP );
-            if ( posP == -1 )
-                insertar( palabra, posP);
-            _vectorPalabras[posP].introducirSucesor( sucesor );
-            palabra = sucesor;
-            sucesor = "";
+//TODO eligir buen throw
+void Diccionario::eliminar( const std::string &palabra, unsigned int &pos ) {
+    Palabra pal( palabra );
+    std::vector<Palabra>::iterator iter = _vectorPalabras.begin();
+    for (unsigned int i = 0; i < _vectorPalabras.size(); i++, iter++)
+        if ( pal == _vectorPalabras[i] ){
+            _vectorPalabras.erase( iter );
+            pos = i;
+            return;
         }
-        
-    }
+    throw std::invalid_argument("[Diccionario::eliminar]Elemento no encontrado para eliminar");
+
 }
 
-Palabra &Diccionario::busca( const std::string &termino, int &pos ) {
+Palabra &Diccionario::busca( const std::string &termino, unsigned int &pos ) {
     Palabra aBuscar( termino );
-    int p = _vectorPalabras.busquedaBin( aBuscar );
-    if ( p == -1 )
-        throw std::out_of_range ("[Diccionario::busca]Palabra no encontrada");
-    pos = p;
-    return _vectorPalabras[pos];
+    std::vector<Palabra>::iterator iter;
+    int posMaximo = _vectorPalabras.size(); //Maximo de palabras declarado en VectorEstatico
+    int posMinimo = 0;
+    pos = (posMaximo - posMinimo) / 2;
+    while ( (posMaximo - posMinimo) >= 0 ){
+        if (  _vectorPalabras[pos] != aBuscar ) {
+            if ( _vectorPalabras[pos] > aBuscar ) 
+                posMaximo = pos - 1;
+            else 
+                posMinimo = pos + 1;
+            pos = posMinimo + (posMaximo - posMinimo)/2;
+        } else 
+            return _vectorPalabras[pos];
+    } 
+    throw std::invalid_argument ("[Diccionario::busca]Palabra no encontrada");
 }
+
+//void Diccionario::usaCorpus(std::string nomFich) {
+//    std::ifstream fe;
+//    std::string frase;
+//    fe.open( nomFich.c_str() );
+//    if ( !fe.good() ){
+//        fe.close();
+//        throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
+//                " el archivo. (¿Archivo incorrecto?)");
+//    }
+//    while ( !fe.eof() ){
+//        getline( fe, frase );
+//        entrena( frase );
+//    }
+//    fe.close();
+//}
+
+//void Diccionario::entrena(const std::string frase) {
+//    std::stringstream ss( frase );
+//    std::string palabra, sucesor;
+//    
+//    ss >> palabra; 
+//    while ( !ss.eof() ){
+//        ss >> sucesor;
+//        if ( sucesor != "" ){
+//            int posP;
+//            busca( palabra, posP );
+//            if ( posP == -1 )
+//                insertar( palabra, posP);
+//            _vectorPalabras[posP].introducirSucesor( sucesor );
+//            palabra = sucesor;
+//            sucesor = "";
+//        }
+//        
+//    }
+//}
+
+

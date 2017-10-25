@@ -13,6 +13,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 class Diccionario {
 public:
@@ -20,14 +21,14 @@ public:
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
     
-    Palabra& busca( const std::string &termino, int &pos);
-    void insertar( std::string palabra, int& pos );
-    void eliminar ( const std::string &palabra );
+    Palabra& busca( const std::string &termino, unsigned int &pos);
+    void insertar( std::string palabra, unsigned int& pos );
+    void eliminar ( const std::string &palabra, unsigned int &pos );
     void entrena ( const std::string frase );
     void usaCorpus ( std::string nomFich );
     
 private:
-    VDinamico<Palabra> _vectorPalabras;
+    std::vector<Palabra> _vectorPalabras;
 };
 
 #endif /* DICCIONARIO_H */
