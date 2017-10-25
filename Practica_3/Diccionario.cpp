@@ -25,17 +25,15 @@ Diccionario::Diccionario( std::string nomFich )
     while ( !fe.eof() ) {
         getline( fe, linea );
         if ( linea != "" ) {
-            Palabra *palabra = new Palabra(linea);
-            _vectorPalabras.insertar( *palabra ); //La lista está ordenada
+            Palabra palabra(linea);
+            _vectorPalabras.insertar( palabra ); //La lista está ordenada
             total++;
         }
     }
     fe.close();
 }
 
-//TODO hacer más tarde
-Diccionario::Diccionario( const Diccionario& orig )
-{
+Diccionario::Diccionario( const Diccionario& orig ) {
     throw std::runtime_error("Vector de copia no implementado");
 }
 
@@ -43,7 +41,8 @@ Diccionario::~Diccionario() {
 }
 
 
-void Diccionario::insertar( Palabra &p, int& pos ) { //Const no funciona
+void Diccionario::insertar( std::string palabra, int &pos ) { //Const no funciona
+    Palabra p( palabra );
     for ( pos = 0; pos < _vectorPalabras.GetTamL(); pos++) {
         if ( p == _vectorPalabras[pos] ) //Evitamos duplicado
             break;
@@ -89,7 +88,9 @@ void Diccionario::entrena(const std::string frase) {
         if ( sucesor != "" ){
             int posP;
             busca( palabra, posP );
-            _vectorPalabras[posP].SetSucesores( sucesor );
+            if ( posP == -1 )
+                insertar( palabra, posP);
+            _vectorPalabras[posP].introducirSucesor( sucesor );
             palabra = sucesor;
             sucesor = "";
         }
@@ -100,10 +101,8 @@ void Diccionario::entrena(const std::string frase) {
 Palabra &Diccionario::busca( const std::string &termino, int &pos ) {
     Palabra aBuscar( termino );
     int p = _vectorPalabras.busquedaBin( aBuscar );
-    if ( p == -1 ){
-        insertar( aBuscar, pos );
-        return _vectorPalabras[pos];
-    }
+    if ( p == -1 )
+        throw std::out_of_range ("[Diccionario::busca]Palabra no encontrada");
     pos = p;
     return _vectorPalabras[pos];
 }
