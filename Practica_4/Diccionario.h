@@ -9,7 +9,6 @@
 #define DICCIONARIO_H
 
 #include "Palabra.h"
-#include "VDinamico.h"
 #include <string>
 #include <iostream>
 #include <fstream>
