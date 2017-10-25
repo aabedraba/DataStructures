@@ -15,6 +15,7 @@
 #define LISTAENLAZADA_H
 
 #include "Diccionario.h"
+#include <stdexcept>
 
 template<typename T>
 class Nodo {
@@ -39,19 +40,25 @@ public:
     ListaEnlazada<T>();
     ListaEnlazada<T>( const ListaEnlazada<T>& orig ); 
     virtual ~ListaEnlazada();
-    ListaEnlazada<T> operator= ( const ListaEnlazada<T> &orig );
+    ListaEnlazada<T>& operator= ( const ListaEnlazada<T> &orig );
     
     class Iterador {
     private:
         Nodo<T> *_nodo;
         friend class ListaEnlazada<T>;
     public:
+        Iterador()
+            : _nodo (0)
+        {};
         Iterador( Nodo<T> *aNodo )
             : _nodo ( aNodo )
         {};
         Iterador( const Iterador& orig )
             : _nodo ( orig._nodo )
         {};
+        Iterador& operator=( const Iterador &orig ){
+            _nodo = orig._nodo;
+        }
         virtual ~Iterador( ){};
         bool fin () {
             return _nodo == 0;
@@ -62,10 +69,6 @@ public:
         T& dato () {
             return _nodo->_dato;
         }
-
-        Nodo<T>* getNodo( ) const {
-            return _nodo;
-        };
     };
     
     Iterador iterador();
@@ -84,7 +87,6 @@ private:
 };
 
 template<typename T>
-
 ListaEnlazada<T>::ListaEnlazada()
     : _cabecera( 0 ),
       _cola( 0 )
@@ -99,16 +101,21 @@ ListaEnlazada<T>::ListaEnlazada ( const ListaEnlazada<T>& orig )
 }
 
 template<typename T>
-ListaEnlazada<T>::~ListaEnlazada()
-{   
-    while ( _cabecera != 0 )
-        borraInicio();
+ListaEnlazada<T>::~ListaEnlazada() {   
+    while ( _cabecera == 0 ){
+        Nodo<T> *aBorrar = _cabecera;
+        _cabecera = _cabecera->_sig;
+        delete aBorrar;
+    }
 }
 
 template<typename T>
-ListaEnlazada<T> ListaEnlazada<T>::operator =( const ListaEnlazada<T>& orig ) {
-    _cabecera = orig._cabecera;
-    _cola = orig._cola;
+ListaEnlazada<T>& ListaEnlazada<T>::operator =( const ListaEnlazada<T>& orig ) {
+    if ( this->_cabecera != 0 ){
+        this->_cabecera = orig._cabecera;
+        this->_cola = orig._cola;
+    }
+    return *this;
 }
 
 template<typename T>
@@ -133,9 +140,8 @@ void ListaEnlazada<T>::insertaFin ( T& dato ) {
 
 template<typename T>
 void ListaEnlazada<T>::inserta ( Iterador& iter, T& dato ) { //El iterador apunta al anterior
-    Nodo<T> *nuevo;
-    nuevo = new Nodo<T> ( dato, iter.getNodo() );
-    iter.getNodo()->_sig = nuevo;
+    Nodo<T> *nuevo = new Nodo<T> ( dato, iter._nodo );
+    iter.dato() = nuevo;
     if ( _cabecera == 0 )
         _cabecera = _cola = nuevo;
 }
