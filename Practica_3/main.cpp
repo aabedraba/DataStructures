@@ -18,17 +18,16 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
+    do {
+        try {
 
-    try {
-        
-        Diccionario diccionario("listado-sin-acentos_v2.txt");
-        diccionario.usaCorpus("corpus_spanish-2.txt");     
-        std::string palabra;
-        int pos, eleccion;
-        do {
-            cout << "Introduzca una palabra: ";
+            Diccionario diccionario("listado-sin-acentos_v2.txt");
+            diccionario.usaCorpus("corpus_spanish-2.txt");     
+            std::string palabra;
+            int pos;
+            cout << "Introduzca una palabra (0 para salir): ";
             cin >> palabra;    
-            if (palabra == "-1")
+            if (palabra == "0")
                 break;
             ListaEnlazada<Sucesor>::Iterador iter = diccionario.busca( palabra, pos ).sucesores().iterador();
             ListaEnlazada<Sucesor>::Iterador aux = iter;
@@ -43,24 +42,25 @@ int main(int argc, char** argv) {
                 iter.siguiente();
                 i++;
             }
-            cout << "\n: ";
+            cout << " " << endl;
             cin >> eleccion;
             for (int i = 2; i <= eleccion; i++)
                 aux.siguiente();
-        } while (true);
-             
-    } catch (std::ifstream::failure& exception) {
-    std::cerr << exception.what() << std::endl;
-    }
-    catch (std::invalid_argument& exception) {
-      std::cerr << exception.what() << std::endl;
-    }
-    catch (std::out_of_range& exception) {
-      std::cerr << exception.what() << std::endl;
-    }
-    catch (std::exception& exception) {
-      std::cerr << exception.what() << std::endl;
-    }
+            cout << aux.dato().getTermino() << endl;
+
+        } catch (std::ifstream::failure& exception) {
+        std::cerr << exception.what() << std::endl;
+        }
+        catch (std::invalid_argument& exception) {
+          std::cerr << exception.what() << std::endl;
+        }
+        catch (std::out_of_range& exception) {
+          std::cerr << exception.what() << std::endl;
+        }
+        catch (std::exception& exception) {
+          std::cerr << exception.what() << std::endl;
+        }
+    } while (true);
     
     
     
