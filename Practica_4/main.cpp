@@ -14,6 +14,31 @@
 
 using namespace std;
 
+void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
+    unsigned int pos;
+    int eleccion;
+    std::list<Sucesor> sucesores = diccionario.busca( palabra, pos ).sucesores();
+    std::list<Sucesor>::iterator iter = sucesores.begin();
+    std::list<Sucesor>::iterator aux = iter;
+    if ( iter == sucesores.end() ){
+        cout << "No hay sucesores" << endl;
+        return;
+    }
+    cout << "Elija ";
+    int i = 1;
+    while ( iter != sucesores.end() ){
+        cout << i << ". " << (*iter).getTermino() << "(" << (*iter).getNumOcurrencias() << ")  ";
+        iter++;
+        i++;
+    }
+    cout << " " << endl;
+    cin >> eleccion;
+    for (int i = 2; i <= eleccion; i++)
+        aux++;
+    mostrarSucesores( (*aux).getTermino(), diccionario );
+};
+
+
 /*
  * 
  */
@@ -21,14 +46,14 @@ int main(int argc, char** argv) {
     
     try {
         Diccionario diccionario("listado-sin-acentos_v2.txt");
-        diccionario.usaCorpus("corpus_spanish-2.txt"); 
+        diccionario.usaCorpus("corpus_spanish.txt"); 
         do {
-//            int eleccion;
-//            cout << "0 buscar, 1 insertar, 2 eliminar: ";
+            std::string palabra;
+
+//            cout << "0 buscar, 1 insertar, 2 eliminar, 3 entrena: ";
 //            cin >> eleccion;
-//            std::string palabra;
-//            unsigned int pos;
-//
+            
+
 //            if ( eleccion == 0 ){
 //                cout << "Palabra a buscar: ";
 //                cin >> palabra;
@@ -53,32 +78,13 @@ int main(int argc, char** argv) {
 //                diccionario.eliminar( palabra, pos );
 //                cout << "Eliminado correctamente de la posicion " << pos << endl;
 //            }    
-            std::string palabra;
-            unsigned int pos;
             cout << "Introduzca una palabra (0 para salir): ";
             cin >> palabra;    
             if (palabra == "0")
                 break;
-            std::list<Sucesor> sucesores = diccionario.busca( palabra, pos ).sucesores();
-            std::list<Sucesor>::iterator iter = sucesores.begin();
-            std::list<Sucesor>::iterator aux = iter;
-            if ( iter == sucesores.end() ){
-                cout << "No hay sucesores" << endl;
-                continue;
-            }
-            int eleccion, i = 1;
-            cout << "Elija: ";
-            while ( iter != sucesores.end() ){
-                cout << i << ". " << (*iter).getTermino() << "(" << (*iter).getNumOcurrencias() << ")  ";
-                iter++;
-                i++;
-            }
-            cout << " " << endl;
-            cin >> eleccion;
-            for (int i = 2; i <= eleccion; i++)
-                aux++;
-            cout << (*aux).getTermino() << endl;
-
+            mostrarSucesores( palabra, diccionario );
+            
+            
        } while (true);
     } catch (std::ifstream::failure& exception) {
     std::cerr << exception.what() << std::endl;
