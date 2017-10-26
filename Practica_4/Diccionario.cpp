@@ -49,7 +49,7 @@ void Diccionario::insertar( const std::string palabra, unsigned int &pos ) { //C
             throw std::invalid_argument("[Diccionario::insertar] Ya se encuentra en el diccionario");
         if ( pal < _vectorPalabras[pos] ){
             _vectorPalabras.insert( iter, pal ); //Insertar en la posición correspondiente
-            break;
+            return;
         }
         iter++;
     }
