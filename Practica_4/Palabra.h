@@ -10,6 +10,7 @@
 
 #include <string>
 #include <list>
+#include <queue>
 
 class Sucesor{
 public:
@@ -24,13 +25,18 @@ public:
     {};
     virtual ~Sucesor() {
     };
-    bool operator !=( const Sucesor &otro ){
-        if ( this->getTermino() != otro.getTermino() ) 
+    bool operator!= ( const Sucesor &otro ){
+        if ( _termino != otro._termino ) 
                  return true;
         return false;
     };
-    bool operator ==( const Sucesor &otro ){
+    bool operator== ( const Sucesor &otro ){
         return !(operator !=( otro ));
+    }
+    bool operator <( const Sucesor &otro ) const {
+        if ( _numOcurrencias < otro._numOcurrencias )
+            return true;
+        return false;
     }
     void aumentaOcurrencias(){
         _numOcurrencias++;
@@ -108,19 +114,33 @@ public:
     void introducirSucesor( std::string sucesor ) {
         Sucesor suces( sucesor );
         std::list<Sucesor>::iterator iter = _sucesores.begin();
-        while ( !iter._M_node != 0 ){
+        while ( iter != _sucesores.end()  ){
             if ( suces == (*iter) ){
                 (*iter).aumentaOcurrencias();
-                break;
+                return;
             }
             iter++;
         }
-        if ( iter._M_node->_M_next )//no se ha insertado nada
+        if ( iter == _sucesores.end() )//no se ha insertado nada
             _sucesores.push_back( suces );
     }
 
     //Mirar que no se esté copiando
-    std::list<Sucesor> sucesores() const {
+    std::list<Sucesor> sucesores() {
+        std::list<Sucesor> aux;
+        std::list<Sucesor>::iterator iter = _sucesores.begin();
+        std::priority_queue<Sucesor> listaOrdenada;
+        if ( iter != _sucesores.end() ){
+            while ( iter != _sucesores.end() ){
+                listaOrdenada.push( (*iter) );
+                iter++;
+            }
+            while ( !listaOrdenada.empty() ){
+                aux.push_back( listaOrdenada.top() );
+                listaOrdenada.pop();
+            }
+            _sucesores = aux;
+        }  
         return _sucesores;
     }
 
