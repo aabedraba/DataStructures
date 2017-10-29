@@ -25,15 +25,15 @@ public:
     {};
     virtual ~Sucesor() {
     };
-    bool operator!= ( const Sucesor &otro ){
+    bool operator!= ( const Sucesor &otro ) const{
         if ( _termino != otro._termino ) 
                  return true;
         return false;
     };
-    bool operator== ( const Sucesor &otro ){
+    bool operator== ( const Sucesor &otro ) const{
         return !(operator !=( otro ));
     }
-    bool operator <( const Sucesor &otro ) const {
+    bool operator <( const Sucesor &otro ) const{
         if ( _numOcurrencias < otro._numOcurrencias )
             return true;
         return false;
@@ -83,23 +83,23 @@ public:
         return *this;
     }
     
-    bool operator !=( const Palabra &otro ){
+    bool operator !=( const Palabra &otro ) const {
         if ( this->GetTermino() != otro.GetTermino() ) 
                  return true;
         return false;
     };
     
-    bool operator ==( const Palabra &otro ){
+    bool operator ==( const Palabra &otro ) const {
         return !(operator !=( otro ));
     }
     
-    bool operator >( const Palabra &otro ){
+    bool operator >( const Palabra &otro ) const {
         if ( this->GetTermino() > otro.GetTermino() ) 
             return true;
         return false;
     }
     
-    bool operator <( const Palabra &otro ){
+    bool operator <( const Palabra &otro ) const{
         return !(operator >(otro));
     }
 
