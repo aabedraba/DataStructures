@@ -14,6 +14,12 @@
 
 using namespace std;
 
+/**
+ * Funcion recursiva que muestra los 10 sucesores mas prioritarios, en caso de 
+ que existan de un string dado.
+ * @param palabra string del que se buscan sucesores.
+ * @param diccionario objeto de tipo diccionario en el buscamos estas palabras.
+ */
 void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     unsigned int pos;
     int eleccion;
