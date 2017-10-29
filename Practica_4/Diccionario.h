@@ -13,22 +13,24 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <stdexcept>
+#include <sstream>
 
 class Diccionario {
+    
 public:
-    Diccionario( std::string nomFich );
+    Diccionario( const std::string &nomFich );
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
     
     Palabra& busca( const std::string &termino, unsigned int &pos );
-    void insertar( const std::string palabra, unsigned int& pos );
-    void eliminar ( const std::string &palabra, unsigned int &pos );
-    void entrena ( const std::string frase );
+    void inserta( const std::string &palabra, unsigned int& pos );
+    void elimina ( const std::string &palabra, unsigned int &pos );
     void usaCorpus ( std::string nomFich );
+    void entrena ( const std::string frase );
     
 private:
-    std::vector<Palabra> _vectorPalabras;
+    std::vector<Palabra> _vec;
 };
-
 #endif /* DICCIONARIO_H */
 
