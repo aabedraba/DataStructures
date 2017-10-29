@@ -84,7 +84,7 @@ public:
     }
     
     bool operator !=( const Palabra &otro ) const {
-        if ( this->GetTermino() != otro.GetTermino() ) 
+        if ( _termino != otro._termino ) 
                  return true;
         return false;
     };
@@ -94,7 +94,7 @@ public:
     }
     
     bool operator >( const Palabra &otro ) const {
-        if ( this->GetTermino() > otro.GetTermino() ) 
+        if ( _termino > otro._termino ) 
             return true;
         return false;
     }

@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     
     try {
         Diccionario diccionario("listado-sin-acentos_v2.txt");
-//        diccionario.usaCorpus("corpus_spanish.txt"); 
+        diccionario.usaCorpus("corpus_spanish-2.txt"); 
         unsigned int pos, eleccion;
         std::string palabra;
         do {
@@ -57,11 +57,11 @@ int main(int argc, char** argv) {
                     case 0: {
                         cout << "Palabra a buscar: ";
                         cin >> palabra;
-                        diccionario.busca( palabra, pos );
+                        Palabra p = diccionario.busca( palabra, pos );
                         if ( pos == -1 )
                             cout << "No se encuentra" << endl;
                         else 
-                            cout << "Encontrado en la posicion: " << pos << endl;
+                            cout << p.GetTermino() << " encontrado en la posicion: " << pos << endl;
                         break;
                     }
                     

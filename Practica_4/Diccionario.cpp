@@ -57,11 +57,12 @@ void Diccionario::elimina( const std::string &palabra, unsigned int &pos ) {
 //TODO mirar por qué me devuelve una pos superior
 void Diccionario::inserta(const std::string &palabra, unsigned int& pos) {
     Palabra aInsertar( palabra );
-    std::vector<Palabra>::iterator iter = std::lower_bound( _vec.begin(), _vec.end(), aInsertar );
+    std::vector<Palabra>::iterator iter = std::lower_bound( _vec.begin(), _vec.end(), aInsertar ); 
     if ( aInsertar == (*(iter-1)) )
         throw std::invalid_argument ("[Diccionario::inserta]Palabra ya existe en diccionario");
     pos = iter - _vec.begin();
     _vec.insert( iter, aInsertar );
+    iter = std::lower_bound( _vec.begin(), _vec.end(), aInsertar );
 }
 
 
@@ -71,7 +72,8 @@ Palabra &Diccionario::busca( const std::string &termino, unsigned int &pos ) {
     auto iter = std::lower_bound( _vec.begin(), _vec.end(), aBuscar );
     if ( iter == _vec.end() || aBuscar != (*(iter-1)) )
         throw std::invalid_argument ("[Diccionario::busca]Palabra no existe");
-    pos = iter - _vec.begin() - 1;
+    iter--;
+    pos = iter - _vec.begin();
     return (*iter);
 }
 
