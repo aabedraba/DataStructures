@@ -6,9 +6,6 @@
  */
 
 #include "Diccionario.h"
-#include <stdexcept>
-#include <sstream>
-#include <algorithm>
 
 Diccionario::Diccionario( const std::string &nomFich )
     : _vec()
