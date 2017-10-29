@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     
     try {
         Diccionario diccionario("listado-sin-acentos_v2.txt");
-        diccionario.usaCorpus("corpus_spanish.txt"); 
+//        diccionario.usaCorpus("corpus_spanish.txt"); 
         unsigned int pos, eleccion;
         std::string palabra;
         do {
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
                     case 1: {
                         cout << "Palabra a insertar: ";
                         cin >> palabra;
-                        diccionario.insertar( palabra, pos );
+                        diccionario.inserta( palabra, pos );
                         if ( pos == -1 )
                             cout << "Ya existe" << endl;
                         else
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
                     case 2: {
                         cout << "Palabra a eliminar: ";
                         cin >> palabra;
-                        diccionario.eliminar( palabra, pos );
+                        diccionario.elimina( palabra, pos );
                         cout << "Eliminado correctamente de la posicion " << pos << endl;
                         break;
                     }
