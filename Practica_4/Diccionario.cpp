@@ -8,9 +8,10 @@
 #include "Diccionario.h"
 #include <stdexcept>
 #include <sstream>
+#include <algorithm>
 
-Diccionario::Diccionario( std::string nomFich )
-    : _vectorPalabras()
+Diccionario::Diccionario( const std::string &nomFich )
+    : _vec()
 {
     std::ifstream fe;
     std::string linea;
@@ -27,7 +28,7 @@ Diccionario::Diccionario( std::string nomFich )
         getline( fe, linea );
         if ( linea != "" ) {
             Palabra palabra(linea);
-            _vectorPalabras.push_back( palabra ); //La lista está ordenada
+            _vec.push_back( palabra ); //La lista está ordenada
             total++;
         }
     }
@@ -41,50 +42,40 @@ Diccionario::Diccionario( const Diccionario& orig ) {
 Diccionario::~Diccionario() {
 }
 
-void Diccionario::insertar( const std::string palabra, unsigned int &pos ) { //Const no funciona
-    Palabra pal( palabra );
-    std::vector<Palabra>::iterator iter = _vectorPalabras.begin();
-    for ( pos = 0; pos < _vectorPalabras.size(); pos++) {
-        if ( pal == _vectorPalabras[pos] ) //Evitamos duplicado
-            throw std::invalid_argument("[Diccionario::insertar] Ya se encuentra en el diccionario");
-        if ( pal < _vectorPalabras[pos] ){
-            _vectorPalabras.insert( iter, pal ); //Insertar en la posición correspondiente
-            return;
-        }
-        iter++;
-    }
-}
 
-void Diccionario::eliminar( const std::string &palabra, unsigned int &pos ) {
+
+void Diccionario::elimina( const std::string &palabra, unsigned int &pos ) {
     Palabra pal( palabra );
-    std::vector<Palabra>::iterator iter = _vectorPalabras.begin();
-    for (unsigned int i = 0; i < _vectorPalabras.size(); i++, iter++)
-        if ( pal == _vectorPalabras[i] ){
-            _vectorPalabras.erase( iter );
+    std::vector<Palabra>::iterator iter = _vec.begin();
+    for (unsigned int i = 0; i < _vec.size(); i++, iter++)
+        if ( pal == _vec[i] ){
+            _vec.erase( iter );
             pos = i;
             return;
         }
-    throw std::invalid_argument("[Diccionario::eliminar]Elemento no encontrado para eliminar");
+    throw std::invalid_argument("[Diccionario::elimina]Elemento no encontrado para eliminar");
 
 }
 
+//TODO mirar por qué me devuelve una pos superior
+void Diccionario::inserta(const std::string &palabra, unsigned int& pos) {
+    Palabra aInsertar( palabra );
+    std::vector<Palabra>::iterator iter = std::lower_bound( _vec.begin(), _vec.end(), aInsertar );
+    if ( aInsertar == (*(iter-1)) )
+        throw std::invalid_argument ("[Diccionario::inserta]Palabra ya existe en diccionario");
+    pos = iter - _vec.begin();
+    _vec.insert( iter, aInsertar );
+}
+
+
+
 Palabra &Diccionario::busca( const std::string &termino, unsigned int &pos ) {
     Palabra aBuscar( termino );
-    std::vector<Palabra>::iterator iter;
-    int posMaximo = _vectorPalabras.size(); //Maximo de palabras declarado en VectorEstatico
-    int posMinimo = 0;
-    pos = (posMaximo - posMinimo) / 2;
-    while ( (posMaximo - posMinimo) >= 0 ){
-        if (  _vectorPalabras[pos] != aBuscar ) {
-            if ( _vectorPalabras[pos] > aBuscar ) 
-                posMaximo = pos - 1;
-            else 
-                posMinimo = pos + 1;
-            pos = posMinimo + (posMaximo - posMinimo)/2;
-        } else 
-            return _vectorPalabras[pos];
-    } 
-    throw std::invalid_argument ("[Diccionario::busca]Palabra no encontrada");
+    auto iter = std::lower_bound( _vec.begin(), _vec.end(), aBuscar );
+    if ( iter == _vec.end() || aBuscar != (*(iter-1)) )
+        throw std::invalid_argument ("[Diccionario::busca]Palabra no existe");
+    pos = iter - _vec.begin() - 1;
+    return (*iter);
 }
 
 void Diccionario::usaCorpus(std::string nomFich) {
@@ -116,9 +107,9 @@ void Diccionario::entrena(const std::string frase) {
             try {
                 busca( palabra, posP );
             } catch (std::invalid_argument  &e) {
-                insertar( palabra, posP);
+                inserta( palabra, posP);
             }
-            _vectorPalabras[posP].introducirSucesor( sucesor );
+            _vec[posP].introducirSucesor( sucesor );
             palabra = sucesor;
             sucesor = "";
         }
