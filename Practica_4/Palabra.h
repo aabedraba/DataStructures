@@ -110,7 +110,12 @@ public:
     std::string GetTermino() const {
         return _termino;
     }
-
+    
+    /**
+     * Dado un string lo incluye como sucesor de la palabra.
+     * @pre si ya existe, solo aumenta su numero de ocurrencias.
+     * @param sucesor string que queremos anadir como sucesor de cierta palabra.
+     */
     void introducirSucesor( std::string sucesor ) {
         Sucesor suces( sucesor );
         std::list<Sucesor>::iterator iter = _sucesores.begin();
@@ -126,6 +131,11 @@ public:
     }
 
     //Mirar que no se esté copiando
+    /**
+     * Metodo que lista todos los sucesores de cierta palabra.
+     * @return devuelve una lista enlazada con todos los sucesores ordenados por 
+     su numero de courrencias.
+     */
     std::list<Sucesor> sucesores() {
         std::list<Sucesor> aux;
         std::list<Sucesor>::iterator iter = _sucesores.begin();
