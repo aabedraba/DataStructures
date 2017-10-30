@@ -58,7 +58,7 @@ void Diccionario::elimina( const std::string &palabra, unsigned int &pos ) {
             pos = i;
             return;
         }
-    throw std::invalid_argument("[Diccionario::elimina]Elemento no encontrado para eliminar");
+    throw std::invalid_argument("[Diccionario::eliminar]Elemento no encontrado para eliminar");
 
 }
 
@@ -70,13 +70,18 @@ void Diccionario::elimina( const std::string &palabra, unsigned int &pos ) {
  * @throw lanza una excepcion de tipo invalid_argument si la palabra ya existe.
  */
 void Diccionario::inserta(const std::string &palabra, unsigned int& pos) {
-    Palabra aInsertar( palabra );
-    std::vector<Palabra>::iterator iter = std::lower_bound( _vec.begin(), _vec.end(), aInsertar ); 
-    if ( aInsertar == (*(iter-1)) )
-        throw std::invalid_argument ("[Diccionario::inserta]Palabra ya existe en diccionario");
-    pos = iter - _vec.begin();
-    _vec.insert( iter, aInsertar );
-    iter = std::lower_bound( _vec.begin(), _vec.end(), aInsertar );
+    Palabra pal( palabra );
+    std::vector<Palabra>::iterator iter = _vec.begin();
+    for ( pos = 0; pos < _vec.size(); pos++) {
+        if ( pal == _vec[pos] ) //Evitamos duplicado
+            throw std::invalid_argument("[Diccionario::insertar] Ya se encuentra en el diccionario");
+        if ( pal < _vec[pos] ){
+            _vec.insert( iter, pal ); //Insertar en la posición correspondiente
+            return;
+        }
+        iter++;
+    }
+    
 }
 
 /**
@@ -88,12 +93,21 @@ void Diccionario::inserta(const std::string &palabra, unsigned int& pos) {
  */
 Palabra &Diccionario::busca( const std::string &termino, unsigned int &pos ) {
     Palabra aBuscar( termino );
-    auto iter = std::lower_bound( _vec.begin(), _vec.end(), aBuscar );
-    if ( iter == _vec.end() || aBuscar != (*(iter-1)) )
-        throw std::invalid_argument ("[Diccionario::busca]Palabra no existe");
-    iter--;
-    pos = iter - _vec.begin();
-    return (*iter);
+    std::vector<Palabra>::iterator iter;
+    int posMaximo = _vec.size(); //Maximo de palabras declarado en VectorEstatico
+    int posMinimo = 0;
+    pos = (posMaximo - posMinimo) / 2;
+    while ( (posMaximo - posMinimo) >= 0 ){
+        if (  _vec[pos] != aBuscar ) {
+            if ( _vec[pos] > aBuscar ) 
+                posMaximo = pos - 1;
+            else 
+                posMinimo = pos + 1;
+            pos = posMinimo + (posMaximo - posMinimo)/2;
+        } else 
+            return _vec[pos];
+    } 
+    throw std::invalid_argument ("[Diccionario::busca]Palabra no encontrada");
 }
 
 /**
