@@ -136,16 +136,17 @@ public:
      * @return devuelve una lista enlazada con todos los sucesores ordenados por 
      su numero de courrencias.
      */
-    std::list<std::string> sucesores() {
+    std::list<std::string> sucesores( std::list<int> &ocurrencias ) {
         std::list<std::string> aux;
         std::list<Sucesor>::iterator iter = _sucesores.begin();
-        std::priority_queue<std::string> listaOrdenada;
+        std::priority_queue<Sucesor> listaOrdenada;
         while ( iter != _sucesores.end() ){
-            listaOrdenada.push( (*iter).getTermino() );
+            listaOrdenada.push( (*iter) );
             iter++;
         }
         while ( !listaOrdenada.empty() ){
-            aux.push_back( listaOrdenada.top() );
+            aux.push_back( listaOrdenada.top().getTermino() );
+            ocurrencias.push_back( listaOrdenada.top().getNumOcurrencias() );
             listaOrdenada.pop();
         }
         return aux;
