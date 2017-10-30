@@ -23,9 +23,9 @@ using namespace std;
 void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     unsigned int pos;
     int eleccion;
-    std::list<Sucesor> sucesores = diccionario.busca( palabra, pos ).sucesores();
-    std::list<Sucesor>::iterator iter = sucesores.begin();
-    std::list<Sucesor>::iterator aux = iter;
+    auto sucesores = diccionario.busca( palabra, pos ).sucesores();
+    auto iter = sucesores.begin();
+    auto aux = iter;
     if ( iter == sucesores.end() ){
         cout << "No hay sucesores" << endl;
         return;
@@ -33,7 +33,7 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     cout << "Elija: " << endl;
     int i = 1;
     while ( i <= 10 && iter != sucesores.end() ){
-        cout << '\t' <<  i << ". " << (*iter).getTermino() << "(" << (*iter).getNumOcurrencias() << ")  " << endl;
+        cout << '\t' <<  i << ". " << (*iter) << endl;
         iter++;
         i++;
     }
@@ -41,7 +41,7 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     cin >> eleccion;
     for (int i = 2; i <= eleccion; i++)
         aux++;
-    mostrarSucesores( (*aux).getTermino(), diccionario );
+    mostrarSucesores( (*aux), diccionario );
 };
 
 
