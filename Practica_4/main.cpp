@@ -24,7 +24,7 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     unsigned int pos;
     int eleccion;
     std::list<int> ocurrencias;
-    auto sucesores = diccionario.busca( palabra, pos ).sucesores( ocurrencias );
+    std::list<std::string> sucesores = diccionario.busca( palabra, pos ).sucesores( ocurrencias );
     auto iter = sucesores.begin();
     auto iter2 = ocurrencias.begin();
     auto aux = iter;
@@ -34,7 +34,7 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     }
     cout << "Elija: " << endl;
     int i = 1;
-    while ( i <= 10 && iter != sucesores.end() ){
+    while ( iter != sucesores.end() ){
         cout << '\t' <<  i << ". " << (*iter) << " (" << (*iter2) << ")" << endl;
         iter++; i++; iter2++;
     }
@@ -64,30 +64,34 @@ int main(int argc, char** argv) {
                     case 0: {
                         cout << "Palabra a buscar: ";
                         cin >> palabra;
+                        bool encontrado;
                         Palabra p = diccionario.busca( palabra, pos );
-                        if ( pos == -1 )
-                            cout << "No se encuentra" << endl;
-                        else 
-                            cout << p.GetTermino() << " encontrado en la posicion: " << pos << endl;
+                        cout << p.getTermino() << " encontrado en la posicion: " << pos << endl;
+                        
                         break;
                     }
                     
                     case 1: {
                         cout << "Palabra a insertar: ";
                         cin >> palabra;
-                        diccionario.inserta( palabra, pos );
-                        if ( pos == -1 )
-                            cout << "Ya existe" << endl;
-                        else
+                        bool insertado;
+                        diccionario.inserta( palabra, pos, insertado );
+                        if ( insertado )
                             cout << "Insertado en la posicion: " << pos << endl;
+                        else
+                            cout << "Ya existe" << endl;
                         break;
                     }
                     
                     case 2: {
                         cout << "Palabra a eliminar: ";
                         cin >> palabra;
-                        diccionario.elimina( palabra, pos );
-                        cout << "Eliminado correctamente de la posicion " << pos << endl;
+                        bool eliminado;
+                        diccionario.elimina( palabra, eliminado );
+                        if ( eliminado )
+                            cout << "Eliminado correctamente" << endl;
+                        else
+                            cout << "No existe." << endl;
                         break;
                     }
                     case 3: {
