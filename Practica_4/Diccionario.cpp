@@ -49,17 +49,16 @@ Diccionario::~Diccionario() {
  * @param palabra string que queremos buscar y eliminar.
  * @param pos posicion del elemento que queremos borrar y que se actualiza una vez eliminado.
  */
-void Diccionario::elimina( const std::string &palabra, unsigned int &pos ) {
+void Diccionario::elimina( const std::string &palabra, bool &eliminado ) {
     Palabra pal( palabra );
     std::vector<Palabra>::iterator iter = _vec.begin();
     for (unsigned int i = 0; i < _vec.size(); i++, iter++)
         if ( pal == _vec[i] ){
             _vec.erase( iter );
-            pos = i;
+            eliminado = true;
             return;
         }
-    throw std::invalid_argument("[Diccionario::eliminar]Elemento no encontrado para eliminar");
-
+    eliminado = false;
 }
 
 //TODO mirar por qué me devuelve una pos superior
@@ -69,14 +68,17 @@ void Diccionario::elimina( const std::string &palabra, unsigned int &pos ) {
  * @param pos posicion donde colocaremos la nueva palabra y que se actualizará cuando se haga.
  * @throw lanza una excepcion de tipo invalid_argument si la palabra ya existe.
  */
-void Diccionario::inserta(const std::string &palabra, unsigned int& pos) {
+void Diccionario::inserta(const std::string &palabra, unsigned int& pos, bool &insertado) {
     Palabra pal( palabra );
     std::vector<Palabra>::iterator iter = _vec.begin();
     for ( pos = 0; pos < _vec.size(); pos++) {
-        if ( pal == _vec[pos] ) //Evitamos duplicado
-            throw std::invalid_argument("[Diccionario::insertar] Ya se encuentra en el diccionario");
+        if ( pal == _vec[pos] ){ //Evitamos duplicado
+            insertado = false;
+            return;
+        }
         if ( pal < _vec[pos] ){
             _vec.insert( iter, pal ); //Insertar en la posición correspondiente
+            insertado = true;
             return;
         }
         iter++;
@@ -146,10 +148,11 @@ void Diccionario::entrena(const std::string frase) {
         ss >> sucesor;
         if ( sucesor != "" ){
             unsigned int posP;
+            bool insertado;
             try {
                 busca( palabra, posP );
-            } catch (std::invalid_argument  &e) {
-                inserta( palabra, posP);
+            } catch ( std::exception &e ) {
+                inserta( palabra, posP, insertado );
             }
             _vec[posP].introducirSucesor( sucesor );
             palabra = sucesor;
