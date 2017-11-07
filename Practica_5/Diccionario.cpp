@@ -95,7 +95,6 @@ void Diccionario::inserta(const std::string &palabra, unsigned int& pos, bool &i
  */
 Palabra &Diccionario::busca( const std::string &termino, unsigned int &pos ) {
     Palabra aBuscar( termino );
-    std::vector<Palabra>::iterator iter;
     int posMaximo = _vec.size(); //Maximo de palabras declarado en VectorEstatico
     int posMinimo = 0;
     pos = (posMaximo - posMinimo) / 2;
