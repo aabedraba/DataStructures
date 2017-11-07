@@ -30,7 +30,6 @@ public:
         _bal ( orig._bal )
     {};
     virtual ~Nodo( );
-private:
     Nodo<T> *_izq;
     Nodo<T> *_der;
     T _dato;
