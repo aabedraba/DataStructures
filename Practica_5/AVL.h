@@ -14,6 +14,34 @@
 #ifndef AVL_H
 #define AVL_H
 
+template <typename T>
+class Nodo {
+public:
+    Nodo<T> *izq;
+    Nodo<T> *der;
+    T dato;
+    
+    Nodo( ):
+        izq(0),
+        der(0)
+    {}
+    
+    Nodo( T &ele ):
+        izq(0),
+        der(0),
+        dato(ele)
+    {}
+    
+    Nodo( const Nodo& orig ):
+        izq( orig.izq ),
+        der( orig.der ),
+        dato( orig.dato )
+    {}
+    
+    virtual ~Nodo( );
+};
+
+template <typename T>
 class AVL {
 public:
     AVL( );
