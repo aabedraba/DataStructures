@@ -22,22 +22,19 @@ public:
     T dato;
     
     Nodo( ):
-        izq(0),
-        der(0)
-    {}
-    
+        izq( 0 ),
+        der( 0 )
+    {};
     Nodo( T &ele ):
-        izq(0),
-        der(0),
-        dato(ele)
-    {}
-    
+        izq( 0 ),
+        der( 0 ),
+        dato( ele )
+    {};
     Nodo( const Nodo& orig ):
         izq( orig.izq ),
         der( orig.der ),
         dato( orig.dato )
-    {}
-    
+    {};
     virtual ~Nodo( );
 };
 
