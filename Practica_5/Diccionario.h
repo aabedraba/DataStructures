@@ -15,6 +15,7 @@
 #include <vector>
 #include <stdexcept>
 #include <sstream>
+#include "AVL.h"
 
 class Diccionario {
     
@@ -23,14 +24,13 @@ public:
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
     
-    Palabra& busca( const std::string &termino, unsigned int &pos );
-    void inserta( const std::string &palabra, unsigned int& pos, bool &insertado );
-    void elimina ( const std::string &palabra, bool& eliminado );
+    Palabra *busca( const std::string &termino );
+    void inserta( const std::string &palabra, bool &insertado );
     void usaCorpus ( std::string nomFich );
     void entrena ( const std::string frase );
     
 private:
-    std::vector<Palabra> _vec;
+    Avl<Palabra> _vec;
 };
 #endif /* DICCIONARIO_H */
 
