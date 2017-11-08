@@ -42,12 +42,13 @@ class AVL {
 public:
     AVL( );
     AVL( const AVL<T>& orig );
+    AVL operator=( const AVL<T>& orig );
     virtual ~AVL( );
     
 private:
-    AVL operator=( const AVL<T>& orig );
     void rotIzqda( Nodo<T>* &p );
     void rotDecha( Nodo<T>* &p );
+    int inserta( Nodo<T>* &c, T &dato );
     
 private:
     Nodo<T> *raiz;
