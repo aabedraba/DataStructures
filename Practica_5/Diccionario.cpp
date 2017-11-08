@@ -29,7 +29,7 @@ Diccionario::Diccionario( const std::string &nomFich )
         getline( fe, linea );
         if ( linea != "" ) {
             Palabra palabra(linea);
-            _vec.push_back( palabra ); //La lista está ordenada
+            _vec.insertar( palabra ); //La lista está ordenada
             total++;
         }
     }
@@ -43,24 +43,6 @@ Diccionario::Diccionario( const Diccionario& orig ) {
 Diccionario::~Diccionario() {
 }
 
-/**
- * Metodo que busca y elimina una palabra del diccionario a través
- del atributo de tipo string de cada palabra.
- * @param palabra string que queremos buscar y eliminar.
- * @param pos posicion del elemento que queremos borrar y que se actualiza una vez eliminado.
- */
-void Diccionario::elimina( const std::string &palabra, bool &eliminado ) {
-    Palabra pal( palabra );
-    std::vector<Palabra>::iterator iter = _vec.begin();
-    for (unsigned int i = 0; i < _vec.size(); i++, iter++)
-        if ( pal == _vec[i] ){
-            _vec.erase( iter );
-            eliminado = true;
-            return;
-        }
-    eliminado = false;
-}
-
 //TODO mirar por qué me devuelve una pos superior
 /**
  * Metodo que inserta una palabra en el diccionario a traves de un string.
@@ -68,22 +50,9 @@ void Diccionario::elimina( const std::string &palabra, bool &eliminado ) {
  * @param pos posicion donde colocaremos la nueva palabra y que se actualizará cuando se haga.
  * @throw lanza una excepcion de tipo invalid_argument si la palabra ya existe.
  */
-void Diccionario::inserta(const std::string &palabra, unsigned int& pos, bool &insertado) {
+void Diccionario::inserta(const std::string &palabra, bool &insertado) {
     Palabra pal( palabra );
-    std::vector<Palabra>::iterator iter = _vec.begin();
-    for ( pos = 0; pos < _vec.size(); pos++) {
-        if ( pal == _vec[pos] ){ //Evitamos duplicado
-            insertado = false;
-            return;
-        }
-        if ( pal < _vec[pos] ){
-            _vec.insert( iter, pal ); //Insertar en la posición correspondiente
-            insertado = true;
-            return;
-        }
-        iter++;
-    }
-    
+    insertado = _vec.insertar( pal );   
 }
 
 /**
@@ -93,21 +62,10 @@ void Diccionario::inserta(const std::string &palabra, unsigned int& pos, bool &i
  * @return devuelve un objeto de tipo palabra con la palabra buscada.
  * @throw lanza una excepcion de tipo invalid_argument si la palabra no existe.
  */
-Palabra &Diccionario::busca( const std::string &termino, unsigned int &pos ) {
-    Palabra aBuscar( termino );
-    int posMaximo = _vec.size(); //Maximo de palabras declarado en VectorEstatico
-    int posMinimo = 0;
-    pos = (posMaximo - posMinimo) / 2;
-    while ( (posMaximo - posMinimo) >= 0 ){
-        if (  _vec[pos] != aBuscar ) {
-            if ( _vec[pos] > aBuscar ) 
-                posMaximo = pos - 1;
-            else 
-                posMinimo = pos + 1;
-            pos = posMinimo + (posMaximo - posMinimo)/2;
-        } else 
-            return _vec[pos];
-    } 
+Palabra *Diccionario::busca( const std::string &termino ) {
+    Palabra *aBuscar = new Palabra(termino);
+    if ( _vec.buscar( *aBuscar ) )
+        return aBuscar;
     throw std::invalid_argument ("[Diccionario::busca]Palabra no encontrada");
 }
 
@@ -146,14 +104,12 @@ void Diccionario::entrena(const std::string frase) {
     while ( !ss.eof() ){
         ss >> sucesor;
         if ( sucesor != "" ){
-            unsigned int posP;
-            bool insertado;
             try {
-                busca( palabra, posP );
+                busca( palabra )->introducirSucesor( sucesor );
             } catch ( std::exception &e ) {
-                inserta( palabra, posP, insertado );
+                bool insertado;
+                inserta( palabra, insertado );
             }
-            _vec[posP].introducirSucesor( sucesor );
             palabra = sucesor;
             sucesor = "";
         }
