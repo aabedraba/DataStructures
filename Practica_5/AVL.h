@@ -26,22 +26,22 @@ public:
         _izq( 0 ),
         _der( 0 ),
         _bal ( 0 ),
-        _dato( ele ),
-        _altura ( 0 )
+        _dato( ele )
+//        _altura ( 0 )
     {};
     Nodo( const Nodo& orig ):
         _izq( orig._izq ),
         _der( orig._der ),
         _dato( orig._dato ),
-        _bal ( orig._bal ),
-        _altura ( orig._altura )
+        _bal ( orig._bal )
+//        _altura ( orig._altura )
     {};
     virtual ~Nodo( ) {};
     Nodo<T> *_izq;
     Nodo<T> *_der;
     T _dato;
     char _bal;
-    int _altura;
+//    int _altura;
 };
 
 template <typename T>
@@ -55,7 +55,7 @@ public:
     bool buscar ( T &ele );
     void recorreInorden( );
     unsigned int numElmentos( );
-    unsigned int alturaAvl( );
+//    unsigned int alturaAvl( );
     
 private:
     void inorden ( Nodo<T> *p, std::queue<T> &cola );
@@ -63,7 +63,7 @@ private:
     void rotDecha( Nodo<T>* &p );
     int insertaDato( Nodo<T>* &c, T &dato );
     Nodo<T>* buscaClave (T &ele, Nodo<T> *p);
-    unsigned int altura( Nodo<T> *n );
+//    unsigned int altura( Nodo<T> *n );
     void borraNodos ( Nodo<T>* &p );
     
 private:
@@ -188,8 +188,7 @@ int Avl<T>::insertaDato( Nodo<T>* &c, T &dato  ) {
                 rotDecha(c);
             } 
         } 
-    } else
-        p->_altura++;
+    }
     
     return deltaH;
 }
@@ -209,11 +208,12 @@ template <typename T>
 Nodo<T> *Avl<T>::buscaClave (T &ele, Nodo<T> *p){
     if (!p)
         return 0;
-    else if (ele < p->_dato)
+    else if ( ele == p->_dato )
+        return p;
+    else if ( ele < p->_dato )
         return buscaClave (ele, p->_izq);
-    else if (ele > p-> _dato)
+    else if ( ele > p-> _dato )
         return buscaClave (ele, p->_der);
-    else return p;
 }
 
 template <typename T>
@@ -227,21 +227,21 @@ unsigned int Avl<T>::numElmentos() {
     return _numElementos;
 }
 
-template <typename T>
-unsigned int Avl<T>::alturaAvl(){
-    return altura( _raiz );
-}
+//template <typename T>
+//unsigned int Avl<T>::alturaAvl(){
+//    return altura( _raiz );
+//}
 
 
-template <typename T>
-unsigned int Avl<T>::altura( Nodo<T> *n ) {
-    if ( n ){
-        unsigned int altIzq =  _raiz->_izq->_altura;
-        unsigned int altDer =  _raiz->_der->_altura;
-        return ( (altIzq > altDer) ? altIzq : altDer );
-    }
-    return 0;
-}
+//template <typename T>
+//unsigned int Avl<T>::altura( Nodo<T> *n ) {
+//    if ( n ){
+//        unsigned int altIzq =  _raiz->_izq->_altura;
+//        unsigned int altDer =  _raiz->_der->_altura;
+//        return ( (altIzq > altDer) ? altIzq : altDer );
+//    }
+//    return 0;
+//}
 
 #endif /* AVL_H */
 
