@@ -6,7 +6,8 @@
 
 /* 
  * File:   AVL.h
- * Author: aabedraba
+ * Author: Jesus
+ * suli14
  *
  * Created on November 7, 2017, 5:24 PM
  */
@@ -42,6 +43,8 @@ public:
     AVL( );
     AVL( const AVL<T>& orig );
     virtual ~AVL( );
+    
+private:
     AVL operator=( const AVL<T>& orig );
     void rotIzqda( Nodo<T>* &p );
     void rotDecha( Nodo<T>* &p );
@@ -73,6 +76,38 @@ void AVL<T>::rotDecha( Nodo<T>* &p ) {
     if ( l->_bal > 0 ) q->_bal -= l->_bal;
     l->_bal--;
     if ( q->_bal < 0 ) l->_bal -= -q->_bal;
+}
+
+template <typename T>
+int AVL<T>::inserta( Nodo<T>* &c, T &dato ) {
+    Nodo<T> *p = c;
+    int deltaH = 0;
+    if (!p) {
+        p = new Nodo<T>(dato);
+        c = p; deltaH=1;
+    } else if (dato > p->dato) {
+        if (inserta(p->der, dato)){
+        p->bal--;
+            if (p->bal == -1) 
+                deltaH=1;
+            else if (p->bal == -2) {
+                if (p->der->bal == 1) 
+                    rotDecha(p->der);
+                rotIzqda(c);
+            } 
+        } 
+    } else if (dato < p->dato) {
+        if (inserta(p->izq, dato)){
+        p->bal++;
+            if (p->bal==1) deltaH = 1;
+            else if (p->bal == 2) {
+                if (p->izq->bal == -1) 
+                    rotIzqda(p->izq);
+                rotDecha(c);
+            } 
+        } 
+    }
+    return deltaH;
 }
 
 #endif /* AVL_H */
