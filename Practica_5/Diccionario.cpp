@@ -62,10 +62,11 @@ void Diccionario::inserta(const std::string &palabra, bool &insertado) {
  * @return devuelve un objeto de tipo palabra con la palabra buscada.
  * @throw lanza una excepcion de tipo invalid_argument si la palabra no existe.
  */
-Palabra *Diccionario::busca( const std::string &termino ) {
-    Palabra *aBuscar = new Palabra(termino);
-    if ( _vec.buscar( *aBuscar ) )
-        return aBuscar;
+Palabra &Diccionario::busca( const std::string &termino ) {
+    Palabra aBuscar( termino );
+    Palabra *p = new Palabra;
+    if ( _vec.buscar( aBuscar, *p ) )
+        return *p;
     throw std::invalid_argument ("[Diccionario::busca]Palabra no encontrada");
 }
 
@@ -105,10 +106,11 @@ void Diccionario::entrena(const std::string frase) {
         ss >> sucesor;
         if ( sucesor != "" ){
             try {
-                busca( palabra )->introducirSucesor( sucesor );
+                busca( palabra ).introducirSucesor( sucesor );
             } catch ( std::exception &e ) {
                 bool insertado;
                 inserta( palabra, insertado );
+                busca( palabra ).introducirSucesor( sucesor );
             }
             palabra = sucesor;
             sucesor = "";
