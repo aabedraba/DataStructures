@@ -25,8 +25,8 @@ Palabra::~Palabra()
 
 Palabra &Palabra::operator =( const Palabra &otro ) {
     if ( *this != otro ){
-        this->_termino = otro._termino; 
-        this->_sucesores = otro._sucesores;
+        _termino = otro._termino; 
+        _sucesores = otro._sucesores;
     }
     return *this;
 }
