@@ -12,7 +12,8 @@
  * @param nomFich fichero con el que queremos crear nuestro diccionario.
  */
 Diccionario::Diccionario( const std::string &nomFich )
-    : _vec()
+    : _vec(),
+      numPalabras( 0 )
 {
     std::ifstream fe;
     std::string linea;
@@ -28,8 +29,9 @@ Diccionario::Diccionario( const std::string &nomFich )
     while ( !fe.eof() ) {
         getline( fe, linea );
         if ( linea != "" ) {
-            Palabra palabra(linea);
+            Palabra palabra( linea );
             _vec.push_back( palabra ); //La lista está ordenada
+            numPalabras++;
             total++;
         }
     }
@@ -78,6 +80,7 @@ void Diccionario::inserta(const std::string &palabra, unsigned int& pos, bool &i
         }
         if ( pal < _vec[pos] ){
             _vec.insert( iter, pal ); //Insertar en la posición correspondiente
+            numPalabras++;
             insertado = true;
             return;
         }
