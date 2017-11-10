@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 #include "Palabra.h"
 
 Palabra::Palabra()
@@ -31,16 +26,14 @@ Palabra &Palabra::operator =( const Palabra &otro ) {
     return *this;
 }
 
-bool Palabra::operator !=( const Palabra &otro ) const {
-    if ( _termino != otro._termino ) 
-        return true;
-    return false;
-}
-
 bool Palabra::operator ==( const Palabra &otro ) const {
     if ( _termino == otro._termino ) 
         return true;
     return false;
+}
+
+bool Palabra::operator !=( const Palabra &otro ) const {
+    return !( operator ==( otro ) );
 }
 
 bool Palabra::operator >( const Palabra &otro ) const {
@@ -87,9 +80,10 @@ std::list<std::string> Palabra::sucesores( std::list<int> &ocurrencias ) {
     std::list<std::string> aux;
     std::list<Sucesor>::iterator iter = _sucesores.begin();
     std::priority_queue<Sucesor> listaOrdenada;
-    while ( iter != _sucesores.end() ){
+    int i = 0;
+    while ( iter != _sucesores.end() && i < 10 ){
         listaOrdenada.push( (*iter) );
-        iter++;
+        i++ ;iter++;
     }
     while ( !listaOrdenada.empty() ){
         for (int i = 0; i < 10 && !listaOrdenada.empty(); i++){
