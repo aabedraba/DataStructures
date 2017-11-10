@@ -9,9 +9,11 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <chrono>
 #include "AVL.h"
 
 #include "Diccionario.h"
+#include "TextoPredictivo.h"
 
 using namespace std;
 
@@ -21,11 +23,11 @@ using namespace std;
  * @param palabra string del que se buscan sucesores.
  * @param diccionario objeto de tipo diccionario en el buscamos estas palabras.
  */
-void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
+void mostrarSucesores ( const std::string &palabra, TextoPredictivo &predictivo ){
     unsigned int pos;
     int eleccion;
     std::list<int> ocurrencias;
-    std::list<std::string> sucesores = diccionario.busca( palabra ).sucesores( ocurrencias );
+    std::list<std::string> sucesores = predictivo.sugerencia( palabra, ocurrencias );
     auto iter = sucesores.begin();
     auto iter2 = ocurrencias.begin();
     auto aux = iter;
@@ -43,7 +45,7 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     cin >> eleccion;
     for (int i = 2; i <= eleccion; i++)
         aux++;
-    mostrarSucesores( (*aux), diccionario );
+    mostrarSucesores( (*aux), predictivo );
 };
 
 
@@ -53,8 +55,14 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
 int main(int argc, char** argv) {
 
     try {
+        auto start = std::chrono::system_clock::now();
         Diccionario diccionario("listado-sin-acentos_v2.txt");
-        diccionario.usaCorpus("corpus_spanish-2.txt"); 
+        diccionario.usaCorpus("corpus_spanish.txt"); 
+        auto end = std::chrono::system_clock::now();
+        auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end -
+                start).count();
+        cout << "Tiempo de carga y entrenamiento del diccionario (segundos): " << elapsed_ms/(float)1000 << endl;      
+        TextoPredictivo predictivo( diccionario ); 
         unsigned int eleccion;
         std::string palabra;
         do {
@@ -86,7 +94,7 @@ int main(int argc, char** argv) {
                     case 2: {
                         cout << "Introduzca una palabra: ";
                         cin >> palabra;    
-                        mostrarSucesores( palabra, diccionario );
+                        mostrarSucesores( palabra, predictivo );
                         break;
                     }
                     default:
@@ -118,10 +126,7 @@ int main(int argc, char** argv) {
     catch (std::exception& exception) {
       std::cerr << exception.what() << std::endl;
     }
-    
-    
-    
-    
+
     return 0;
 }
 
