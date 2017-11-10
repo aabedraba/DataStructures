@@ -25,7 +25,7 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
     unsigned int pos;
     int eleccion;
     std::list<int> ocurrencias;
-    std::list<std::string> sucesores = diccionario.busca( palabra )->sucesores( ocurrencias );
+    std::list<std::string> sucesores = diccionario.busca( palabra ).sucesores( ocurrencias );
     auto iter = sucesores.begin();
     auto iter2 = ocurrencias.begin();
     auto aux = iter;
@@ -65,7 +65,8 @@ int main(int argc, char** argv) {
                     case 0: {
                         cout << "Palabra a buscar: ";
                         cin >> palabra;
-                        cout << diccionario.busca( palabra )->getTermino() << " encontrado" << endl;
+                        Palabra buscado;
+                        cout << diccionario.busca( palabra ).getTermino() << " encontrado" << endl;
                         
                         break;
                     }
@@ -104,7 +105,7 @@ int main(int argc, char** argv) {
                 std::cerr << exception.what() << std::endl;
             }         
         } while ( eleccion != 3 );
-       
+        
     } catch (std::ifstream::failure& exception) {
     std::cerr << exception.what() << std::endl;
     }
