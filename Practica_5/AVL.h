@@ -52,8 +52,9 @@ public:
     Avl &operator=( const Avl<T>& orig );
     virtual ~Avl( );
     bool insertar( T &ele );
-    bool buscar ( T &ele );
+    bool buscar ( T &ele, T &result );
     void recorreInorden( );
+    T &modificaDato( T &ele );
     unsigned int numElmentos( );
 //    unsigned int alturaAvl( );
     
@@ -166,8 +167,7 @@ int Avl<T>::insertaDato( Nodo<T>* &c, T &dato  ) {
     int deltaH = 0;
     if (!p) {
         p = new Nodo<T>(dato);
-        c = p;
-        deltaH = 1;
+        c = p; deltaH = 1;
     } else if (dato > p->_dato) {
         if ( insertaDato( p->_der, dato ) ){
             p->_bal--;
@@ -195,7 +195,7 @@ int Avl<T>::insertaDato( Nodo<T>* &c, T &dato  ) {
 
 template <typename T>
 bool Avl<T>::insertar( T &ele ){
-    bool encontrado = buscar( ele );
+    bool encontrado = buscaClave( ele, _raiz );
     if ( !encontrado ) {
         insertaDato( _raiz, ele );
         _numElementos++;
@@ -208,18 +208,35 @@ template <typename T>
 Nodo<T> *Avl<T>::buscaClave (T &ele, Nodo<T> *p){
     if (!p)
         return 0;
-    else if ( ele == p->_dato )
-        return p;
     else if ( ele < p->_dato )
         return buscaClave (ele, p->_izq);
-    else if ( ele > p-> _dato )
+    else if ( ele > p->_dato )
         return buscaClave (ele, p->_der);
+    else return p;
 }
 
 template <typename T>
-bool Avl<T>::buscar ( T &ele ){
+bool Avl<T>::buscar ( T &ele, T &result ){
     Nodo<T> *p = buscaClave ( ele, _raiz );
-    return p ? true : false;
+    if ( p ){
+        result = p->_dato;
+        return true;
+    }
+    return false;
+    
+}
+
+/*Como no tenemos el borra hecho, y necesitamos modificar los sucesores, este
+ *método sirve de puente para que en esta práctica podamos meter sucesores
+ */
+template <typename T>
+T &Avl<T>::modificaDato ( T &ele ){
+    Nodo<T> *p = buscaClave( ele, _raiz );
+    if ( !p ){
+        insertar( ele );
+        p = buscaClave( ele, _raiz );
+    }
+    return p->_dato;
 }
 
 template <typename T>
