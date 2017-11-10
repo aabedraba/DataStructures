@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   AVL.h
  * Author: Jesus
@@ -36,7 +30,10 @@ public:
         _bal ( orig._bal )
 //        _altura ( orig._altura )
     {};
-    virtual ~Nodo( ) {};
+    virtual ~Nodo( ){
+        delete _izq;
+        delete _der;
+    };
     Nodo<T> *_izq;
     Nodo<T> *_der;
     T _dato;
@@ -65,7 +62,7 @@ private:
     int insertaDato( Nodo<T>* &c, T &dato );
     Nodo<T>* buscaClave (T &ele, Nodo<T> *p);
 //    unsigned int altura( Nodo<T> *n );
-    void borraNodos ( Nodo<T>* &p );
+    void borraNodos ( Nodo<T>* p );
     
 private:
     Nodo<T> *_raiz;
@@ -105,12 +102,8 @@ Avl<T>::~Avl(){
 }
 
 template <typename T>
-void Avl<T>::borraNodos( Nodo<T>* &p ){
-    if ( p ){
-        borraNodos( p->_izq );
-        borraNodos( p->_der );
-        delete p;
-    }
+void Avl<T>::borraNodos( Nodo<T>* p ){
+    delete _raiz;
 }
 
 template <typename T>
