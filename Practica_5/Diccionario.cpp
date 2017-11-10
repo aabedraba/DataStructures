@@ -16,7 +16,6 @@ Diccionario::Diccionario( const std::string &nomFich )
 {
     std::ifstream fe;
     std::string linea;
-    int total = 0;
     fe.open( nomFich.c_str() ); //convierte nomFich en legible por ifstream::open
     
     if ( !fe.good() ) {
@@ -30,7 +29,6 @@ Diccionario::Diccionario( const std::string &nomFich )
         if ( linea != "" ) {
             Palabra palabra(linea);
             _vec.insertar( palabra ); //La lista está ordenada
-            total++;
         }
     }
     fe.close();
@@ -105,18 +103,11 @@ void Diccionario::entrena(const std::string frase) {
     while ( !ss.eof() ){
         ss >> sucesor;
         if ( sucesor != "" ){
-            try {
-                busca( palabra ).introducirSucesor( sucesor );
-            } catch ( std::exception &e ) {
-                bool insertado;
-                inserta( palabra, insertado );
-                busca( palabra ).introducirSucesor( sucesor );
-            }
+            Palabra pal( palabra );
+            _vec.modificaDato( pal ).introducirSucesor( sucesor );
             palabra = sucesor;
             sucesor = "";
-        }
-        
+        }   
     }
 }
-
 
