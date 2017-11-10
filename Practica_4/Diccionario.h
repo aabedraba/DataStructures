@@ -31,6 +31,7 @@ public:
     
 private:
     std::vector<Palabra> _vec;
+    int numPalabras;
 };
 #endif /* DICCIONARIO_H */
 
