@@ -34,9 +34,9 @@ Diccionario::Diccionario( const std::string &nomFich )
     fe.close();
 }
 
-Diccionario::Diccionario( const Diccionario& orig ) {
-    throw std::runtime_error("Vector de copia no implementado");
-}
+Diccionario::Diccionario( const Diccionario& orig ) 
+    : _vec ( orig._vec )
+{}
 
 Diccionario::~Diccionario() {
 }
