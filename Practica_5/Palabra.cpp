@@ -33,12 +33,14 @@ Palabra &Palabra::operator =( const Palabra &otro ) {
 
 bool Palabra::operator !=( const Palabra &otro ) const {
     if ( _termino != otro._termino ) 
-             return true;
+        return true;
     return false;
 }
 
 bool Palabra::operator ==( const Palabra &otro ) const {
-    return !(operator !=( otro ));
+    if ( _termino == otro._termino ) 
+        return true;
+    return false;
 }
 
 bool Palabra::operator >( const Palabra &otro ) const {
@@ -48,7 +50,9 @@ bool Palabra::operator >( const Palabra &otro ) const {
 }
 
 bool Palabra::operator <( const Palabra &otro ) const{
-    return !(operator >(otro));
+    if ( _termino < otro._termino ) 
+        return true;
+    return false;
 }
 
 std::string Palabra::getTermino() const {
