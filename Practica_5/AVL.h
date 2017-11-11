@@ -120,11 +120,20 @@ Avl<T>::~Avl(){
     delete _raiz;
 }
 
+/**
+ * @brief 
+ * @param p
+ */
 template <typename T>
 void Avl<T>::borraNodos( Nodo<T>* p ){
     delete _raiz;
 }
 
+/**
+ * Metodo recorre el Avl en inorden y coloca los elementos en una queue que se pasa por referencia.
+ * @param p puntero a un nodo del Avl, normalmente será la raiz.
+ * @param cola referencia a una queue que cargaremos con los datos del arbol en inorden.
+ */
 template <typename T>
 void Avl<T>::inorden ( Nodo<T> *p, std::queue<T> &cola ){
     if ( p ){
@@ -134,6 +143,9 @@ void Avl<T>::inorden ( Nodo<T> *p, std::queue<T> &cola ){
     }
 }
 
+/**
+ * Metodo que muestra el contenido del Avl en inorden.
+ */
 template <typename T>
 void Avl<T>::recorreInorden() {
     std::queue<T> cola;
@@ -145,6 +157,10 @@ void Avl<T>::recorreInorden() {
     std::cout << "\n";
 }
 
+/**
+ * Metodo que dado un puntero a un nodo desequilibrado, realiza una rotacion a la izquierda para equilibrarlo.
+ * @param p puntero al nodo desequilibrado.
+ */
 template<typename T>
 void Avl<T>::rotIzqda( Nodo<T>* &p ) {
     Nodo<T> *q = p, *r;
@@ -159,6 +175,10 @@ void Avl<T>::rotIzqda( Nodo<T>* &p ) {
         r->_bal += q->_bal;
 }
 
+/**
+ * Metodo que dado un puntero a un nodo desequilibrado, realiza una rotacion a la derecha para equilibrarlo.
+ * @param p puntero al nodo desequilibrado.
+ */
 template<typename T>
 void Avl<T>::rotDecha( Nodo<T>* &p ) {
     Nodo<T> *q = p, *l;
@@ -173,6 +193,12 @@ void Avl<T>::rotDecha( Nodo<T>* &p ) {
         l->_bal -= -q->_bal;
 }
 
+/**
+ * Metodo que dado un dato de tipo T lo inserta en el Avl.
+ * @param c referencia a un puntero a un nodo, normalmente la raiz, que se debe ir actualizando al insertar un nuevo nodo.
+ * @param dato objeto de tipo T que se introduce en el Avl.
+ * @return 
+ */
 template <typename T>
 int Avl<T>::insertaDato( Nodo<T>* &c, T &dato  ) {
     Nodo<T> *p = c;
@@ -205,6 +231,11 @@ int Avl<T>::insertaDato( Nodo<T>* &c, T &dato  ) {
     return deltaH;
 }
 
+/**
+ * Metodo que insertar un dato de tipo T en el Avl siempre que no este ya insertado.
+ * @param ele objeto de tipo T que se quiere insertar.
+ * @return devuelve true si el dato no existia y se ha insertado. False en caso de que ya existiese.
+ */
 template <typename T>
 bool Avl<T>::insertar( T &ele ){
     bool encontrado = buscaClave( ele, _raiz );
@@ -216,6 +247,13 @@ bool Avl<T>::insertar( T &ele ){
     return false;
 }
 
+/**
+ * Metodo recursivo privado que dado un objeto de tipo T lo busca en el Avl.
+ * @param ele objeto de tipo T que se quiere buscar.
+ * @param p puntero a nodo, normalmente sera la raiz, que se ira aztualizando conforme avancemos por el Avl 
+ y cuyo dato iremos comparando con ele, hasta encontrar la coincidencia. 
+ * @return puntero al nodo donde se encuentra ele, y puntero vacío si no se encuentra.
+ */
 template <typename T>
 Nodo<T> *Avl<T>::buscaClave (T &ele, Nodo<T> *p){
     if (!p)
@@ -227,6 +265,12 @@ Nodo<T> *Avl<T>::buscaClave (T &ele, Nodo<T> *p){
     else return p;
 }
 
+/**
+ * Metodo publico que dado un objeto de tipo T lo busca en el Avl.
+ * @param ele objeto de tipo T que se quiere buscar.
+ * @param result si se encuentra, actualiza este parametro con el elemento buscado.
+ * @return devuelve true si se ha enontrado, false en caso contrario.
+ */
 template <typename T>
 bool Avl<T>::buscar ( T &ele, T &result ){
     Nodo<T> *p = buscaClave ( ele, _raiz );
