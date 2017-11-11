@@ -65,6 +65,28 @@ int main(int argc, char** argv) {
         TextoPredictivo predictivo( diccionario ); 
         unsigned int eleccion;
         std::string palabra;
+        
+        
+        Avl<int> enteros;
+        int x= 10;
+        enteros.insertar(x );
+        int y= 5;
+        enteros.insertar( y);
+        int a= 8;
+        enteros.insertar(a );
+        int b= 2;
+        enteros.insertar( b);
+        int t= 12;
+        enteros.insertar(t );
+        int o= 7;
+        enteros.insertar( o);
+        int p= 1;
+        enteros.insertar(p );
+        int w= 9;
+        enteros.insertar( w);
+        cout << enteros.alturaAvl() << endl;;
+        
+        
         do {
             try {              
                 cout << "0 buscar, 1 insertar, 2 sucesores, 3 salir: ";
