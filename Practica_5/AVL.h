@@ -70,12 +70,20 @@ private:
     
 };
 
+/**
+ * @brief constructor por defecto
+ * @post objeto de la clase Avl creado sin elementos
+ */
 template <typename T>
 Avl<T>::Avl()
     : _raiz( 0 ),
       _numElementos( 0 )
 {}
 
+/**
+ * @brief constructor de copia
+ * @param orig objeto de la clase Avl a copiar
+ */
 template <typename T>
 Avl<T>::Avl( const Avl<T>& orig ){
     std::queue<T> cola;
@@ -86,19 +94,30 @@ Avl<T>::Avl( const Avl<T>& orig ){
     }
 }
 
+/**
+ * @orig operador de asignación
+ * @param orig objeto de la clase Avl a copiar
+ * @return referencia al propio objeto
+ */
 template <typename T>
 Avl<T> &Avl<T>::operator =(const Avl<T>& orig){
-    std::queue<T> cola;
-    inorden( orig._raiz, cola );
-    while( !cola.empty() ){
-        insertar( cola.front() );
-        cola.pop();
+    if ( *this != orig ){
+        std::queue<T> cola;
+        inorden( orig._raiz, cola );
+        while( !cola.empty() ){
+            insertar( cola.front() );
+            cola.pop();
+        }
     }
+    return *this;  
 }
 
+/**
+ * @brief destructor del objeto Avl, empezando desde la raíz
+ */
 template <typename T>
 Avl<T>::~Avl(){
-    borraNodos( _raiz );
+    delete _raiz;
 }
 
 template <typename T>
