@@ -53,7 +53,7 @@ public:
     void recorreInorden( );
     T &modificaDato( T &ele );
     unsigned int numElmentos( );
-//    unsigned int alturaAvl( );
+    unsigned int alturaAvl( );
     
 private:
     void inorden ( Nodo<T> *p, std::queue<T> &cola );
@@ -61,7 +61,7 @@ private:
     void rotDecha( Nodo<T>* &p );
     int insertaDato( Nodo<T>* &c, T &dato );
     Nodo<T>* buscaClave (T &ele, Nodo<T> *p);
-//    unsigned int altura( Nodo<T> *n );
+    unsigned int altura( Nodo<T> *n );
     void borraNodos ( Nodo<T>* p );
     
 private:
@@ -299,22 +299,35 @@ template <typename T>
 unsigned int Avl<T>::numElmentos() {
     return _numElementos;
 }
+ /**
+  * Metodo publico que muestra la altura del Avl.
+  * @return entero con la altura exacta del Avl.
+  */
+template <typename T>
+unsigned int Avl<T>::alturaAvl(){
+    return altura( _raiz );
+}
+ /**
+  * Metodo privado que calcula la altura del Avl.
+  * @param n puntero al nodo, normalmente sera la raiz, del cual se quiere saber la altura.
+  * @return entero con la altura del Avl.
+  */
+template <typename T>
+unsigned int Avl<T>::altura( Nodo<T> *n ) {
+    int alturaIzq; 
+    int alturaDer;
+    if( n==0 )
+        return -1;
+    else {
+        alturaIzq = altura( n->_izq );
+        alturaDer = altura( n->_der );
 
-//template <typename T>
-//unsigned int Avl<T>::alturaAvl(){
-//    return altura( _raiz );
-//}
-
-
-//template <typename T>
-//unsigned int Avl<T>::altura( Nodo<T> *n ) {
-//    if ( n ){
-//        unsigned int altIzq =  _raiz->_izq->_altura;
-//        unsigned int altDer =  _raiz->_der->_altura;
-//        return ( (altIzq > altDer) ? altIzq : altDer );
-//    }
-//    return 0;
-//}
+        if( alturaIzq > alturaDer )
+            return alturaIzq + 1;
+        else
+            return alturaDer + 1;
+    }
+}
 
 #endif /* AVL_H */
 
