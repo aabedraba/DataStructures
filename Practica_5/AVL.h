@@ -30,10 +30,8 @@ public:
         _bal ( orig._bal )
 //        _altura ( orig._altura )
     {};
-    virtual ~Nodo( ){
-        delete _izq;
-        delete _der;
-    };
+    virtual ~Nodo( )
+    {};
     Nodo<T> *_izq;
     Nodo<T> *_der;
     T _dato;
@@ -56,6 +54,7 @@ public:
     unsigned int alturaAvl( );
     
 private:
+    void posordenBorrado ( Nodo<T> *p );
     void inorden ( Nodo<T> *p, std::queue<T> &cola );
     void rotIzqda( Nodo<T>* &p );
     void rotDecha( Nodo<T>* &p );
@@ -117,7 +116,7 @@ Avl<T> &Avl<T>::operator =(const Avl<T>& orig){
  */
 template <typename T>
 Avl<T>::~Avl(){
-    delete _raiz;
+    posordenBorrado( _raiz );
 }
 
 /**
@@ -127,6 +126,16 @@ Avl<T>::~Avl(){
 template <typename T>
 void Avl<T>::borraNodos( Nodo<T>* p ){
     delete _raiz;
+}
+
+template <typename T>
+void Avl<T>::posordenBorrado ( Nodo<T> *p ) {
+    if ( p ) {
+        posordenBorrado ( p->_izq );
+        posordenBorrado ( p->_der );   
+        delete p;
+        p = 0;
+    }
 }
 
 /**
