@@ -68,24 +68,38 @@ int main(int argc, char** argv) {
         
         
         Avl<int> enteros;
-        int x= 10;
-        enteros.insertar(x );
-        int y= 5;
-        enteros.insertar( y);
-        int a= 8;
-        enteros.insertar(a );
-        int b= 2;
-        enteros.insertar( b);
-        int t= 12;
-        enteros.insertar(t );
-        int o= 7;
-        enteros.insertar( o);
-        int p= 1;
-        enteros.insertar(p );
-        int w= 9;
-        enteros.insertar( w);
-        cout << enteros.alturaAvl() << endl;;
-        
+        int w=10;
+        enteros.insertar(w);
+        w=5;
+        enteros.insertar(w);
+        w=8;
+        enteros.insertar(w);
+        w=2;
+        enteros.insertar(w);
+        w=12;
+        enteros.insertar(w);
+        w=7;
+        enteros.insertar(w);
+        w=1;
+        enteros.insertar(w);
+        w=9;
+        enteros.insertar(w);
+        w=15;
+        enteros.insertar(w);
+        w=16;
+        enteros.insertar(w);
+        w=159;
+        enteros.insertar(w);
+        w=0;
+        enteros.insertar(w);
+        w=4;
+        enteros.insertar(w);
+        w=1023;
+        enteros.insertar(w);
+        w=52;
+        enteros.insertar(w);
+        enteros.recorreInorden();
+        cout << enteros.alturaAvl() << endl;
         
         do {
             try {              
