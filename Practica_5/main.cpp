@@ -68,21 +68,21 @@ int main(int argc, char** argv) {
         
         
         Avl<int> enteros;
-        int t= 10;
+        int x= 10;
         enteros.insertar(x );
-        int o= 5;
+        int y= 5;
         enteros.insertar( y);
-        int n= 8;
+        int a= 8;
         enteros.insertar(a );
-        int t= 2;
+        int b= 2;
         enteros.insertar( b);
-        int o= 12;
+        int t= 12;
         enteros.insertar(t );
-        int lee= 7;
+        int o= 7;
         enteros.insertar( o);
-        int variables= 1;
+        int p= 1;
         enteros.insertar(p );
-        int orden= 9;
+        int w= 9;
         enteros.insertar( w);
         cout << enteros.alturaAvl() << endl;;
         
