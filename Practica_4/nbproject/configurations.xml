@@ -15,6 +15,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Diccionario.cpp</itemPath>
+      <itemPath>Palabra.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -46,6 +47,8 @@
       </item>
       <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Palabra.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Palabra.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -74,6 +77,8 @@
       <item path="Diccionario.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Palabra.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Palabra.h" ex="false" tool="3" flavor2="0">
       </item>

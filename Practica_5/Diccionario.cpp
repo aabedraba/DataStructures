@@ -49,8 +49,8 @@ Diccionario::~Diccionario() {
  * @throw lanza una excepcion de tipo invalid_argument si la palabra ya existe.
  */
 void Diccionario::inserta(const std::string &palabra, bool &insertado) {
-    Palabra pal( palabra );
-    insertado = _vec.insertar( pal );   
+    Palabra p( palabra );
+    insertado = _vec.insertar( p );   
 }
 
 /**
@@ -63,7 +63,7 @@ void Diccionario::inserta(const std::string &palabra, bool &insertado) {
 Palabra &Diccionario::busca( const std::string &termino ) {
     Palabra aBuscar( termino );
     Palabra *p = new Palabra;
-    if ( _vec.buscar( aBuscar, *p ) )
+    if ( _vec.buscar( aBuscar, *p ) ) //true si se encuentra
         return *p;
     throw std::invalid_argument ("[Diccionario::busca]Palabra no encontrada");
 }
@@ -104,7 +104,12 @@ void Diccionario::entrena(const std::string frase) {
         ss >> sucesor;
         if ( sucesor != "" ){
             Palabra pal( palabra );
-            _vec.modificaDato( pal ).introducirSucesor( sucesor );
+            Palabra buscado;
+            bool insertado = _vec.buscar( pal, buscado );
+            if ( !insertado ){
+                _vec.insertar( pal );
+            }
+            _vec.modificaDato( pal );
             palabra = sucesor;
             sucesor = "";
         }   

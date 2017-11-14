@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <chrono>
 
 #include "Diccionario.h"
 
@@ -52,8 +53,13 @@ void mostrarSucesores ( const std::string &palabra, Diccionario &diccionario ){
 int main(int argc, char** argv) {
     
     try {
+        auto start = std::chrono::system_clock::now();
         Diccionario diccionario("listado-sin-acentos_v2.txt");
-        diccionario.usaCorpus("corpus_spanish-2.txt"); 
+        diccionario.usaCorpus("corpus_spanish.txt"); 
+        auto end = std::chrono::system_clock::now();
+        auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end -
+                start).count(); 
+        cout << "Tiempo de carga y entrenamiento del diccionario (segundos): " << elapsed_ms/(float)1000 << endl;
         unsigned int pos, eleccion;
         std::string palabra;
         do {
