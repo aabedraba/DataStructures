@@ -46,12 +46,12 @@ public:
     bool insertar( T &ele );
     bool buscar ( T &ele, T &result );
     void recorreInorden( );
-    T &modificaDato( T &ele );
+    T &recuperaDato( T &ele );
     unsigned int numElmentos( );
     int alturaAvl( );
     
 private:
-    void posordenBorrado ( Nodo<T> *p );
+    void posordenBorrado ( Nodo<T>* &p );
     void inorden ( Nodo<T> *p, std::queue<T> &cola );
     void rotIzqda( Nodo<T>* &p );
     void rotDecha( Nodo<T>* &p );
@@ -80,7 +80,9 @@ Avl<T>::Avl()
  * @param orig objeto de la clase Avl a copiar
  */
 template <typename T>
-Avl<T>::Avl( const Avl<T>& orig ){
+Avl<T>::Avl( const Avl<T>& orig )
+    : _raiz ( 0 )
+{
     std::queue<T> cola;
     inorden( orig._raiz, cola );
     while( !cola.empty() ){
@@ -97,6 +99,8 @@ Avl<T>::Avl( const Avl<T>& orig ){
 template <typename T>
 Avl<T> &Avl<T>::operator =(const Avl<T>& orig){
     if ( *this != orig ){
+        this->~Avl();
+        _raiz = 0;
         std::queue<T> cola;
         inorden( orig._raiz, cola );
         while( !cola.empty() ){
@@ -116,7 +120,7 @@ Avl<T>::~Avl(){
 }
 
 template <typename T>
-void Avl<T>::posordenBorrado ( Nodo<T> *p ) {
+void Avl<T>::posordenBorrado ( Nodo<T>* &p ) {
     if ( p ) {
         posordenBorrado ( p->_izq );
         posordenBorrado ( p->_der );   
@@ -283,10 +287,12 @@ bool Avl<T>::buscar ( T &ele, T &result ){
  * @brief modifica el dato de un nodo
  * @para ele elemento que se busca para modificar
  * @pre asume que el dato ya se encuentra insertado
+ * @post no debe modificar la clave del dato
  * @return referencia al dato que se quiere modificar
  */
 template <typename T>
-T &Avl<T>::modificaDato ( T &ele ){
+T &Avl<T>::recuperaDato ( T &ele ){
+    insertar( ele ); //Lo mete si no se encuentra
     Nodo<T> *p = buscaClave( ele, _raiz );
     return p->_dato;
 }
