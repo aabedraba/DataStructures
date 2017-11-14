@@ -23,7 +23,7 @@ public:
     Diccionario( const std::string &nomFich );
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
-    
+        
     Palabra &busca( const std::string &termino );
     void inserta( const std::string &palabra, bool &insertado );
     void usaCorpus ( std::string nomFich );
