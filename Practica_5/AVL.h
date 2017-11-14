@@ -53,6 +53,7 @@ public:
 private:
     void posordenBorrado ( Nodo<T>* &p );
     void inorden ( Nodo<T> *p, std::queue<T> &cola );
+    void copia ( Nodo<T>* &p, Nodo<T> &orig );
     void rotIzqda( Nodo<T>* &p );
     void rotDecha( Nodo<T>* &p );
     int insertaDato( Nodo<T>* &c, T &dato );
@@ -83,12 +84,7 @@ template <typename T>
 Avl<T>::Avl( const Avl<T>& orig )
     : _raiz ( 0 )
 {
-    std::queue<T> cola;
-    inorden( orig._raiz, cola );
-    while( !cola.empty() ){
-        insertar( cola.front() );
-        cola.pop();
-    }
+    this->copia( _raiz, orig._raiz );
 }
 
 /**
@@ -101,12 +97,7 @@ Avl<T> &Avl<T>::operator =(const Avl<T>& orig){
     if ( *this != orig ){
         this->~Avl();
         _raiz = 0;
-        std::queue<T> cola;
-        inorden( orig._raiz, cola );
-        while( !cola.empty() ){
-            insertar( cola.front() );
-            cola.pop();
-        }
+        copia( _raiz, orig._raiz );
     }
     return *this;  
 }
@@ -141,6 +132,16 @@ void Avl<T>::inorden ( Nodo<T> *p, std::queue<T> &cola ){
         cola.push( p->_dato );
         inorden (p->_der, cola );
     }
+}
+
+template <typename T>
+void Avl<T>::copia( Nodo<T>* &p, Nodo<T>& orig ){
+    if ( orig){
+        p = new Nodo<T>( orig._dato );
+        copia ( p->_izq, orig._izq );
+        copia ( p->_der, orig._der );
+    } else
+        p = 0;
 }
 
 /**
