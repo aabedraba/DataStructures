@@ -21,14 +21,12 @@ public:
         _der( 0 ),
         _bal ( 0 ),
         _dato( ele )
-//        _altura ( 0 )
     {};
     Nodo( const Nodo& orig ):
         _izq( orig._izq ),
         _der( orig._der ),
         _dato( orig._dato ),
         _bal ( orig._bal )
-//        _altura ( orig._altura )
     {};
     virtual ~Nodo( )
     {};
@@ -36,7 +34,6 @@ public:
     Nodo<T> *_der;
     T _dato;
     char _bal;
-//    int _altura;
 };
 
 template <typename T>
@@ -291,16 +288,16 @@ bool Avl<T>::buscar ( T &ele, T &result ){
     
 }
 
-/*Como no tenemos el borra hecho, y necesitamos modificar los sucesores, este
+/*NOTA: Como no tenemos el borra hecho, y necesitamos modificar los sucesores, este
  *método sirve de puente para que en esta práctica podamos meter sucesores
+ * @brief modifica el dato de un nodo
+ * @para ele elemento que se busca para modificar
+ * @pre asume que el dato ya se encuentra insertado
+ * @return referencia al dato que se quiere modificar
  */
 template <typename T>
 T &Avl<T>::modificaDato ( T &ele ){
     Nodo<T> *p = buscaClave( ele, _raiz );
-    if ( !p ){
-        insertar( ele );
-        p = buscaClave( ele, _raiz );
-    }
     return p->_dato;
 }
 

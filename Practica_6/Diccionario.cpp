@@ -104,12 +104,10 @@ void Diccionario::entrena(const std::string frase) {
         ss >> sucesor;
         if ( sucesor != "" ){
             Palabra pal( palabra );
-            Palabra buscado;
-            bool insertado = _vec.buscar( pal, buscado );
-            if ( !insertado ){
+            bool insertado = _vec.buscar( pal, pal );
+            if ( !insertado )
                 _vec.insertar( pal );
-            }
-            _vec.modificaDato( pal );
+            _vec.modificaDato( pal ).introducirSucesor( sucesor );
             palabra = sucesor;
             sucesor = "";
         }   
