@@ -35,8 +35,12 @@ void mostrarSucesores ( const std::string &palabra, TextoPredictivo &predictivo 
         cout << "No hay sucesores" << endl;
         return;
     }
-    cout << "Elija: " << endl;
+    cout << "Elija (cntrl + d para salir): " << endl;
     int i = 1;
+    if ( cin.eof() ){
+        cin.clear();
+        return;
+    }
     while ( iter != sucesores.end() ){
         cout << '\t' <<  i << ". " << (*iter) << " (" << (*iter2) << ")" << endl;
         iter++; i++; iter2++;
@@ -65,41 +69,6 @@ int main(int argc, char** argv) {
         TextoPredictivo predictivo( diccionario ); 
         unsigned int eleccion;
         std::string palabra;
-        
-        
-        Avl<int> enteros;
-        int w=10;
-        enteros.insertar(w);
-        w=5;
-        enteros.insertar(w);
-        w=8;
-        enteros.insertar(w);
-        w=2;
-        enteros.insertar(w);
-        w=12;
-        enteros.insertar(w);
-        w=7;
-        enteros.insertar(w);
-        w=1;
-        enteros.insertar(w);
-        w=9;
-        enteros.insertar(w);
-        w=15;
-        enteros.insertar(w);
-        w=16;
-        enteros.insertar(w);
-        w=159;
-        enteros.insertar(w);
-        w=0;
-        enteros.insertar(w);
-        w=4;
-        enteros.insertar(w);
-        w=1023;
-        enteros.insertar(w);
-        w=52;
-        enteros.insertar(w);
-        enteros.recorreInorden();
-        cout << enteros.alturaAvl() << endl;
         
         do {
             try {              
