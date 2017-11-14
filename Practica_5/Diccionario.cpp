@@ -41,7 +41,7 @@ Diccionario::Diccionario( const Diccionario& orig )
 Diccionario::~Diccionario() {
 }
 
-//TODO mirar por qué me devuelve una pos superior
+
 /**
  * Metodo que inserta una palabra en el diccionario a traves de un string.
  * @param palabra string de la nueva palabra que queremos introducir.
@@ -89,7 +89,6 @@ void Diccionario::usaCorpus(std::string nomFich) {
     fe.close();
 }
 
-//TODO preguntar la parte del catch al profesor
 /**
  * Metodo que a partir de una frase analizará las palabras que contiene y observará 
  el término que la precede y actualizará con él su lista de sucesores en el diccionario.
@@ -104,12 +103,11 @@ void Diccionario::entrena(const std::string frase) {
         ss >> sucesor;
         if ( sucesor != "" ){
             Palabra pal( palabra );
-            Palabra buscado;
-            bool insertado = _vec.buscar( pal, buscado );
+            bool insertado = _vec.buscar( pal, pal );
             if ( !insertado ){
                 _vec.insertar( pal );
             }
-            _vec.modificaDato( pal );
+            _vec.modificaDato( pal ).introducirSucesor( sucesor );
             palabra = sucesor;
             sucesor = "";
         }   
