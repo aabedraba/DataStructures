@@ -21,6 +21,14 @@ public:
     {};
     virtual ~Sucesor() {
     };
+    
+    Sucesor &operator =( const Sucesor &orig ){
+        if ( *this != orig ){
+            _termino = orig._termino;
+            _numOcurrencias = orig._numOcurrencias;
+        }
+        return *this;
+    }
     bool operator!= ( const Sucesor &otro ) const{
         if ( _termino != otro._termino ) 
                  return true;
