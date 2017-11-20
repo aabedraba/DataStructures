@@ -9,8 +9,6 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <chrono>
-#include "AVL.h"
 
 #include "Diccionario.h"
 #include "TextoPredictivo.h"
@@ -27,19 +25,18 @@ void mostrarSucesores ( const std::string &palabra, TextoPredictivo &predictivo 
     unsigned int pos;
     int eleccion;
     std::list<int> ocurrencias;
-    std::list<std::string> sucesores = predictivo.sugerencia( palabra, ocurrencias );
-    auto iter = sucesores.begin();
-    auto iter2 = ocurrencias.begin();
+    std::list<std::string> *sucesores = predictivo.sugerencia( palabra );
+    auto iter = sucesores->begin();
     auto aux = iter;
-    if ( iter == sucesores.end() ){
+    if ( iter == sucesores->end() ){
         cout << "No hay sucesores" << endl;
         return;
     }
     cout << "Elija: " << endl;
     int i = 1;
-    while ( iter != sucesores.end() ){
-        cout << '\t' <<  i << ". " << (*iter) << " (" << (*iter2) << ")" << endl;
-        iter++; i++; iter2++;
+    while ( iter != sucesores->end() ){
+        cout << '\t' <<  i << ". " << (*iter) << endl;
+        iter++; i++;
     }
     cout << " " << endl;
     cin >> eleccion;
@@ -55,65 +52,66 @@ void mostrarSucesores ( const std::string &palabra, TextoPredictivo &predictivo 
 int main(int argc, char** argv) {
 
     try {
-        auto start = std::chrono::system_clock::now();
-        Diccionario diccionario("listado-sin-acentos_v2.txt");
-        diccionario.usaCorpus("corpus_spanish.txt"); 
-        auto end = std::chrono::system_clock::now();
-        auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end -
-                start).count();
-        cout << "Tiempo de carga y entrenamiento del diccionario (segundos): " << elapsed_ms/(float)1000 << endl;      
-        TextoPredictivo predictivo( diccionario ); 
-        unsigned int eleccion;
-        std::string palabra;
+        Diccionario disBase("listado-sin-acentos_v2.txt");
+        TextoPredictivo predictivo( disBase );
+        std::string id = "53597523", nombre = "Abdallah"; 
+        predictivo.nuevoUsuario( id, nombre );
+        Usuario *user = predictivo.getUsuario( id );
+        cout << "Hola, soy: " << user->getNombre() << " y mi id es " << user->getId() << endl;
+        std::string frase = "Hola me llamo Abdallah y tengo 16 añacos";
+        user->escribeFrase( frase );
+        user->sugerencia( "me" );
         
-        do {
-            try {              
-                cout << "0 buscar, 1 insertar, 2 sucesores, 3 salir: ";
-                cin >> eleccion;
-                switch ( eleccion ){
-                    case 0: {
-                        cout << "Palabra a buscar: ";
-                        cin >> palabra;
-                        Palabra buscado;
-                        cout << diccionario.busca( palabra ).getTermino() << " encontrado" << endl;
-                        
-                        break;
-                    }
-                    
-                    case 1: {
-                        cout << "Palabra a insertar: ";
-                        cin >> palabra;
-                        bool insertado;
-                        diccionario.inserta( palabra, insertado );
-                        if ( insertado )
-                            cout << "Insertado" << endl;
-                        else
-                            cout << "Ya existe" << endl;
-                        break;
-                    }
-                    
-                    case 2: {
-                        cout << "Introduzca una palabra: ";
-                        cin >> palabra;    
-                        mostrarSucesores( palabra, predictivo );
-                        break;
-                    }
-                    default:
-                        break;
-                }
-            }catch (std::ifstream::failure& exception) {
-                std::cerr << exception.what() << std::endl;
-            }
-            catch (std::invalid_argument& exception) {
-              std::cerr << exception.what() << std::endl;
-            }
-            catch (std::out_of_range& exception) {
-                std::cerr << exception.what() << std::endl;
-            }
-            catch (std::exception& exception) {
-                std::cerr << exception.what() << std::endl;
-            }         
-        } while ( eleccion != 3 );
+//        unsigned int eleccion;
+//        std::string palabra;     
+//        do {
+//            try {              
+//                cout << "0 buscar, 1 insertar, 2 sucesores, 3 salir: ";
+//                cin >> eleccion;
+//                switch ( eleccion ){
+//                    case 0: {
+//                        cout << "Palabra a buscar: ";
+//                        cin >> palabra;
+//                        Palabra buscado;
+//                        cout << disBase.busca( palabra ).getTermino() << " encontrado" << endl;
+//                        
+//                        break;
+//                    }
+//                    
+//                    case 1: {
+//                        cout << "Palabra a insertar: ";
+//                        cin >> palabra;
+//                        bool insertado;
+//                        disBase.inserta( palabra, insertado );
+//                        if ( insertado )
+//                            cout << "Insertado" << endl;
+//                        else
+//                            cout << "Ya existe" << endl;
+//                        break;
+//                    }
+//                    
+//                    case 2: {
+//                        cout << "Introduzca una palabra: ";
+//                        cin >> palabra;    
+//                        mostrarSucesores( palabra, predictivo );
+//                        break;
+//                    }
+//                    default:
+//                        break;
+//                }
+//            }catch (std::ifstream::failure& exception) {
+//                std::cerr << exception.what() << std::endl;
+//            }
+//            catch (std::invalid_argument& exception) {
+//              std::cerr << exception.what() << std::endl;
+//            }
+//            catch (std::out_of_range& exception) {
+//                std::cerr << exception.what() << std::endl;
+//            }
+//            catch (std::exception& exception) {
+//                std::cerr << exception.what() << std::endl;
+//            }         
+//        } while ( eleccion != 3 );
         
     } catch (std::ifstream::failure& exception) {
     std::cerr << exception.what() << std::endl;
