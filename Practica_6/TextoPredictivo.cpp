@@ -29,11 +29,6 @@ TextoPredictivo::~TextoPredictivo()
 {
 }
 
-Diccionario* TextoPredictivo::getDiccionario( ) {
-    return &_diccIdioma;
-}
-
-
 void TextoPredictivo::nuevoUsuario( std::string id, std::string nombre ) {
     Usuario user( id, nombre, this );
     auto iter = _usuarios.begin();
@@ -45,10 +40,9 @@ void TextoPredictivo::nuevoUsuario( std::string id, std::string nombre ) {
 
 Usuario *TextoPredictivo::getUsuario( std::string id ){
     auto iter = _usuarios.begin();
-    unsigned int i = 0;
     while ( iter != _usuarios.end() ){
         if ( id == (*iter).getId() ) break;
-        iter++; i++;
+        iter++;
     }
     if ( iter == _usuarios.end() )
         throw std::invalid_argument( "[TextoPredictivo::getUsuario] Usuario no existe." );
