@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
         cout << "Hola, soy: " << user->getNombre() << " y mi id es " << user->getId() << endl;
         std::string frase = "Hola me llamo Abdallah y tengo 16 añacos";
         user->escribeFrase( frase );
-        user->sugerencia( "me" );
+        user->sugerencia( "Abdallah" );
         
 //        unsigned int eleccion;
 //        std::string palabra;     
