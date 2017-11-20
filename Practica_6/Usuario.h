@@ -28,11 +28,10 @@ public:
     Usuario( std::string id, std::string nombre, TextoPredictivo *textPred );
     Usuario( const Usuario& orig );
     virtual ~Usuario( );
-    
+
     std::string getId( ) const;
-    std::string getNombre( ) const;
-    
-    void escribeFrase( std::string &frase );
+
+    void escribeFrase( std::string frase );
     std::list<std::string> *sugerencia( std::string termino );
 private:
     std::string _id;
