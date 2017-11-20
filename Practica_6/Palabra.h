@@ -30,7 +30,7 @@ public:
 
 private:
     std::string _termino;
-    std::list<Sucesor> _sucesores;
+    std::list<Sucesor> _siguiente;
 };
 
 #endif /* PALABRA_H */
