@@ -17,8 +17,8 @@
 #include <string>
 #include <list>
 #include <sstream>
-#include "TextoPredictivo.h"
 #include "Diccionario.h"
+#include "TextoPredictivo.h"
 
 
 class Usuario {
@@ -27,14 +27,17 @@ public:
     Usuario( std::string id, std::string nombre );
     Usuario( const Usuario& orig );
     virtual ~Usuario( );
-    std::list<std::string> sugerencia( std::string &termino );
-    void escribeFrase( std::string &frase );
+    
     std::string getId( ) const;
     std::string getNombre( ) const;
+    
+    void escribeFrase( std::string &frase );
+//    std::list<std::string> sugerencia( std::string &termino );
 private:
     std::string _id;
     std::string _nombre;
     Diccionario _miDic;
+    TextoPredictivo *_textPred;
 };
 
 #endif /* USUARIO_H */
