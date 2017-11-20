@@ -23,10 +23,10 @@ public:
     TextoPredictivo( Diccionario &diccIdioma );
     TextoPredictivo( const TextoPredictivo& orig );
     virtual ~TextoPredictivo( );
-    bool entrena( std::string &frase );
-    std::list<std::string> sugerencia( const std::string &termino, std::list<int> &ocurrencias );
+    bool entrena(  const std::string& palabra, const std::string& sucesor  );
     void nuevoUsuario( std::string id, std::string nombre );
     Usuario *getUsuario( std::string &id );
+//    std::list<std::string> sugerencia( const std::string &termino, std::list<int> &ocurrencias );
     
 private:
     Diccionario _diccIdioma;
