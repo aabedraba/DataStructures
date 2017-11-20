@@ -15,22 +15,22 @@
 #include <vector>
 #include <stdexcept>
 #include <sstream>
-#include "AVL.h"
+#include <map>
 
 class Diccionario {
     
 public:
+    Diccionario( ); 
     Diccionario( const std::string &nomFich );
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
     
     Palabra &busca( const std::string &termino );
-    void inserta( const std::string &palabra, bool &insertado );
-    void usaCorpus ( std::string nomFich );
-    void entrena ( const std::string frase );
+    bool inserta( const std::string &palabra );
+    void entrena ( const std::string& palabra, const std::string& sucesor );
     
 private:
-    Avl<Palabra> _vec;
+    std::map<std::string, Palabra> _palabras;
 };
 #endif /* DICCIONARIO_H */
 
