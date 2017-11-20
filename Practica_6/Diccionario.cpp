@@ -70,7 +70,6 @@ bool Diccionario::inserta( const std::string &palabra ) {
 Palabra *Diccionario::busca( const std::string &termino ) {
     if ( _palabras.empty() )
         return 0;
-    
     auto iter = _palabras.find( termino );
     if ( iter == _palabras.end() )
         return 0;
