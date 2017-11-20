@@ -29,7 +29,7 @@ TextoPredictivo::~TextoPredictivo()
 {}
 
 void TextoPredictivo::nuevoUsuario( std::string id, std::string nombre ) {
-    Usuario user( id, nombre );
+    Usuario user( id, nombre, this );
     auto iter = _usuarios.begin();
     while ( iter != _usuarios.end() )
         if ( id == (*iter++).getId() )
@@ -68,8 +68,11 @@ bool TextoPredictivo::entrena( const std::string& palabra, const std::string& su
  * @param ocurrencias referencia a lista de enteros que queremos rellenar con el numero de ocurrencias de los sucesores.
  * @return lista de string con los sucesores de termino.
  */
-std::list<std::string> TextoPredictivo::sugerencia( const std::string& termino, std::list<int> &ocurrencias ) {
-    return _diccIdioma.busca( termino )->sucesores( ocurrencias );
+std::list<std::string> *TextoPredictivo::sugerencia( const std::string termino ) {
+    Palabra *pal = _diccIdioma.busca( termino );
+    if ( pal == 0 )
+        throw std::out_of_range( "[TextoPredictivo::sugerencia] No existe palabra" );
+    return pal->sucesores( );
 }
 
 
