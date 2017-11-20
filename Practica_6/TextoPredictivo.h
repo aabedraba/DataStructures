@@ -29,7 +29,7 @@ public:
     Diccionario *getDiccionario();
     bool entrena(  const std::string& palabra, const std::string& sucesor  );
     void nuevoUsuario( std::string id, std::string nombre );
-    Usuario *getUsuario( std::string &id );
+    Usuario *getUsuario( std::string id );
     std::list<std::string> *sugerencia( const std::string termino );
     
 private:
