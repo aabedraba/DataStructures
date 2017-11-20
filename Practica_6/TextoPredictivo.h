@@ -26,7 +26,6 @@ public:
     TextoPredictivo( const TextoPredictivo& orig );
     virtual ~TextoPredictivo( );
     
-    Diccionario *getDiccionario();
     bool entrena(  const std::string& palabra, const std::string& sucesor  );
     void nuevoUsuario( std::string id, std::string nombre );
     Usuario *getUsuario( std::string id );
