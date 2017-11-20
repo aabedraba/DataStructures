@@ -16,7 +16,7 @@ Usuario::Usuario( )
 Usuario::Usuario( std::string id, std::string nombre )
     : _id( id ),
       _nombre ( nombre ),
-      _miDic ()
+      _miDic()
       
 {}
 
@@ -30,25 +30,6 @@ Usuario::Usuario( const Usuario& orig )
 Usuario::~Usuario( ) {
 }
 
-//std::list<std::string> Usuario::sugerencia( std::string termino ) {
-//}
-
-//TODO resolver asociación entre clases
-void Usuario::escribeFrase( std::string &frase ) {
-    std::stringstream ss( frase );
-    std::string palabra, sucesor;
-    
-    ss >> palabra; 
-    while ( !ss.eof() ){
-        bool enDiccionario; // = TextoPredictivo.entrena
-        if ( enDiccionario ){
-            //Añadir en DicBase el sucesor
-        } else {
-            _miDic.inserta( palabra );
-        }
-    }
-}
-
 std::string Usuario::getId( ) const {
     return _id;
 }
@@ -57,5 +38,20 @@ std::string Usuario::getNombre( ) const {
     return _nombre;
 }
 
-
+void Usuario::escribeFrase( std::string &frase ) {
+    std::stringstream ss( frase );
+    std::string palabra, sucesor;
+    
+    ss >> palabra; 
+    while ( !ss.eof() ){
+        ss >> sucesor;
+        bool enDiccionario = _textPred->entrena( palabra, sucesor );
+        if ( enDiccionario )
+            break;
+        _miDic.inserta( palabra );
+        _miDic.busca( palabra ).introducirSucesor( sucesor );
+        palabra = sucesor;
+        sucesor = "";
+    }
+}
 
