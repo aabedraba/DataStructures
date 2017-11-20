@@ -68,6 +68,9 @@ bool Diccionario::inserta( const std::string &palabra ) {
  * @throw lanza una excepcion de tipo invalid_argument si la palabra no existe.
  */
 Palabra *Diccionario::busca( const std::string &termino ) {
+    if ( _palabras.empty() )
+        return 0;
+    
     auto iter = _palabras.find( termino );
     if ( iter == _palabras.end() )
         return 0;
