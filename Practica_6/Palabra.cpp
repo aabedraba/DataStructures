@@ -58,17 +58,17 @@ std::string Palabra::getTermino() const {
  * @param sucesor string que queremos anadir como sucesor de cierta palabra.
  */
 void Palabra::introducirSucesor( std::string sucesor ) {
-    Sucesor suces( sucesor );
+    Sucesor *suces = new Sucesor( sucesor );
     std::list<Sucesor>::iterator iter = _siguiente.begin();
     while ( iter != _siguiente.end()  ){
-        if ( suces == (*iter) ){
+        if ( *suces == (*iter) ){
             (*iter).aumentaOcurrencias();
             return;
         }
         iter++;
     }
     if ( iter == _siguiente.end() )//no se ha insertado nada
-        _siguiente.push_back( suces );
+        _siguiente.push_back( *suces );
 }
 
 /**
