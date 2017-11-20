@@ -12,7 +12,8 @@
  * @param diccIdioma referencia a un objeto de tipo diccionario.
  */
 TextoPredictivo::TextoPredictivo( Diccionario &diccIdioma ) 
-    : _diccIdioma ( diccIdioma )
+    : _diccIdioma ( diccIdioma ),
+      _usuarios( 0 )
 {}
 
 /**
@@ -20,11 +21,42 @@ TextoPredictivo::TextoPredictivo( Diccionario &diccIdioma )
  * @param orig TextoPredictivo que se quiere copiar.
  */
 TextoPredictivo::TextoPredictivo( const TextoPredictivo& orig ) 
-    : _diccIdioma ( orig._diccIdioma )
+    : _diccIdioma ( orig._diccIdioma ),
+      _usuarios ( orig._usuarios )
 {}
 
 TextoPredictivo::~TextoPredictivo()
 {}
+
+void TextoPredictivo::nuevoUsuario( std::string id, std::string nombre ) {
+    Usuario user( id, nombre );
+    auto iter = _usuarios.begin();
+    while ( iter != _usuarios.end() )
+        if ( id == (*iter++).getId() )
+            throw std::invalid_argument( "[TextoPredictivo::nuevoUsuario] Ya existe un usuario con el mismo id." );
+    _usuarios.push_back( user );
+}
+
+Usuario *TextoPredictivo::getUsuario( std::string &id ){
+    auto iter = _usuarios.begin();
+    unsigned int i = 0;
+    while ( iter != _usuarios.end() ){
+        if ( id == (*iter).getId() ) break;
+        iter++; i++;
+    }
+    if ( iter == _usuarios.end() )
+        throw std::invalid_argument( "[TextoPredictivo::getUsuario] Usuario no existe." );
+    return &( *iter );
+}
+
+
+/**
+ * Metodo que llama al entrena de diccionario y realiza su misma funcion.
+ * @param frase string que contiene la frase que se usara.
+ */
+bool TextoPredictivo::entrena( std::string& frase ) {
+    _diccIdioma.entrena( frase );
+}
 
 /**
  * Metodo que dado un termino, devuelve una lista con sus sucesores y otra con el numero de ocurrencias de estos sucesores.
@@ -36,13 +68,6 @@ std::list<std::string> TextoPredictivo::sugerencia( const std::string& termino, 
     return _diccIdioma.busca( termino ).sucesores( ocurrencias );
 }
 
-/**
- * Metodo que llama al entrena de diccionario y realiza su misma funcion.
- * @param frase string que contiene la frase que se usara.
- */
-void TextoPredictivo::entrena( std::string& frase ) {
-    _diccIdioma.entrena( frase );
-}
 
 
 
