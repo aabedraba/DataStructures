@@ -70,8 +70,9 @@ bool TextoPredictivo::entrena( const std::string& palabra, const std::string& su
  */
 std::list<std::string> *TextoPredictivo::sugerencia( const std::string termino ) {
     Palabra *pal = _diccIdioma.busca( termino );
+    std::list<std::string> *lista = new std::list<std::string>();
     if ( pal == 0 )
-        throw std::out_of_range( "[TextoPredictivo::sugerencia] No existe palabra" );
+        return lista;
     return pal->sucesores( );
 }
 
