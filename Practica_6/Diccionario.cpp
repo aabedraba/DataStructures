@@ -67,35 +67,13 @@ bool Diccionario::inserta( const std::string &palabra ) {
  * @return devuelve un objeto de tipo palabra con la palabra buscada.
  * @throw lanza una excepcion de tipo invalid_argument si la palabra no existe.
  */
-Palabra &Diccionario::busca( const std::string &termino ) {
+Palabra *Diccionario::busca( const std::string &termino ) {
     auto iter = _palabras.find( termino );
     if ( iter == _palabras.end() )
-        throw std::out_of_range ("[Diccionario::busca] Palabra no encontrada" );
-    return (*iter).second;    
+        return 0;
+    return &(*iter).second;    
 }
 
-/**
- * Metodo que entrena el diccionario con un archivot repleto de frases.
- * @param nomFich string con el nombre del fichero que usaremos para entrenar.
- * @throw excepcion de tipo invalid_argument si el archivo no se puede abrir.
- */
-//void Diccionario::usaCorpus(std::string nomFich) {
-//    std::ifstream fe;
-//    std::string frase;
-//    fe.open( nomFich.c_str() );
-//    if ( !fe.good() ){
-//        fe.close();
-//        throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
-//                " el archivo. (¿Archivo incorrecto?)");
-//    }
-//    while ( !fe.eof() ){
-//        getline( fe, frase );
-//        entrena( frase );
-//    }
-//    fe.close();
-//}
-
-//TODO preguntar la parte del catch al profesor
 /**
  * Metodo que a partir de una frase analizará las palabras que contiene y observará 
  el término que la precede y actualizará con él su lista de sucesores en el diccionario.
