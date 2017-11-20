@@ -71,9 +71,7 @@ bool TextoPredictivo::entrena( const std::string& palabra, const std::string& su
  */
 std::list<std::string> *TextoPredictivo::sugerencia( const std::string termino ) {
     Palabra *pal = _diccIdioma.busca( termino );
-    if ( pal == 0 )
-        return 0;
-    return pal->sucesores( );
+    return pal ? pal->sucesores( ) : 0;
 }
 
 
