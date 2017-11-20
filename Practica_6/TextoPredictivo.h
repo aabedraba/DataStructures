@@ -18,15 +18,19 @@
 #include <vector>
 #include "Usuario.h"
 
+class Usuario;
+
 class TextoPredictivo {
 public:
     TextoPredictivo( Diccionario &diccIdioma );
     TextoPredictivo( const TextoPredictivo& orig );
     virtual ~TextoPredictivo( );
+    
+    Diccionario *getDiccionario();
     bool entrena(  const std::string& palabra, const std::string& sucesor  );
     void nuevoUsuario( std::string id, std::string nombre );
     Usuario *getUsuario( std::string &id );
-//    std::list<std::string> sugerencia( const std::string &termino, std::list<int> &ocurrencias );
+    std::list<std::string> sugerencia( const std::string &termino, std::list<int> &ocurrencias );
     
 private:
     Diccionario _diccIdioma;
