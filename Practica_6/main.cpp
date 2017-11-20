@@ -28,7 +28,7 @@ void mostrarSucesores ( const std::string &palabra, Usuario* user ){
     std::list<std::string> *sucesores;
     sucesores = user->sugerencia( palabra );
     if ( sucesores == 0 ){
-        cout << "No hay sucesores" << endl;
+        cout << "No hay mas sucesores" << endl;
         return;
     }
     auto iter = sucesores->begin();
