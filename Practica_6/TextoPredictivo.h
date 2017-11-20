@@ -15,16 +15,22 @@
 #define TEXTOPREDICTIVO_H
 
 #include "Diccionario.h"
+#include <vector>
+#include "Usuario.h"
 
 class TextoPredictivo {
 public:
     TextoPredictivo( Diccionario &diccIdioma );
     TextoPredictivo( const TextoPredictivo& orig );
     virtual ~TextoPredictivo( );
-    void entrena( std::string &frase );
+    bool entrena( std::string &frase );
     std::list<std::string> sugerencia( const std::string &termino, std::list<int> &ocurrencias );
+    void nuevoUsuario( std::string id, std::string nombre );
+    Usuario *getUsuario( std::string &id );
+    
 private:
     Diccionario _diccIdioma;
+    std::vector<Usuario> _usuarios;
 };
 
 #endif /* TEXTOPREDICTIVO_H */
