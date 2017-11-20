@@ -2,17 +2,17 @@
 
 Palabra::Palabra()
     : _termino (""),
-      _sucesores()
+      _siguiente()
 {}
 
 Palabra::Palabra( std::string termino )
     : _termino ( termino ),
-      _sucesores ()
+      _siguiente ()
 {}
 
 Palabra::Palabra(const Palabra& orig)
     : _termino( orig._termino ),
-      _sucesores ( orig._sucesores )
+      _siguiente ( orig._siguiente )
 {}
 
 Palabra::~Palabra()
@@ -21,7 +21,7 @@ Palabra::~Palabra()
 Palabra &Palabra::operator =( const Palabra &otro ) {
     if ( *this != otro ){
         _termino = otro._termino; 
-        _sucesores = otro._sucesores;
+        _siguiente = otro._siguiente;
     }
     return *this;
 }
@@ -59,16 +59,16 @@ std::string Palabra::getTermino() const {
  */
 void Palabra::introducirSucesor( std::string sucesor ) {
     Sucesor suces( sucesor );
-    std::list<Sucesor>::iterator iter = _sucesores.begin();
-    while ( iter != _sucesores.end()  ){
+    std::list<Sucesor>::iterator iter = _siguiente.begin();
+    while ( iter != _siguiente.end()  ){
         if ( suces == (*iter) ){
             (*iter).aumentaOcurrencias();
             return;
         }
         iter++;
     }
-    if ( iter == _sucesores.end() )//no se ha insertado nada
-        _sucesores.push_back( suces );
+    if ( iter == _siguiente.end() )//no se ha insertado nada
+        _siguiente.push_back( suces );
 }
 
 /**
@@ -78,10 +78,10 @@ void Palabra::introducirSucesor( std::string sucesor ) {
  */
 std::list<std::string> Palabra::sucesores( std::list<int> &ocurrencias ) {
     std::list<std::string> aux;
-    std::list<Sucesor>::iterator iter = _sucesores.begin();
+    std::list<Sucesor>::iterator iter = _siguiente.begin();
     std::priority_queue<Sucesor> listaOrdenada;
     int i = 0;
-    while ( iter != _sucesores.end() && i < 10 ){
+    while ( iter != _siguiente.end() && i < 10 ){
         listaOrdenada.push( (*iter) );
         i++ ;iter++;
     }
