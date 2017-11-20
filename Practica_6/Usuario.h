@@ -20,11 +20,12 @@
 #include "Diccionario.h"
 #include "TextoPredictivo.h"
 
+class TextoPredictivo;
 
 class Usuario {
 public:
     Usuario( );
-    Usuario( std::string id, std::string nombre );
+    Usuario( std::string id, std::string nombre, TextoPredictivo *textPred );
     Usuario( const Usuario& orig );
     virtual ~Usuario( );
     
@@ -32,7 +33,7 @@ public:
     std::string getNombre( ) const;
     
     void escribeFrase( std::string &frase );
-//    std::list<std::string> sugerencia( std::string &termino );
+    std::list<std::string> sugerencia( std::string &termino, std::list<int> &ocurrencias );
 private:
     std::string _id;
     std::string _nombre;
