@@ -58,7 +58,7 @@ bool TextoPredictivo::entrena( const std::string& palabra, const std::string& su
     Palabra *suc = _diccIdioma.busca( sucesor );
     Palabra *pal = _diccIdioma.busca( palabra ); 
     if ( suc == 0 || pal == 0 )
-        return true;
+        return false;
     pal->introducirSucesor( sucesor );
 }
 
