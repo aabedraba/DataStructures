@@ -26,7 +26,7 @@ public:
     bool operator <( const Palabra &otro ) const;
     std::string getTermino() const;
     void introducirSucesor( std::string sucesor );
-    std::list<std::string> sucesores( std::list<int> &ocurrencias );
+    std::list<std::string> *sucesores( );
 
 private:
     std::string _termino;
