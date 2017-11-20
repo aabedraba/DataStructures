@@ -76,8 +76,8 @@ void Palabra::introducirSucesor( std::string sucesor ) {
  * @return devuelve una lista enlazada con todos los sucesores ordenados por 
  su numero de courrencias.
  */
-std::list<std::string> Palabra::sucesores( std::list<int> &ocurrencias ) {
-    std::list<std::string> aux;
+std::list<std::string> *Palabra::sucesores( ) {
+    std::list<std::string> *aux = new std::list<std::string>();
     std::list<Sucesor>::iterator iter = _siguiente.begin();
     std::priority_queue<Sucesor> listaOrdenada;
     int i = 0;
@@ -87,8 +87,7 @@ std::list<std::string> Palabra::sucesores( std::list<int> &ocurrencias ) {
     }
     while ( !listaOrdenada.empty() ){
         for (int i = 0; i < 10 && !listaOrdenada.empty(); i++){
-            aux.push_back( listaOrdenada.top().getTermino() );
-            ocurrencias.push_back( listaOrdenada.top().getNumOcurrencias() );
+            aux->push_back( listaOrdenada.top().getTermino() );
             listaOrdenada.pop();
         }
     }
