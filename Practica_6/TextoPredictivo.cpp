@@ -57,12 +57,17 @@ Usuario *TextoPredictivo::getUsuario( std::string &id ){
 bool TextoPredictivo::entrena( const std::string& palabra, const std::string& sucesor ) {
     try{
         _diccIdioma.busca( sucesor );
-        _diccIdioma.busca( palabra ).introducirSucesor( sucesor ); 
+        _diccIdioma.busca( palabra )->introducirSucesor( sucesor ); 
     } catch ( std::exception &e ){
         return false;
     }
     return true;
 }
+
+Diccionario* TextoPredictivo::getDiccionario( ) {
+    
+}
+
 
 /**
  * Metodo que dado un termino, devuelve una lista con sus sucesores y otra con el numero de ocurrencias de estos sucesores.
@@ -70,9 +75,9 @@ bool TextoPredictivo::entrena( const std::string& palabra, const std::string& su
  * @param ocurrencias referencia a lista de enteros que queremos rellenar con el numero de ocurrencias de los sucesores.
  * @return lista de string con los sucesores de termino.
  */
-//std::list<std::string> TextoPredictivo::sugerencia( const std::string& termino, std::list<int> &ocurrencias ) {
-//    return _diccIdioma.busca( termino ).sucesores( ocurrencias );
-//}
+std::list<std::string> TextoPredictivo::sugerencia( const std::string& termino, std::list<int> &ocurrencias ) {
+    return _diccIdioma.busca( termino )->sucesores( ocurrencias );
+}
 
 
 
