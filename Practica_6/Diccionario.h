@@ -25,7 +25,7 @@ public:
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
     
-    Palabra &busca( const std::string &termino );
+    Palabra *busca( const std::string &termino );
     bool inserta( const std::string &palabra );
     void entrena ( const std::string& palabra, const std::string& sucesor );
     
