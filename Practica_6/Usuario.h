@@ -33,7 +33,7 @@ public:
     std::string getNombre( ) const;
     
     void escribeFrase( std::string &frase );
-    std::list<std::string> sugerencia( std::string &termino, std::list<int> &ocurrencias );
+    std::list<std::string> *sugerencia( std::string termino );
 private:
     std::string _id;
     std::string _nombre;
