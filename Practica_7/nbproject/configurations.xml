@@ -4,6 +4,11 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Diccionario.h</itemPath>
+      <itemPath>Palabra.h</itemPath>
+      <itemPath>Sucesor.h</itemPath>
+      <itemPath>TextoPredictivo.h</itemPath>
+      <itemPath>Usuario.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,6 +17,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Diccionario.cpp</itemPath>
+      <itemPath>Palabra.cpp</itemPath>
+      <itemPath>TextoPredictivo.cpp</itemPath>
+      <itemPath>Usuario.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -35,7 +44,28 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>8</standard>
+        </ccTool>
       </compileType>
+      <item path="Diccionario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Palabra.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Palabra.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Sucesor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextoPredictivo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextoPredictivo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Usuario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Usuario.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -59,6 +89,24 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Diccionario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Diccionario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Palabra.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Palabra.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Sucesor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextoPredictivo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextoPredictivo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Usuario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Usuario.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
