@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Diccionario.o \
 	${OBJECTDIR}/Palabra.o \
 	${OBJECTDIR}/TextoPredictivo.o \
+	${OBJECTDIR}/Usuario.o \
 	${OBJECTDIR}/main.o
 
 
@@ -79,6 +80,11 @@ ${OBJECTDIR}/TextoPredictivo.o: TextoPredictivo.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextoPredictivo.o TextoPredictivo.cpp
+
+${OBJECTDIR}/Usuario.o: Usuario.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Usuario.o Usuario.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
