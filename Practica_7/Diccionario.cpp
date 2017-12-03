@@ -31,7 +31,7 @@ Diccionario::Diccionario( const std::string &nomFich )
     
     while ( !fe.eof() ) {
         getline( fe, linea );
-        if ( linea != "" ) {
+        if ( linea.empty() ) {
             Palabra palabra(linea);
             std::pair<std::string, Palabra> aInsertar( linea, palabra );
             _palabras.insert( aInsertar ); //La lista está ordenada
@@ -44,15 +44,14 @@ Diccionario::Diccionario( const Diccionario& orig )
     : _palabras ( orig._palabras )
 {}
 
-Diccionario::~Diccionario() {
-}
+Diccionario::~Diccionario() = default;
 
-//TODO mirar por qué me devuelve una pos superior
+//TODO cambiar documentación
 /**
  * Metodo que inserta una palabra en el diccionario a traves de un string.
  * @param palabra string de la nueva palabra que queremos introducir.
  * @param pos posicion donde colocaremos la nueva palabra y que se actualizará cuando se haga.
- * @throw lanza una excepcion de tipo invalid_argument si la palabra ya existe.
+ * @return
  */
 bool Diccionario::inserta( const std::string &palabra ) {
     Palabra p( palabra );
@@ -69,10 +68,10 @@ bool Diccionario::inserta( const std::string &palabra ) {
  */
 Palabra *Diccionario::busca( const std::string &termino ) {
     if ( _palabras.empty() )
-        return 0;
+        return nullptr;
     auto iter = _palabras.find( termino );
     if ( iter == _palabras.end() )
-        return 0;
+        return nullptr;
     return &(*iter).second;    
 }
 
@@ -82,7 +81,7 @@ Palabra *Diccionario::busca( const std::string &termino ) {
  * @param frase string que contiene la frase que usaremos.
  */
 void Diccionario::entrena( const std::string& palabra, const std::string& sucesor ) {
-    if ( sucesor == "" || palabra == "")
+    if ( sucesor.empty()  || palabra.empty() )
         throw std::invalid_argument( "[Diccionario::entrena] Argumento invalido. Cadena vacia." );
 
     Palabra pal( palabra );

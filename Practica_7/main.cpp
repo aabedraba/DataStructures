@@ -42,7 +42,7 @@ void mostrarSucesores ( const std::string &palabra, Usuario* user ){
     }
     cout << " " << endl;
     cin >> eleccion;
-    if ( eleccion > sucesores->size() ){
+    if ( eleccion > sucesores->size() || sucesores->empty() ){
         std::cout << "Valor incorrecto" << std::endl;
         return;
     }
@@ -58,7 +58,7 @@ void mostrarSucesores ( const std::string &palabra, Usuario* user ){
 int main(int argc, char** argv) {
 
     try {
-        Diccionario disBase("listado-sin-acentos_v2.txt");
+        Diccionario disBase("/home/aabedraba/Github/EstructurasDeDatos/Practica_7/listado-sin-acentos_v2.txt");
         TextoPredictivo predictivo( disBase );
         predictivo.nuevoUsuario( "usr1", "Abdallah" );
         predictivo.nuevoUsuario( "usr2", "Jesus" );
@@ -85,6 +85,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-
-
-

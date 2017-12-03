@@ -1,19 +1,22 @@
 #include <iostream>
+#include <string>
+#include <map>
 
-int fibonacci( int n ) {
-    if ( n == 0 )
-        return 0;
-    if ( n == 1 )
-        return 1;
-    return fibonacci( n-1 ) + fibonacci( n-2 );
-}
-
-using namespace std;
+class Socio{
+public:
+    Socio()
+     : _nombre("")
+    {};
+    Socio( const Socio& orig)
+     : _nombre( orig._nombre )
+    {};
+    virtual ~Socio(){};
+    std::string _nombre;
+};
 
 int main(int argc, char** argv) {
-    int n = 20;
-    cout << fibonacci( n );
-
+    std::map<int, Socio, std::greater<int> > socios; 
+    
     return 0;
 }
 

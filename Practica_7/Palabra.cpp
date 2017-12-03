@@ -48,10 +48,6 @@ bool Palabra::operator <( const Palabra &otro ) const{
     return false;
 }
 
-std::string Palabra::getTermino() const {
-    return _termino;
-}
-
 /**
  * Dado un string lo incluye como sucesor de la palabra.
  * @pre si ya existe, solo aumenta su numero de ocurrencias.
@@ -77,7 +73,7 @@ void Palabra::introducirSucesor( std::string sucesor ) {
  su numero de courrencias.
  */
 std::list<std::string> *Palabra::sucesores( ) {
-    std::list<std::string> *aux = new std::list<std::string>();
+    auto *aux = new std::list<std::string>();
     std::list<Sucesor>::iterator iter = _siguiente.begin();
     std::priority_queue<Sucesor> listaOrdenada;
     int i = 0;
@@ -92,4 +88,13 @@ std::list<std::string> *Palabra::sucesores( ) {
         }
     }
     return aux;
+}
+
+unsigned long Palabra::djb2( unsigned char* str ) {
+    unsigned long hash = 5381;
+    int c;
+    
+    while ( c == *str++ )
+        hash = ( (hash << 5) + hash ) + c;
+    return hash;
 }

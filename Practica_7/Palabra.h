@@ -19,14 +19,16 @@ public:
     Palabra( std::string termino ); 
     Palabra(const Palabra& orig);
     virtual ~Palabra();
+
     Palabra &operator =( const Palabra &otro );   
     bool operator !=( const Palabra &otro ) const;
     bool operator ==( const Palabra &otro ) const;
     bool operator >( const Palabra &otro ) const; 
     bool operator <( const Palabra &otro ) const;
-    std::string getTermino() const;
+    
     void introducirSucesor( std::string sucesor );
     std::list<std::string> *sucesores( );
+    unsigned long djb2( unsigned char *str );
 
 private:
     std::string _termino;
