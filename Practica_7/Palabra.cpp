@@ -15,8 +15,7 @@ Palabra::Palabra(const Palabra& orig)
       _siguiente ( orig._siguiente )
 {}
 
-Palabra::~Palabra()
-{}
+Palabra::~Palabra() = default;
 
 Palabra &Palabra::operator =( const Palabra &otro ) {
     if ( *this != otro ){
@@ -55,7 +54,7 @@ bool Palabra::operator <( const Palabra &otro ) const{
  */
 void Palabra::introducirSucesor( std::string sucesor ) {
     Sucesor *suces = new Sucesor( sucesor );
-    std::list<Sucesor>::iterator iter = _siguiente.begin();
+    auto iter = _siguiente.begin();
     while ( iter != _siguiente.end()  ){
         if ( *suces == (*iter) ){
             (*iter).aumentaOcurrencias();
@@ -74,7 +73,7 @@ void Palabra::introducirSucesor( std::string sucesor ) {
  */
 std::list<std::string> *Palabra::sucesores( ) {
     auto *aux = new std::list<std::string>();
-    std::list<Sucesor>::iterator iter = _siguiente.begin();
+    auto iter = _siguiente.begin();
     std::priority_queue<Sucesor> listaOrdenada;
     int i = 0;
     while ( iter != _siguiente.end() && i < 10 ){
@@ -82,7 +81,7 @@ std::list<std::string> *Palabra::sucesores( ) {
         i++ ;iter++;
     }
     while ( !listaOrdenada.empty() ){
-        for (int i = 0; i < 10 && !listaOrdenada.empty(); i++){
+        for (i = 0; i < 10 && !listaOrdenada.empty(); i++){
             aux->push_back( listaOrdenada.top().getTermino() );
             listaOrdenada.pop();
         }

@@ -22,12 +22,11 @@ using namespace std;
  * @param diccionario objeto de tipo diccionario en el buscamos estas palabras.
  */
 void mostrarSucesores ( const std::string &palabra, Usuario* user ){
-    unsigned int pos;
     int eleccion;
     std::list<int> ocurrencias;
     std::list<std::string> *sucesores;
     sucesores = user->sugerencia( palabra );
-    if ( sucesores == 0 ){
+    if ( sucesores == nullptr ){
         cout << "No hay mas sucesores" << endl;
         return;
     }
@@ -46,7 +45,7 @@ void mostrarSucesores ( const std::string &palabra, Usuario* user ){
         std::cout << "Valor incorrecto" << std::endl;
         return;
     }
-    for (int i = 2; i <= eleccion; i++)
+    for (i = 2; i <= eleccion; i++)
         aux++;
     mostrarSucesores( (*aux), user );
 };
@@ -85,3 +84,5 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
+

@@ -25,9 +25,7 @@ TextoPredictivo::TextoPredictivo( const TextoPredictivo& orig )
       _usuarios ( orig._usuarios )
 {}
 
-TextoPredictivo::~TextoPredictivo()
-{
-}
+TextoPredictivo::~TextoPredictivo() = default;
 
 void TextoPredictivo::nuevoUsuario( std::string id, std::string nombre ) {
     Usuario user( id, nombre, this );
@@ -57,7 +55,7 @@ Usuario *TextoPredictivo::getUsuario( std::string id ){
 bool TextoPredictivo::entrena( const std::string& palabra, const std::string& sucesor ) {
     Palabra *suc = _diccIdioma.busca( sucesor );
     Palabra *pal = _diccIdioma.busca( palabra ); 
-    if ( suc == 0 || pal == 0 )
+    if ( suc == nullptr || pal == nullptr )
         return false;
     pal->introducirSucesor( sucesor );
     return true;
@@ -71,7 +69,7 @@ bool TextoPredictivo::entrena( const std::string& palabra, const std::string& su
  */
 std::list<std::string> *TextoPredictivo::sugerencia( const std::string termino ) {
     Palabra *pal = _diccIdioma.busca( termino );
-    return pal ? pal->sucesores( ) : 0;
+    return pal ? pal->sucesores( ) : nullptr;
 }
 
 

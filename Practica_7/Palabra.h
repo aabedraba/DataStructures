@@ -16,7 +16,7 @@
 class Palabra {
 public:
     Palabra();
-    Palabra( std::string termino ); 
+    explicit Palabra( std::string termino );
     Palabra(const Palabra& orig);
     virtual ~Palabra();
 

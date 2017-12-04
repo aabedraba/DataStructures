@@ -40,9 +40,7 @@ Diccionario::Diccionario( const std::string &nomFich )
     fe.close();
 }
 
-Diccionario::Diccionario( const Diccionario& orig ) 
-    : _palabras ( orig._palabras )
-{}
+Diccionario::Diccionario( const Diccionario& orig ) = default;
 
 Diccionario::~Diccionario() = default;
 

@@ -21,9 +21,9 @@
 template <typename T>
 class THashCerrada {
 public:
-    THashCerrada( long &tamTabla );
+    explicit THashCerrada( long &tamTabla );
     THashCerrada( const THashCerrada& orig );
-    virtual ~THashCerrada( );
+    virtual ~THashCerrada( ) = default;
     
     bool insertar( long clave, const T& dato );
 //    long dispersion( long clave );
@@ -34,10 +34,9 @@ public:
 //    unsigned int maxColisiones();
 //    unsigned int promedioColisiones();
 //    float factorCarga();
-    long calculaPrimo( long tamTabla);
+    unsigned long calculaPrimo( long tamTabla);
     
 private:
-    typedef std::pair<unsigned long, T> elemento;
     std::vector<T> _tabla;
 
 };
@@ -52,19 +51,15 @@ THashCerrada<T>::THashCerrada( const THashCerrada& orig )
     : _tabla ( orig._tabla )
 {};
 
-template<typename T>
-THashCerrada<T>::~THashCerrada( ) 
-{};
-
 
 template<typename T>
-long THashCerrada<T>::calculaPrimo( long tamTabla ) {
+unsigned long THashCerrada<T>::calculaPrimo( long tamTabla ) {
     long primo;
-    if ( _tabla.size() % 2 == 0 )
-        primo = _tabla.size() + 1;
+    if ( tamTabla % 2 == 0 )
+        primo = tamTabla + 1;
     else
-        primo = _tabla.size() + 2;
-    
+        primo = tamTabla + 2;
+
     bool noEsPrimo;
     do {
         noEsPrimo = false;
@@ -85,10 +80,7 @@ bool THashCerrada<T>::insertar( long clave, const T& dato ){
     try {
         _tabla.at( posicion );
     } catch ( std::exception &e ){
-        
     }
-    _tabla.insert( clave, )
 }
-
 #endif /* THASHCERRADA_H */
 
