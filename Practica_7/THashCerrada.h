@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <cmath>
+#include <optional>
 
 
 template <typename T>

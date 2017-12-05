@@ -11,19 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b8c4d32-67f1-4d86-a79a-300973e68f1c" name="Default" comment="Implementando tabla hash">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Palabra.cpp" afterPath="$PROJECT_DIR$/Palabra.cpp" />
-      <change beforePath="$PROJECT_DIR$/Palabra.h" afterPath="$PROJECT_DIR$/Palabra.h" />
-      <change beforePath="$PROJECT_DIR$/THashCerrada.h" afterPath="$PROJECT_DIR$/THashCerrada.h" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/CXX.includecache" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/Palabra.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/Palabra.cpp.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/depend.internal" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/depend.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/main.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/main.cpp.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Practica_7" afterPath="$PROJECT_DIR$/cmake-build-debug/Practica_7" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
-    </list>
+    <list default="true" id="9b8c4d32-67f1-4d86-a79a-300973e68f1c" name="Default" comment="Implementando tabla hash" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/Diccionario.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="447">
-              <caret line="65" column="3" lean-forward="true" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
+              <caret line="65" column="3" lean-forward="false" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -72,8 +60,8 @@
       <file leaf-file-name="THashCerrada.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/THashCerrada.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-201">
-              <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="45" />
+            <state relative-caret-position="177">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
                 <element signature="e#1257#1269#0" expanded="true" />
               </folding>
@@ -185,7 +173,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="SearchEverywhereHistoryKey" value="open pro&#9;ACTION&#9;OpenCPPProject&#10;commit&#9;ACTION&#9;CheckinProject&#10;settin&#9;ACTION&#9;ShowSettings&#10;keymap&#9;ACTION&#9;ChangeKeymap&#10;setting&#9;ACTION&#9;ShowSettings&#10;inserta&#9;null&#9;null&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins&#10;Valgrin&#9;ACTION&#9;Valgrind.EditSettings&#10;install&#9;ACTION&#9;null&#10;projec&#9;ACTION&#9;ActivateProjectToolWindow&#10;Code analysis&#9;null&#9;null&#10;analy&#9;ACTION&#9;Unscramble&#10;Open&#9;ACTION&#9;AddNewTabToTheEndMode&#10;files&#9;ACTION&#9;RevealIn&#10;complete&#9;ACTION&#9;EditorCompleteStatement&#10;TODO&#9;ACTION&#9;ActivateTODOToolWindow" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/CLionProjects/THash" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -230,7 +218,7 @@
       <workItem from="1512388612993" duration="652000" />
       <workItem from="1512416928078" duration="4210000" />
       <workItem from="1512462575699" duration="2064000" />
-      <workItem from="1512506320308" duration="61000" />
+      <workItem from="1512506320308" duration="129000" />
     </task>
     <task id="LOCAL-00001" summary="CLion installation">
       <created>1512342903842</created>
@@ -250,7 +238,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12023000" />
+    <option name="totallyTimeSpent" value="12091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -263,7 +251,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -725,15 +712,15 @@
     <entry file="file://$PROJECT_DIR$/Diccionario.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
-          <caret line="65" column="3" lean-forward="true" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
+          <caret line="65" column="3" lean-forward="false" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/THashCerrada.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-201">
-          <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="45" />
+        <state relative-caret-position="177">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
             <element signature="e#1257#1269#0" expanded="true" />
           </folding>
