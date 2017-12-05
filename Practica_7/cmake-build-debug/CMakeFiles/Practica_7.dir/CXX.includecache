@@ -73,16 +73,10 @@ TextoPredictivo.h
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/TextoPredictivo.h
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/main.cpp
-cstdlib
--
 iostream
 -
-string
+vector
 -
-sstream
--
-Diccionario.h
-/home/aabedraba/Github/EstructurasDeDatos/Practica_7/Diccionario.h
-TextoPredictivo.h
-/home/aabedraba/Github/EstructurasDeDatos/Practica_7/TextoPredictivo.h
+Palabra.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_7/Palabra.h
 

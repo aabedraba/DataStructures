@@ -37,8 +37,7 @@ public:
     unsigned long calculaPrimo( long tamTabla);
     
 private:
-    std::vector<T> _tabla;
-
+    std::vector<std::pair<bool, T> > _tabla;
 };
 
 template <typename T>
@@ -77,10 +76,13 @@ unsigned long THashCerrada<T>::calculaPrimo( long tamTabla ) {
 template<typename T>
 bool THashCerrada<T>::insertar( long clave, const T& dato ){
     long posicion = clave %_tabla.size();
-    try {
-        _tabla.at( posicion );
-    } catch ( std::exception &e ){
+    if ( _tabla[posicion].first == true )
+        return false;
+    for (int i = 1; i < 5; ++i) {
+        posicion = (clave * i*i) % _tabla.size();
+        if ( _tabla[posicion].first == )
     }
+
 }
 #endif /* THASHCERRADA_H */
 

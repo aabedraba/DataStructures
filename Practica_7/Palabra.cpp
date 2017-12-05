@@ -89,11 +89,16 @@ std::list<std::string> *Palabra::sucesores( ) {
     return aux;
 }
 
-unsigned long Palabra::djb2( unsigned char* str ) {
+unsigned long Palabra::djb2() {
     unsigned long hash = 5381;
     int c;
-    
+    const char *str = _termino.c_str();
+
     while ( c == *str++ )
         hash = ( (hash << 5) + hash ) + c;
     return hash;
+}
+
+const std::string &Palabra::get_termino() const {
+    return _termino;
 }
