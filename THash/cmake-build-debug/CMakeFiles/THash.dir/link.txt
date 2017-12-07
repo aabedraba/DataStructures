@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/THash.dir/main.cpp.o  -o THash 
