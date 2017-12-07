@@ -58,7 +58,7 @@ void mostrarSucesores ( const std::string &palabra, Usuario* user ){
 int main(int argc, char** argv) {
 
     try {
-        Diccionario disBase("listado-sin-acentos_v2.txt");
+        Diccionario disBase("/home/aabedraba/Github/EstructurasDeDatos/Practica_6/listado-sin-acentos_v2.txt");
         TextoPredictivo predictivo( disBase );
         predictivo.nuevoUsuario( "usr1", "Abdallah" );
         predictivo.nuevoUsuario( "usr2", "Jesus" );
