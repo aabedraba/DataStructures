@@ -120,7 +120,7 @@ unsigned long THashCerrada<T>::dispersionDoble(long clave, const T &dato, unsign
     long primerPrimo = calculaPrimo(_tabla.size()-1000);
     long segundoPrimo = calculaPrimo(_tabla.size()-500);
     long primerHash = clave % primerPrimo;
-    long segundoHash = clave % segundoPrimo;
+    long segundoHash = clave % segundoPrimo; //TODO: funcion mal implementada (mirar los apuntes)
     for (long i = 0; i < MAX_COLISIONES; ++i) {
         posicion = (primerHash + i*segundoHash) % _tabla.size();
         if ( _tabla[posicion].first == true && _tabla[posicion].second == dato ) {
