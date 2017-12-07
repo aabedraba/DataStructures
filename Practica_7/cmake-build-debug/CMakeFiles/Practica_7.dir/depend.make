@@ -24,7 +24,10 @@ CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../TextoPredictivo.h
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Usuario.cpp
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Usuario.h
 
+CMakeFiles/Practica_7.dir/main.cpp.o: ../Diccionario.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../Palabra.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../Sucesor.h
+CMakeFiles/Practica_7.dir/main.cpp.o: ../TextoPredictivo.h
+CMakeFiles/Practica_7.dir/main.cpp.o: ../Usuario.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../main.cpp
 

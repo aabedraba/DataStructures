@@ -12,6 +12,5 @@ add_executable(Practica_7
         Sucesor.h
         TextoPredictivo.cpp
         TextoPredictivo.h
-        THashCerrada.h
         Usuario.cpp
         Usuario.h)

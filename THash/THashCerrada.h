@@ -17,39 +17,51 @@
 #include <vector>
 #include <cmath>
 #include <optional>
-#define COLISIONES 5
+
+#define MAX_COLISIONES 500
+static long posPorDefecto = 0;
 
 
 template <typename T>
 class THashCerrada {
-public:g
+public:
     explicit THashCerrada( long &tamTabla );
     THashCerrada( const THashCerrada& orig );
     virtual ~THashCerrada( ) = default;
 
-    bool insertar( long clave, const T& dato );
-    T* buscar( long clave, const T& dato );
-    //    long dispersion( long clave );
-    bool borrar( long clave, const T& dato );
-//    unsigned long tamTalbla();
-//    unsigned long numElementos();
-//    unsigned int maxColisiones();
-//    unsigned int promedioColisiones();
-//    float factorCarga();
+    unsigned long toDjb2( const char *str );
     unsigned long calculaPrimo( long tamTabla);
 
+    bool insertar( long clave, const T& dato );
+    bool borrar( long clave, const T& dato );
+    T* buscar( long clave, const T& dato, long &posEnVector = posPorDefecto );
+    unsigned long tamaTabla();
+    unsigned long numElementos();
+    unsigned int maxColisiones();
+    unsigned int promedioColisiones();
+    float factorCarga();
+
 private:
-    std::vector<std::pair<bool, T> > _tabla;
+    std::vector<std::pair<bool, T>> _tabla;
+    unsigned long _numElementos;
+    unsigned int _maxColisiones;
+    unsigned int _promedioColisiones;
 };
 
 template <typename T>
 THashCerrada<T>::THashCerrada( long &tamTabla )
-        : _tabla( calculaPrimo(tamTabla) )
+    : _tabla( calculaPrimo(tamTabla) ),
+      _numElementos( 0 ),
+      _maxColisiones( 0 ),
+      _promedioColisiones( 0 )
 {};
 
 template <typename T>
 THashCerrada<T>::THashCerrada( const THashCerrada& orig )
-        : _tabla ( orig._tabla )
+    : _tabla ( orig._tabla ),
+      _numElementos( orig._numElementos ),
+      _maxColisiones( orig._maxColisiones ),
+      _promedioColisiones( orig._promedioColisiones )
 {};
 
 
@@ -76,36 +88,85 @@ unsigned long THashCerrada<T>::calculaPrimo( long tamTabla ) {
 }
 
 
+template <typename T>
+unsigned long THashCerrada<T>::toDjb2( const char *str ) {
+    unsigned long hash = 5381;
+    int c;
+    while ( c = *str++ )
+        hash = ( (hash << 5) + hash ) + c;
+    return hash;
+}
+
+
 template<typename T>
 bool THashCerrada<T>::insertar( long clave, const T& dato ){
     long posicion;
-    for (int i = 0; i <= COLISIONES; ++i) {
+    int i;
+    for (i = 0; i <= MAX_COLISIONES; ++i) {
         posicion = (clave + i*i) % _tabla.size();
         if ( _tabla[posicion].first == true && _tabla[posicion].second == dato ) return false;
         if ( _tabla[posicion].first == false ) {
             _tabla[posicion].first = true;
             _tabla[posicion].second = dato;
-            return true;
+            ++_numElementos;
+            break;
         }
     }
+    _promedioColisiones = (_promedioColisiones + i) / 2;
+    if ( i > _maxColisiones ) _maxColisiones = i;
+    return true;
 }
 
 
 template<typename T>
-std::optional<T>* THashCerrada<T>::buscar(long clave, const T &dato) {
+T* THashCerrada<T>::buscar(long clave, const T &dato, long &posEnVector) {
     long posicion;
-    for (int i = 0; i <= COLISIONES; ++i) {
+    for (int i = 0; i <= MAX_COLISIONES; ++i) {
         posicion = (clave + i*i) % _tabla.size();
         if ( _tabla[posicion].first == true )
-            if ( _tabla[posicion].second == dato )
+            if ( _tabla[posicion].second == dato ) {
+                posEnVector = posicion;
                 return &_tabla[posicion].second;
+            }
     }
     return nullptr;
 }
 
 template <typename T>
 bool THashCerrada<T>::borrar(long clave, const T &dato) {
-    buscar( clave, dato )
+    long posEnVector;
+    T* aBuscar = buscar( clave, dato, posEnVector );
+    if ( aBuscar != nullptr ) {
+        _tabla[posEnVector].first = false;
+        _numElementos--;
+        return true;
+    }
+    else return false;
+}
+
+template <typename T>
+unsigned long THashCerrada<T>::tamaTabla() {
+    return _tabla.size();
+}
+
+template <typename T>
+unsigned long THashCerrada<T>::numElementos() {
+    return _numElementos;
+}
+
+template <typename T>
+unsigned int THashCerrada<T>::maxColisiones() {
+    return _maxColisiones;
+}
+
+template <typename T>
+unsigned int THashCerrada<T>::promedioColisiones() {
+    return _promedioColisiones;
+}
+
+template <typename T>
+float THashCerrada<T>::factorCarga() {
+    return ( (float)_numElementos / (float)_tabla.size() );
 }
 
 #endif /* THASHCERRADA_H */

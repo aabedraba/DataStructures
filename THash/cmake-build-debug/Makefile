@@ -123,6 +123,33 @@ THash/fast:
 	$(MAKE) -f CMakeFiles/THash.dir/build.make CMakeFiles/THash.dir/build
 .PHONY : THash/fast
 
+Palabra.o: Palabra.cpp.o
+
+.PHONY : Palabra.o
+
+# target to build an object file
+Palabra.cpp.o:
+	$(MAKE) -f CMakeFiles/THash.dir/build.make CMakeFiles/THash.dir/Palabra.cpp.o
+.PHONY : Palabra.cpp.o
+
+Palabra.i: Palabra.cpp.i
+
+.PHONY : Palabra.i
+
+# target to preprocess a source file
+Palabra.cpp.i:
+	$(MAKE) -f CMakeFiles/THash.dir/build.make CMakeFiles/THash.dir/Palabra.cpp.i
+.PHONY : Palabra.cpp.i
+
+Palabra.s: Palabra.cpp.s
+
+.PHONY : Palabra.s
+
+# target to generate assembly for a file
+Palabra.cpp.s:
+	$(MAKE) -f CMakeFiles/THash.dir/build.make CMakeFiles/THash.dir/Palabra.cpp.s
+.PHONY : Palabra.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... THash"
+	@echo "... Palabra.o"
+	@echo "... Palabra.i"
+	@echo "... Palabra.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

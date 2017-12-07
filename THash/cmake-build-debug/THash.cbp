@@ -84,6 +84,15 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/THash/Palabra.cpp">
+			<Option target="THash"/>
+		</Unit>
+		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/THash/Palabra.h">
+			<Option target="THash"/>
+		</Unit>
+		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/THash/Sucesor.h">
+			<Option target="THash"/>
+		</Unit>
 		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/THash/THashCerrada.h">
 			<Option target="THash"/>
 		</Unit>

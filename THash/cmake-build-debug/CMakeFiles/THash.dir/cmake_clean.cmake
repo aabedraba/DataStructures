@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/THash.dir/main.cpp.o"
+  "CMakeFiles/THash.dir/Palabra.cpp.o"
   "THash.pdb"
   "THash"
 )
