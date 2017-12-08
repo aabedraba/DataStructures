@@ -31,7 +31,7 @@ Diccionario::Diccionario( const std::string &nomFich )
     
     while ( !fe.eof() ) {
         getline( fe, linea );
-        if ( linea.empty() ) {
+        if ( linea != "" ) {
             Palabra palabra(linea);
             std::pair<std::string, Palabra> aInsertar( linea, palabra );
             _palabras.insert( aInsertar ); //La lista está ordenada
@@ -40,16 +40,19 @@ Diccionario::Diccionario( const std::string &nomFich )
     fe.close();
 }
 
-Diccionario::Diccionario( const Diccionario& orig ) = default;
+Diccionario::Diccionario( const Diccionario& orig ) 
+    : _palabras ( orig._palabras )
+{}
 
-Diccionario::~Diccionario() = default;
+Diccionario::~Diccionario() {
+}
 
-//TODO cambiar documentación
+//TODO mirar por qué me devuelve una pos superior
 /**
  * Metodo que inserta una palabra en el diccionario a traves de un string.
  * @param palabra string de la nueva palabra que queremos introducir.
  * @param pos posicion donde colocaremos la nueva palabra y que se actualizará cuando se haga.
- * @return
+ * @throw lanza una excepcion de tipo invalid_argument si la palabra ya existe.
  */
 bool Diccionario::inserta( const std::string &palabra ) {
     Palabra p( palabra );
@@ -66,10 +69,10 @@ bool Diccionario::inserta( const std::string &palabra ) {
  */
 Palabra *Diccionario::busca( const std::string &termino ) {
     if ( _palabras.empty() )
-        return nullptr;
+        return 0;
     auto iter = _palabras.find( termino );
     if ( iter == _palabras.end() )
-        return nullptr;
+        return 0;
     return &(*iter).second;    
 }
 
@@ -79,7 +82,7 @@ Palabra *Diccionario::busca( const std::string &termino ) {
  * @param frase string que contiene la frase que usaremos.
  */
 void Diccionario::entrena( const std::string& palabra, const std::string& sucesor ) {
-    if ( sucesor.empty()  || palabra.empty() )
+    if ( sucesor == "" || palabra == "")
         throw std::invalid_argument( "[Diccionario::entrena] Argumento invalido. Cadena vacia." );
 
     Palabra pal( palabra );

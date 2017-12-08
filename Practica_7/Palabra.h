@@ -16,28 +16,20 @@
 class Palabra {
 public:
     Palabra();
-    explicit Palabra( std::string termino );
+    Palabra( std::string termino ); 
     Palabra(const Palabra& orig);
     virtual ~Palabra();
-
     Palabra &operator =( const Palabra &otro );   
     bool operator !=( const Palabra &otro ) const;
     bool operator ==( const Palabra &otro ) const;
     bool operator >( const Palabra &otro ) const; 
     bool operator <( const Palabra &otro ) const;
-
-
-    
+    std::string getTermino() const;
     void introducirSucesor( std::string sucesor );
     std::list<std::string> *sucesores( );
-    unsigned long djb2();
 
 private:
     std::string _termino;
-public:
-    const std::string &get_termino() const;
-
-private:
     std::list<Sucesor> _siguiente;
 };
 

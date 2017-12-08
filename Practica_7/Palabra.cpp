@@ -15,7 +15,8 @@ Palabra::Palabra(const Palabra& orig)
       _siguiente ( orig._siguiente )
 {}
 
-Palabra::~Palabra() = default;
+Palabra::~Palabra()
+{}
 
 Palabra &Palabra::operator =( const Palabra &otro ) {
     if ( *this != otro ){
@@ -47,6 +48,10 @@ bool Palabra::operator <( const Palabra &otro ) const{
     return false;
 }
 
+std::string Palabra::getTermino() const {
+    return _termino;
+}
+
 /**
  * Dado un string lo incluye como sucesor de la palabra.
  * @pre si ya existe, solo aumenta su numero de ocurrencias.
@@ -54,7 +59,7 @@ bool Palabra::operator <( const Palabra &otro ) const{
  */
 void Palabra::introducirSucesor( std::string sucesor ) {
     Sucesor *suces = new Sucesor( sucesor );
-    auto iter = _siguiente.begin();
+    std::list<Sucesor>::iterator iter = _siguiente.begin();
     while ( iter != _siguiente.end()  ){
         if ( *suces == (*iter) ){
             (*iter).aumentaOcurrencias();
@@ -72,8 +77,8 @@ void Palabra::introducirSucesor( std::string sucesor ) {
  su numero de courrencias.
  */
 std::list<std::string> *Palabra::sucesores( ) {
-    auto *aux = new std::list<std::string>();
-    auto iter = _siguiente.begin();
+    std::list<std::string> *aux = new std::list<std::string>();
+    std::list<Sucesor>::iterator iter = _siguiente.begin();
     std::priority_queue<Sucesor> listaOrdenada;
     int i = 0;
     while ( iter != _siguiente.end() && i < 10 ){
@@ -81,24 +86,10 @@ std::list<std::string> *Palabra::sucesores( ) {
         i++ ;iter++;
     }
     while ( !listaOrdenada.empty() ){
-        for (i = 0; i < 10 && !listaOrdenada.empty(); i++){
+        for (int i = 0; i < 10 && !listaOrdenada.empty(); i++){
             aux->push_back( listaOrdenada.top().getTermino() );
             listaOrdenada.pop();
         }
     }
     return aux;
-}
-
-unsigned long Palabra::djb2() {
-    unsigned long hash = 5381;
-    int c;
-    const char *str = _termino.c_str();
-
-    while ( c == *str++ )
-        hash = ( (hash << 5) + hash ) + c;
-    return hash;
-}
-
-const std::string &Palabra::get_termino() const {
-    return _termino;
 }

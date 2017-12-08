@@ -11,7 +11,7 @@ Usuario::Usuario( )
     : _id(""),
       _nombre(""),
       _miDic(),
-      _textPred( nullptr )
+      _textPred( 0 )
 {}
 
 Usuario::Usuario( std::string id, std::string nombre, TextoPredictivo *textPred )
@@ -29,7 +29,8 @@ Usuario::Usuario( const Usuario& orig )
       _textPred ( orig._textPred )
 {}
 
-Usuario::~Usuario( ) = default;
+Usuario::~Usuario( ) {
+}
 
 std::string Usuario::getId( ) const {
     return _id;
@@ -46,7 +47,7 @@ void Usuario::escribeFrase( std::string frase ) {
         bool enDiccionario = _textPred->entrena( palabra, sucesor );
         if ( !enDiccionario ){
             Palabra *pal = _miDic.busca( palabra );
-            if ( pal == nullptr ) _miDic.inserta( palabra );
+            if ( pal == 0 ) _miDic.inserta( palabra );
             _miDic.busca( palabra )->introducirSucesor( sucesor );
         }
         palabra = sucesor;
@@ -59,16 +60,16 @@ std::list<std::string> *Usuario::sugerencia( std::string termino ){
     
     std::list<std::string> *base = _textPred->sugerencia( termino );
     Palabra *enUsuario = _miDic.busca( termino );
-    if ( base == nullptr ) dicBase = false;
-    if ( enUsuario == nullptr ) dicUser = false;
+    if ( base == 0 ) dicBase = false;
+    if ( enUsuario == 0 ) dicUser = false;
     
     if ( !dicBase && !dicUser ){
         _miDic.inserta( termino );
-        return nullptr;
+        return 0;
     }
     
     if ( dicBase && dicUser ){
-        auto *aux = new std::list<std::string>;
+        std::list<std::string> *aux = new std::list<std::string>;
         auto iter = base->begin();
         for ( int i = 0; i < 5 && iter != base->end(); i++, iter++ )
             aux->push_back( (*iter ) );
@@ -80,5 +81,5 @@ std::list<std::string> *Usuario::sugerencia( std::string termino ){
     } else if ( dicBase )
         return _textPred->sugerencia( termino );
     else
-        return _miDic.busca( termino )->sucesores();
+        return _miDic.busca( termino )->sucesores();  
 }

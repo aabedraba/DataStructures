@@ -1,4 +1,5 @@
- /* File:   main.cpp
+/* 
+ * File:   main.cpp
  * Author: aabedraba
  *
  * Created on September 19, 2017, 9:55 AM
@@ -14,23 +15,25 @@
 
 using namespace std;
 
-/** que muestra los 10 sucesores mas prioritarios, en caso de
+/**
+ * Funcion recursiva que muestra los 10 sucesores mas prioritarios, en caso de 
  que existan de un string dado.
  * @param palabra string del que se buscan sucesores.
  * @param diccionario objeto de tipo diccionario en el buscamos estas palabras.
  */
 void mostrarSucesores ( const std::string &palabra, Usuario* user ){
+    unsigned int pos;
     int eleccion;
     std::list<int> ocurrencias;
     std::list<std::string> *sucesores;
     sucesores = user->sugerencia( palabra );
-    if ( sucesores == nullptr ){
+    if ( sucesores == 0 ){
         cout << "No hay mas sucesores" << endl;
         return;
     }
     auto iter = sucesores->begin();
     auto aux = iter;
-
+    
     cout << "Elija: " << endl;
     int i = 1;
     while ( iter != sucesores->end() ){
@@ -39,23 +42,23 @@ void mostrarSucesores ( const std::string &palabra, Usuario* user ){
     }
     cout << " " << endl;
     cin >> eleccion;
-    if ( eleccion > sucesores->size() || sucesores->empty() ){
+    if ( eleccion > sucesores->size() ){
         std::cout << "Valor incorrecto" << std::endl;
         return;
     }
-    for (i = 2; i <= eleccion; i++)
+    for (int i = 2; i <= eleccion; i++)
         aux++;
     mostrarSucesores( (*aux), user );
 };
 
 
 /*
- *
+ * 
  */
 int main(int argc, char** argv) {
 
     try {
-        Diccionario disBase("/home/aabedraba/Github/EstructurasDeDatos/Practica_7/listado-sin-acentos_v2.txt");
+        Diccionario disBase("/home/aabedraba/Github/EstructurasDeDatos/Practica_6/listado-sin-acentos_v2.txt");
         TextoPredictivo predictivo( disBase );
         predictivo.nuevoUsuario( "usr1", "Abdallah" );
         predictivo.nuevoUsuario( "usr2", "Jesus" );
@@ -64,7 +67,7 @@ int main(int argc, char** argv) {
         us1->escribeFrase( "Hola colega como andas Yo regu porque yo estoy pillao con las prácticas de estructuras" );
         us2->escribeFrase( "colega el whatsapp el la tuit el pillao" );
         cout << "Mostrando sucesores  de: " << us1->getId() << endl;
-        mostrarSucesores( "Hola", us1 );
+        mostrarSucesores( "Hola", us1 ); 
         cout << "Mostrando sucesores  de: " << us2->getId() << endl;
         mostrarSucesores( "whatsapp", us2 );
     } catch (std::ifstream::failure& exception) {
@@ -82,4 +85,6 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
+
 

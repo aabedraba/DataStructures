@@ -22,7 +22,7 @@ class Usuario;
 
 class TextoPredictivo {
 public:
-    explicit TextoPredictivo( Diccionario &diccIdioma );
+    TextoPredictivo( Diccionario &diccIdioma );
     TextoPredictivo( const TextoPredictivo& orig );
     virtual ~TextoPredictivo( );
     

@@ -21,7 +21,7 @@ class Diccionario {
     
 public:
     Diccionario( ); 
-    explicit Diccionario( const std::string &nomFich );
+    Diccionario( const std::string &nomFich );
     Diccionario( const Diccionario& orig );
     virtual ~Diccionario();
     

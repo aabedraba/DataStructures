@@ -10,7 +10,7 @@
 
 class Sucesor{
 public:
-    explicit Sucesor( std::string termino )
+    Sucesor( std::string termino )
         : _termino ( termino ),
           _numOcurrencias ( 1 )
     {};
@@ -19,8 +19,8 @@ public:
         : _termino ( orig._termino ),
           _numOcurrencias ( orig._numOcurrencias )
     {};
-    virtual ~Sucesor() = default;
-
+    virtual ~Sucesor() {
+    };
     bool operator!= ( const Sucesor &otro ) const{
         if ( _termino != otro._termino ) 
                  return true;
@@ -42,6 +42,9 @@ public:
         return _termino;
     }
 
+    int getNumOcurrencias( ) const {
+        return _numOcurrencias;
+    }
 
 private:
     std::string _termino;
