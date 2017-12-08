@@ -35,6 +35,8 @@ iostream
 -
 fstream
 -
+chrono
+-
 THashCerrada.h
 /home/aabedraba/Github/EstructurasDeDatos/THash/THashCerrada.h
 Palabra.h

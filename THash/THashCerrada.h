@@ -1,10 +1,4 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * File:   THashCerrada.h
  * Author: aabedraba
  *
@@ -18,7 +12,7 @@
 #include <cmath>
 #include <optional>
 
-#define MAX_COLISIONES 500
+#define MAX_COLISIONES 15
 static unsigned long porDefecto = 0;
 
 
@@ -26,7 +20,7 @@ template <typename T>
 class THashCerrada {
 public:
     explicit THashCerrada( unsigned long &tamTabla );
-    THashCerrada( const THashCerrada& orig );
+    THashCerrada( const THashCerrada& orig ) = default;
     virtual ~THashCerrada( ) = default;
 
     unsigned long toDjb2( const char *str );
@@ -43,6 +37,7 @@ public:
     unsigned long promedioColisiones();
     float factorCarga();
 
+
 private:
     std::vector<std::pair<bool, T>> _tabla;
     unsigned long _numElementos;
@@ -56,21 +51,12 @@ THashCerrada<T>::THashCerrada(unsigned long &tamTabla )
       _numElementos( 0 ),
       _maxColisiones( 0 ),
       _promedioColisiones( 0 )
-{};
-
-template <typename T>
-THashCerrada<T>::THashCerrada( const THashCerrada& orig )
-    : _tabla ( orig._tabla ),
-      _numElementos( orig._numElementos ),
-      _maxColisiones( orig._maxColisiones ),
-      _promedioColisiones( orig._promedioColisiones )
-{};
-
+{}
 
 template<typename T>
 unsigned long THashCerrada<T>::calculaPrimo( unsigned long tamTabla ) {
-    long primo;
-    if ( tamTabla % 2 == 0 )
+    unsigned long primo;
+    if ( !(tamTabla&1) ) //es par
         primo = tamTabla + 1;
     else
         primo = tamTabla + 2;
@@ -78,8 +64,8 @@ unsigned long THashCerrada<T>::calculaPrimo( unsigned long tamTabla ) {
     bool noEsPrimo;
     do {
         noEsPrimo = false;
-        for ( long i = 2, x = std::sqrt( primo ); i <= x; i++ )
-            if ( primo % i == 0 ){
+        for ( unsigned long i = 3, x = std::sqrt( primo ); i <= x; i+=2 )
+            if ( !(primo % i) ){
                 noEsPrimo = true;
                 primo += 2;
                 break;
@@ -100,8 +86,8 @@ unsigned long THashCerrada<T>::toDjb2( const char *str ) {
 
 template <typename T>
 unsigned long THashCerrada<T>::dispersionCuadratica(long clave, const T &dato, unsigned long &colisiones) {
-    long posicion;
-    for (long i = 0; i < MAX_COLISIONES; ++i) {
+    unsigned long posicion;
+    for (unsigned long i = 0; i < MAX_COLISIONES; ++i) {
         posicion = (clave + i*i) % _tabla.size();
         if ( _tabla[posicion].first == true && _tabla[posicion].second == dato ) {
             colisiones = i;
@@ -116,12 +102,12 @@ unsigned long THashCerrada<T>::dispersionCuadratica(long clave, const T &dato, u
 
 template <typename T>
 unsigned long THashCerrada<T>::dispersionDoble(long clave, const T &dato, unsigned long &colisiones) {
-    long posicion;
+    unsigned long posicion;
     long primerPrimo = calculaPrimo(_tabla.size()-1000);
     long segundoPrimo = calculaPrimo(_tabla.size()-500);
     long primerHash = clave % primerPrimo;
-    long segundoHash = clave % segundoPrimo; //TODO: funcion mal implementada (mirar los apuntes)
-    for (long i = 0; i < MAX_COLISIONES; ++i) {
+    long segundoHash = segundoPrimo - (clave % segundoPrimo);
+    for (unsigned long i = 0; i < MAX_COLISIONES; ++i) {
         posicion = (primerHash + i*segundoHash) % _tabla.size();
         if ( _tabla[posicion].first == true && _tabla[posicion].second == dato ) {
             colisiones = i;
@@ -191,6 +177,7 @@ template <typename T>
 float THashCerrada<T>::factorCarga() {
     return ( (float)_numElementos / (float)_tabla.size() );
 }
+
 
 #endif /* THASHCERRADA_H */
 
