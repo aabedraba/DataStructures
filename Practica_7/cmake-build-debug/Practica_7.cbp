@@ -99,6 +99,9 @@
 		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/Practica_7/Sucesor.h">
 			<Option target="Practica_7"/>
 		</Unit>
+		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/Practica_7/THashCerrada.h">
+			<Option target="Practica_7"/>
+		</Unit>
 		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/Practica_7/TextoPredictivo.cpp">
 			<Option target="Practica_7"/>
 		</Unit>

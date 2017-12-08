@@ -7,23 +7,25 @@
 
 #include "Diccionario.h"
 
+//TODO: change documentation
 /**
  * @brief Crea un diccionario vacío
  */
-Diccionario::Diccionario()
-    : _palabras()
+Diccionario::Diccionario(unsigned long tam)
+    : _palabras( tam )
 {}
 
+//TODO: change documentation
 /**
  * @brief Constructor parametrizado de diccionario que lo inicia con un archivo que contiene palabras.
  * @param nomFich const string, fichero con el que vamos a cargar nuestro diccionario
  * @throw invalid_argument, en caso de que el archivo no sea legible
  */
-Diccionario::Diccionario( const std::string &nomFich )
-    : _palabras()
+Diccionario::Diccionario(const std::string &nomFich, unsigned long tam)
+    : _palabras( tam )
 {
     std::ifstream fe;
-    std::string linea;
+    std::string termino;
     fe.open( nomFich.c_str() );
     
     if ( !fe.good() ) {
@@ -33,11 +35,11 @@ Diccionario::Diccionario( const std::string &nomFich )
     }
     
     while ( !fe.eof() ) {
-        getline( fe, linea );
-        if ( linea != "" ) {
-            Palabra palabra(linea);
-            std::pair<std::string, Palabra> aInsertar( linea, palabra );
-            _palabras.insert( aInsertar ); //La lista está ordenada
+        getline( fe, termino );
+        if ( !termino.empty() ) {
+            Palabra aInsertar( termino );
+            unsigned long clave = _palabras.toDjb2( termino.c_str() );
+            _palabras.inserta( clave, aInsertar ); //La lista está ordenada
         }
     }
     fe.close();
@@ -45,13 +47,13 @@ Diccionario::Diccionario( const std::string &nomFich )
 
 /**
  * @brief Introduce una palabra en el diccionario
- * @param palabra const string, palabra a introducir en el diccionario
+ * @param termino const string, palabra a introducir en el diccionario
  * @return true, en caso de que se haya insertado. false, en caso de que no se haya insertado (ya se encuentra)
  */
-bool Diccionario::inserta( const std::string &palabra ) {
-    Palabra p( palabra );
-    std::pair<std::string, Palabra> aInsertar( palabra, p );
-    return _palabras.insert( aInsertar ).second;
+bool Diccionario::inserta( const std::string &termino ) {
+    Palabra aInsertar( termino );
+    unsigned long clave = _palabras.toDjb2( termino.c_str() );
+    return _palabras.inserta( clave, aInsertar );
 }
 
 /**
@@ -60,12 +62,9 @@ bool Diccionario::inserta( const std::string &palabra ) {
  * @return Puntero hacia la palabra en el diccinario. nullptr, en caso de que no se encuentre en el diccionario.
  */
 Palabra *Diccionario::busca( const std::string &termino ) {
-    if ( _palabras.empty() )
-        return nullptr;
-    auto iter = _palabras.find( termino );
-    if ( iter == _palabras.end() )
-        return nullptr;
-    return &(*iter).second;    
+    Palabra aBuscar( termino );
+    unsigned long clave = _palabras.toDjb2( termino.c_str() );
+    return _palabras.busca( clave, aBuscar );
 }
 
 /**
@@ -78,10 +77,8 @@ void Diccionario::entrena( const std::string& palabra, const std::string& suceso
     if ( sucesor.empty() || palabra.empty() )
         throw std::invalid_argument( "[Diccionario::entrena] Argumento invalido. Cadena vacia." );
 
-    Palabra pal( palabra );
-    std::pair<std::string, Palabra> aInsertar( palabra, pal );
-    auto iter = _palabras.find( palabra );
-    (*iter).second.introducirSucesor( sucesor );
+    Palabra *buscado = busca( palabra );
+    buscado->introducirSucesor( sucesor );
 }
 
 
@@ -119,5 +116,10 @@ void Diccionario::usaCorpus(const std::string nomFich) {
         }
     }
     fe.close();
+    //Sabemos que no hay que poner couts aquí, pero son meramente informativos, no sirven para nada.
+    std::cout << "Tamaño de la tabla: " << _palabras.tamaTabla() << std::endl;
+    std::cout << "Numero de elementos; " << _palabras.numElementos() << std::endl;
+    std::cout << "Numero máximo de colisiones: " << _palabras.maxColisiones() << std::endl;
+    std::cout << "Promedio de colisiones: " << _palabras.promedioColisiones() << std::endl;
+    std::cout << "Factor de carga: " << _palabras.factorCarga() << std::endl;
 }
-

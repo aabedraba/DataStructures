@@ -1,4 +1,4 @@
-/* 
+/* 126150
  * File:   main.cpp
  * Author: aabedraba
  *
@@ -48,7 +48,7 @@ void mostrarSucesores ( const std::string &palabra, Usuario* user ){
         cerr << "Valor incorrecto" << std::endl;
         return;
     }
-    for (int i = 2; i <= eleccion; i++)
+    for (i = 2; i <= eleccion; i++)
         aux++;
     mostrarSucesores( (*aux), user );
 
@@ -62,7 +62,8 @@ int main(int argc, char** argv) {
 
     try {
         auto start = std::chrono::system_clock::now();
-        Diccionario dicBase("/home/aabedraba/Github/EstructurasDeDatos/Practica_7/listado-sin-acentos_v2.txt");
+        unsigned long tam = 126150;
+        Diccionario dicBase("/home/aabedraba/Github/EstructurasDeDatos/Practica_7/listado-sin-acentos_v2.txt", tam);
         dicBase.usaCorpus("/home/aabedraba/Github/EstructurasDeDatos/Practica_7/corpus_spanish.txt");
         auto end = std::chrono::system_clock::now();
         auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();

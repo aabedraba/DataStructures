@@ -5,6 +5,7 @@ CMakeFiles/Practica_7.dir/Diccionario.cpp.o: ../Diccionario.cpp
 CMakeFiles/Practica_7.dir/Diccionario.cpp.o: ../Diccionario.h
 CMakeFiles/Practica_7.dir/Diccionario.cpp.o: ../Palabra.h
 CMakeFiles/Practica_7.dir/Diccionario.cpp.o: ../Sucesor.h
+CMakeFiles/Practica_7.dir/Diccionario.cpp.o: ../THashCerrada.h
 
 CMakeFiles/Practica_7.dir/Palabra.cpp.o: ../Palabra.cpp
 CMakeFiles/Practica_7.dir/Palabra.cpp.o: ../Palabra.h
@@ -13,6 +14,7 @@ CMakeFiles/Practica_7.dir/Palabra.cpp.o: ../Sucesor.h
 CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../Diccionario.h
 CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../Palabra.h
 CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../Sucesor.h
+CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../THashCerrada.h
 CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../TextoPredictivo.cpp
 CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../TextoPredictivo.h
 CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../Usuario.h
@@ -20,6 +22,7 @@ CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o: ../Usuario.h
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Diccionario.h
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Palabra.h
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Sucesor.h
+CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../THashCerrada.h
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../TextoPredictivo.h
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Usuario.cpp
 CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Usuario.h
@@ -27,6 +30,7 @@ CMakeFiles/Practica_7.dir/Usuario.cpp.o: ../Usuario.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../Diccionario.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../Palabra.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../Sucesor.h
+CMakeFiles/Practica_7.dir/main.cpp.o: ../THashCerrada.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../TextoPredictivo.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../Usuario.h
 CMakeFiles/Practica_7.dir/main.cpp.o: ../main.cpp

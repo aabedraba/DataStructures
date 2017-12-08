@@ -7,6 +7,8 @@
 
 #include "Usuario.h"
 
+static unsigned long TAM_POR_DEFECTO = 50;
+
 /**
  * @brief Constructor por defecto parametrizado. Crea un nuevo usuario con un id, nombre y un puntero al objeto padre
  * (TextoPredictivo) que lo crea
@@ -17,7 +19,7 @@
 Usuario::Usuario(const std::string id, const std::string nombre, TextoPredictivo *textPred)
     : _id( id ),
       _nombre ( nombre ),
-      _miDic(),
+      _miDic( TAM_POR_DEFECTO ),
       _textPred( textPred )    
 {}
 

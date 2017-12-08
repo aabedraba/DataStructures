@@ -11,8 +11,6 @@ Diccionario.h
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/Diccionario.h
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/Diccionario.h
-Palabra.h
-/home/aabedraba/Github/EstructurasDeDatos/Practica_7/Palabra.h
 string
 -
 iostream
@@ -25,8 +23,10 @@ stdexcept
 -
 sstream
 -
-map
--
+Palabra.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_7/Palabra.h
+THashCerrada.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_7/THashCerrada.h
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/Palabra.cpp
 Palabra.h
@@ -43,6 +43,14 @@ Sucesor.h
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/Sucesor.h
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/Sucesor.h
+
+/home/aabedraba/Github/EstructurasDeDatos/Practica_7/THashCerrada.h
+vector
+-
+cmath
+-
+optional
+-
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_7/TextoPredictivo.cpp
 TextoPredictivo.h

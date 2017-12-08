@@ -8,20 +8,21 @@
 #ifndef DICCIONARIO_H
 #define DICCIONARIO_H
 
-#include "Palabra.h"
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <stdexcept>
 #include <sstream>
-#include <map>
+
+#include "Palabra.h"
+#include "THashCerrada.h"
 
 class Diccionario {
     
 public:
-    Diccionario();
-    Diccionario( const std::string &nomFich );
+    explicit Diccionario(unsigned long tam);
+    Diccionario(const std::string &nomFich, unsigned long tam);
     Diccionario( const Diccionario& orig ) = default;
     virtual ~Diccionario() = default;
     
@@ -29,9 +30,9 @@ public:
     bool inserta( const std::string &palabra );
     void entrena ( const std::string& palabra, const std::string& sucesor );
     void usaCorpus(const std::string nomFich);
-    
+
 private:
-    std::map<std::string, Palabra> _palabras;
+    THashCerrada<Palabra> _palabras;
 };
 #endif /* DICCIONARIO_H */
 
