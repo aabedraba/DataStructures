@@ -7,37 +7,34 @@
 
 #include "Usuario.h"
 
-Usuario::Usuario( )
-    : _id(""),
-      _nombre(""),
-      _miDic(),
-      _textPred( 0 )
-{}
-
-Usuario::Usuario( std::string id, std::string nombre, TextoPredictivo *textPred )
+/**
+ * @brief Constructor por defecto parametrizado. Crea un nuevo usuario con un id, nombre y un puntero al objeto padre
+ * (TextoPredictivo) que lo crea
+ * @param id const string, número de identificación del usuario a crear
+ * @param nombre const string, nombre del usuario a crear
+ * @param textPred puntero al objeto padre que lo crea
+ */
+Usuario::Usuario(const std::string id, const std::string nombre, TextoPredictivo *textPred)
     : _id( id ),
       _nombre ( nombre ),
       _miDic(),
       _textPred( textPred )    
 {}
 
-
-Usuario::Usuario( const Usuario& orig )
-    : _id ( orig._id ),
-      _nombre ( orig._nombre ),
-      _miDic ( orig._miDic ),
-      _textPred ( orig._textPred )
-{}
-
-Usuario::~Usuario( ) {
-}
-
+/**
+ * @brief Getter de id del usuario
+ * @return id del usuario
+ */
 std::string Usuario::getId( ) const {
     return _id;
 }
 
-
-void Usuario::escribeFrase( std::string frase ) {
+/**
+ * @brief Dada una frase, entrena el diccionario del usuario añadiendo las palabras en los diccionario personal (si no se encontraban)
+ * y añadiendo los sucesores a esas palabras.
+ * @param frase const string, frase con la cual se va a entrenar el diccionario del usuario
+ */
+void Usuario::escribeFrase(const std::string frase) {
     std::stringstream ss( frase );
     std::string palabra, sucesor;
     
@@ -45,41 +42,48 @@ void Usuario::escribeFrase( std::string frase ) {
     while ( !ss.eof() ){
         ss >> sucesor;
         bool enDiccionario = _textPred->entrena( palabra, sucesor );
+        //true, se ha insertado sucesor en la lista de sucesores de palabra, false si no se encuentra cualquiera
+        //de los dos en el diccionario principal
         if ( !enDiccionario ){
             Palabra *pal = _miDic.busca( palabra );
-            if ( pal == 0 ) _miDic.inserta( palabra );
-            _miDic.busca( palabra )->introducirSucesor( sucesor );
+            if ( pal == nullptr ) {_miDic.inserta( palabra ); pal = _miDic.busca( palabra );}
+            pal->introducirSucesor( sucesor );
         }
         palabra = sucesor;
         sucesor = "";
     }
 }
 
-std::list<std::string> *Usuario::sugerencia( std::string termino ){
-    bool dicBase = true, dicUser = true;
-    
-    std::list<std::string> *base = _textPred->sugerencia( termino );
+/**
+ * @brief Crea una lista de sugerencias dependiendo de en qué diccionarios estén las palabras
+ * @param termino const string, termino del cual se buscarán las sugerencias
+ * @return dependiendo del diccionario en el que se encuentre, una lista de diez sugerencias
+ */
+std::list<std::string> Usuario::sugerencia(const std::string termino){
+    bool enDicBase = true, enDicUser = true;
+    std::list<std::string> base = _textPred->sugerencia( termino );
     Palabra *enUsuario = _miDic.busca( termino );
-    if ( base == 0 ) dicBase = false;
-    if ( enUsuario == 0 ) dicUser = false;
+    if ( base.empty() ) enDicBase = false;
+    if ( enUsuario == nullptr ) enDicUser = false;
     
-    if ( !dicBase && !dicUser ){
+    if ( !enDicBase && !enDicUser ){
         _miDic.inserta( termino );
-        return 0;
+        throw std::logic_error("[Usuario::sugerencia]No se ha encontrado la palabra");
     }
     
-    if ( dicBase && dicUser ){
-        std::list<std::string> *aux = new std::list<std::string>;
-        auto iter = base->begin();
-        for ( int i = 0; i < 5 && iter != base->end(); i++, iter++ )
-            aux->push_back( (*iter ) );
-        std::list<std::string> *user = enUsuario->sucesores();
-        iter = user->begin();
-        for ( int i = 0; i < 5 && iter != user->end() ; i++, iter++ )
-            aux->push_back( ( *iter ) );
+    if ( enDicBase && enDicUser ){
+        std::list<std::string> user = enUsuario->sucesores();
+        std::list<std::string> aux;
+
+        auto iter = base.begin();
+        for ( int i = 0; i < 5 && iter != base.end(); i++, iter++ )
+            aux.push_back( (*iter ) );
+        iter = user.begin();
+        for ( int i = 0; i < 5 && iter != user.end() ; i++, iter++ )
+            aux.push_back( ( *iter ) );
         return aux;
-    } else if ( dicBase )
-        return _textPred->sugerencia( termino );
+    } else if ( enDicBase )
+        return base;
     else
-        return _miDic.busca( termino )->sucesores();  
+        return enUsuario->sucesores();
 }

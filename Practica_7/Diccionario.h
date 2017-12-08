@@ -20,14 +20,15 @@
 class Diccionario {
     
 public:
-    Diccionario( ); 
+    Diccionario();
     Diccionario( const std::string &nomFich );
-    Diccionario( const Diccionario& orig );
-    virtual ~Diccionario();
+    Diccionario( const Diccionario& orig ) = default;
+    virtual ~Diccionario() = default;
     
     Palabra *busca( const std::string &termino );
     bool inserta( const std::string &palabra );
     void entrena ( const std::string& palabra, const std::string& sucesor );
+    void usaCorpus(const std::string nomFich);
     
 private:
     std::map<std::string, Palabra> _palabras;

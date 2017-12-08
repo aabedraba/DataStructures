@@ -7,21 +7,24 @@
 
 #include "Diccionario.h"
 
-Diccionario::Diccionario( ) 
+/**
+ * @brief Crea un diccionario vacío
+ */
+Diccionario::Diccionario()
     : _palabras()
 {}
 
-
 /**
- * Constructor parametrizado de diccionario.
- * @param nomFich fichero con el que queremos crear nuestro diccionario.
+ * @brief Constructor parametrizado de diccionario que lo inicia con un archivo que contiene palabras.
+ * @param nomFich const string, fichero con el que vamos a cargar nuestro diccionario
+ * @throw invalid_argument, en caso de que el archivo no sea legible
  */
 Diccionario::Diccionario( const std::string &nomFich )
     : _palabras()
 {
     std::ifstream fe;
     std::string linea;
-    fe.open( nomFich.c_str() ); //convierte nomFich en legible por ifstream::open
+    fe.open( nomFich.c_str() );
     
     if ( !fe.good() ) {
         fe.close();
@@ -40,19 +43,10 @@ Diccionario::Diccionario( const std::string &nomFich )
     fe.close();
 }
 
-Diccionario::Diccionario( const Diccionario& orig ) 
-    : _palabras ( orig._palabras )
-{}
-
-Diccionario::~Diccionario() {
-}
-
-//TODO mirar por qué me devuelve una pos superior
 /**
- * Metodo que inserta una palabra en el diccionario a traves de un string.
- * @param palabra string de la nueva palabra que queremos introducir.
- * @param pos posicion donde colocaremos la nueva palabra y que se actualizará cuando se haga.
- * @throw lanza una excepcion de tipo invalid_argument si la palabra ya existe.
+ * @brief Introduce una palabra en el diccionario
+ * @param palabra const string, palabra a introducir en el diccionario
+ * @return true, en caso de que se haya insertado. false, en caso de que no se haya insertado (ya se encuentra)
  */
 bool Diccionario::inserta( const std::string &palabra ) {
     Palabra p( palabra );
@@ -61,33 +55,69 @@ bool Diccionario::inserta( const std::string &palabra ) {
 }
 
 /**
- * Metodo que busca una palabra en el diccionario a traves de un string.
- * @param termino string de la palabra que queremos buscar.
- * @param pos posicion donde se encuentra dicha palabra y que se actualizara cuando se encuentre.
- * @return devuelve un objeto de tipo palabra con la palabra buscada.
- * @throw lanza una excepcion de tipo invalid_argument si la palabra no existe.
+ * @brief Devuelve un puntero a la palabra buscada en el diccionario
+ * @param termino const string, palabra a buscar en el diccionario
+ * @return Puntero hacia la palabra en el diccinario. nullptr, en caso de que no se encuentre en el diccionario.
  */
 Palabra *Diccionario::busca( const std::string &termino ) {
     if ( _palabras.empty() )
-        return 0;
+        return nullptr;
     auto iter = _palabras.find( termino );
     if ( iter == _palabras.end() )
-        return 0;
+        return nullptr;
     return &(*iter).second;    
 }
 
 /**
- * Metodo que a partir de una frase analizará las palabras que contiene y observará 
- el término que la precede y actualizará con él su lista de sucesores en el diccionario.
- * @param frase string que contiene la frase que usaremos.
+ * @brief Dada una palabra y un sucesor, incluir el sucesor en la lista de sucesores de la palabra
+ * @param palabra const string, palabra a la cual se le va a introducir un sucesor
+ * @param sucesor const string, palabra que se incluirá como sucesor
+ * @throw invalid_argument, en caso de que las palabras pasadas como parámetros estén vacías.
  */
 void Diccionario::entrena( const std::string& palabra, const std::string& sucesor ) {
-    if ( sucesor == "" || palabra == "")
+    if ( sucesor.empty() || palabra.empty() )
         throw std::invalid_argument( "[Diccionario::entrena] Argumento invalido. Cadena vacia." );
 
     Palabra pal( palabra );
     std::pair<std::string, Palabra> aInsertar( palabra, pal );
     auto iter = _palabras.find( palabra );
     (*iter).second.introducirSucesor( sucesor );
+}
+
+
+/**
+ * @brief Entrena al diccionario con un corpus dado
+ * @param nomFich const string, nombre del corpus
+ * @post el objeto diccionario queda entrenado con todas las palabras del corpus
+ */
+void Diccionario::usaCorpus(const std::string nomFich) {
+    std::ifstream fe;
+    std::string frase;
+    fe.open( nomFich.c_str() );
+    if ( !fe.good() ){
+        fe.close();
+        throw std::invalid_argument( "[Diccionario::usaCorpus] No se pudo abrir"
+                                             " el archivo. (¿Archivo incorrecto?)");
+    }
+    while ( !fe.eof() ) {
+        getline(fe, frase);
+        if (!frase.empty()) {
+            std::stringstream ss(frase);
+            std::string palabra, sucesor;
+            ss >> palabra;
+            while (!ss.eof()) {
+                ss >> sucesor;
+                Palabra *pal = busca(palabra);
+                if (pal == nullptr) {
+                    inserta(palabra);
+                    pal = busca(palabra);
+                }
+                pal->introducirSucesor(sucesor);
+                ss >> palabra;
+                sucesor = "";
+            }
+        }
+    }
+    fe.close();
 }
 

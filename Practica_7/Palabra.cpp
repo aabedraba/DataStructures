@@ -10,13 +10,6 @@ Palabra::Palabra( std::string termino )
       _siguiente ()
 {}
 
-Palabra::Palabra(const Palabra& orig)
-    : _termino( orig._termino ),
-      _siguiente ( orig._siguiente )
-{}
-
-Palabra::~Palabra()
-{}
 
 Palabra &Palabra::operator =( const Palabra &otro ) {
     if ( *this != otro ){
@@ -51,45 +44,42 @@ bool Palabra::operator <( const Palabra &otro ) const{
 std::string Palabra::getTermino() const {
     return _termino;
 }
-
 /**
- * Dado un string lo incluye como sucesor de la palabra.
- * @pre si ya existe, solo aumenta su numero de ocurrencias.
- * @param sucesor string que queremos anadir como sucesor de cierta palabra.
+ * @brief Introduce un sucesor a la lista del objeto Palabra
+ * @param sucesor const string, sucesor a introducir en la lista
+ * @post la lista de sucesores del objeto queda actualizada con el nuevo sucesor si este no se encontraba
  */
-void Palabra::introducirSucesor( std::string sucesor ) {
-    Sucesor *suces = new Sucesor( sucesor );
+void Palabra::introducirSucesor(const std::string sucesor) {
+    Sucesor suces( sucesor );
     std::list<Sucesor>::iterator iter = _siguiente.begin();
     while ( iter != _siguiente.end()  ){
-        if ( *suces == (*iter) ){
+        if ( suces == (*iter) ){
             (*iter).aumentaOcurrencias();
             return;
         }
         iter++;
     }
     if ( iter == _siguiente.end() )//no se ha insertado nada
-        _siguiente.push_back( *suces );
+        _siguiente.push_back( suces );
 }
 
 /**
- * Metodo que lista todos los sucesores de cierta palabra.
- * @return devuelve una lista enlazada con todos los sucesores ordenados por 
- su numero de courrencias.
+ * @brief Lista los sucesores del objeto Palabra
+ * @return una lista de máximo 10 sucesores más frecuentes de la palabra, o una lista vacía en caso de no tener sucesores
  */
-std::list<std::string> *Palabra::sucesores( ) {
-    std::list<std::string> *aux = new std::list<std::string>();
+std::list<std::string> Palabra::sucesores( ) {
+    std::list<std::string> aux;
     std::list<Sucesor>::iterator iter = _siguiente.begin();
     std::priority_queue<Sucesor> listaOrdenada;
     int i = 0;
-    while ( iter != _siguiente.end() && i < 10 ){
+    while ( iter != _siguiente.end() ){
         listaOrdenada.push( (*iter) );
         i++ ;iter++;
     }
-    while ( !listaOrdenada.empty() ){
-        for (int i = 0; i < 10 && !listaOrdenada.empty(); i++){
-            aux->push_back( listaOrdenada.top().getTermino() );
-            listaOrdenada.pop();
-        }
+    if ( listaOrdenada.empty() ) return std::list<std::string>();
+    for (int i = 0; i < 10 && !listaOrdenada.empty(); i++){
+        aux.push_back( listaOrdenada.top().getTermino() );
+        listaOrdenada.pop();
     }
     return aux;
 }

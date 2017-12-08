@@ -17,16 +17,16 @@ class Palabra {
 public:
     Palabra();
     Palabra( std::string termino ); 
-    Palabra(const Palabra& orig);
-    virtual ~Palabra();
+    Palabra(const Palabra& orig) = default;
+    virtual ~Palabra() = default;
     Palabra &operator =( const Palabra &otro );   
     bool operator !=( const Palabra &otro ) const;
     bool operator ==( const Palabra &otro ) const;
     bool operator >( const Palabra &otro ) const; 
     bool operator <( const Palabra &otro ) const;
     std::string getTermino() const;
-    void introducirSucesor( std::string sucesor );
-    std::list<std::string> *sucesores( );
+    void introducirSucesor(const std::string sucesor);
+    std::list<std::string> sucesores( );
 
 private:
     std::string _termino;
