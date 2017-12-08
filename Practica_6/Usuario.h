@@ -24,15 +24,14 @@ class TextoPredictivo;
 
 class Usuario {
 public:
-    Usuario( );
-    Usuario( std::string id, std::string nombre, TextoPredictivo *textPred );
-    Usuario( const Usuario& orig );
-    virtual ~Usuario( );
+    Usuario(const std::string id, const std::string nombre, TextoPredictivo *textPred);
+    Usuario( const Usuario& orig ) = default;
+    virtual ~Usuario() = default;
 
     std::string getId( ) const;
 
-    void escribeFrase( std::string frase );
-    std::list<std::string> *sugerencia( std::string termino );
+    void escribeFrase(const std::string frase);
+    std::list<std::string> sugerencia(const std::string termino);
 private:
     std::string _id;
     std::string _nombre;

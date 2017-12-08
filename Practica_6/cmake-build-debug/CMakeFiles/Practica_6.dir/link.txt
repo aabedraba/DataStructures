@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Practica_6.dir/Diccionario.cpp.o CMakeFiles/Practica_6.dir/main.cpp.o CMakeFiles/Practica_6.dir/Palabra.cpp.o CMakeFiles/Practica_6.dir/TextoPredictivo.cpp.o CMakeFiles/Practica_6.dir/Usuario.cpp.o  -o Practica_6 
