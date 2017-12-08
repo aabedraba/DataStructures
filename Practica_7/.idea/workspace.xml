@@ -12,12 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3d873c8-25c0-46c4-9083-a0dc1ecc123d" name="Default" comment="Práctica terminada">
-      <change beforePath="" afterPath="$PROJECT_DIR$/THashCerrada.h" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/Diccionario.cpp" afterPath="$PROJECT_DIR$/Diccionario.cpp" />
-      <change beforePath="$PROJECT_DIR$/Diccionario.h" afterPath="$PROJECT_DIR$/Diccionario.h" />
-      <change beforePath="$PROJECT_DIR$/Usuario.cpp" afterPath="$PROJECT_DIR$/Usuario.cpp" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/CXX.includecache" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_7.dir/Diccionario.cpp.o" afterPath="" />
@@ -31,7 +26,6 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Practica_7" afterPath="$PROJECT_DIR$/cmake-build-debug/Practica_7" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Practica_7.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Practica_7.cbp" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
       <change beforePath="$PROJECT_DIR$/../THash/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../THash/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/../THash/THashCerrada.h" afterPath="$PROJECT_DIR$/../THash/THashCerrada.h" />
       <change beforePath="$PROJECT_DIR$/../THash/cmake-build-debug/CMakeFiles/THash.dir/main.cpp.o" afterPath="$PROJECT_DIR$/../THash/cmake-build-debug/CMakeFiles/THash.dir/main.cpp.o" />
@@ -203,16 +197,23 @@
       <option name="presentableId" value="Default" />
       <updated>1512745176774</updated>
       <workItem from="1512745177904" duration="221000" />
-      <workItem from="1512745399845" duration="10675000" />
+      <workItem from="1512745399845" duration="10692000" />
     </task>
+    <task id="LOCAL-00001" summary="Práctica terminada">
+      <created>1512758285195</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1512758285195</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10896000" />
+    <option name="totallyTimeSpent" value="10913000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="246" y="27" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24986508" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -238,6 +239,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Práctica terminada" />
     <option name="LAST_COMMIT_MESSAGE" value="Práctica terminada" />
   </component>

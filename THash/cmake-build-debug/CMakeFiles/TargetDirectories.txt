@@ -1,3 +1,0 @@
-/home/aabedraba/Github/EstructurasDeDatos/THash/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/aabedraba/Github/EstructurasDeDatos/THash/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aabedraba/Github/EstructurasDeDatos/THash/cmake-build-debug/CMakeFiles/THash.dir
