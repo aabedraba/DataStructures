@@ -1,16 +1,9 @@
 cmake_minimum_required(VERSION 3.9)
-project(Practica_7)
+project(Practica_8)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Practica_7
-        Diccionario.cpp
-        Diccionario.h
-        main.cpp
-        Palabra.cpp
-        Palabra.h
-        Sucesor.h
-        TextoPredictivo.cpp
-        TextoPredictivo.h
-        Usuario.cpp
-        Usuario.h THashCerrada.h)
+add_executable(Practica_8
+        img.cpp
+        img.h
+        main.cpp)

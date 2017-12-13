@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.cpp
+sstream
+-
+fstream
+-
+string
+-
+img.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
+
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
+img.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
+string
+-
+iostream
+-
+
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/main.cpp
+fstream
+-
+iostream
+-
+vector
+-
+cstring
+-
+img.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
+math.h
+-
+

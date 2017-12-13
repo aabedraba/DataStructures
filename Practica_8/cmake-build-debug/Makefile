@@ -48,10 +48,10 @@ RM = /home/aabedraba/IDE/clion-2017.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/aabedraba/Github/EstructurasDeDatos/Practica_7
+CMAKE_SOURCE_DIR = /home/aabedraba/Github/EstructurasDeDatos/Practica_8
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/aabedraba/Github/EstructurasDeDatos/Practica_7/cmake-build-debug
+CMAKE_BINARY_DIR = /home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aabedraba/Github/EstructurasDeDatos/Practica_7/cmake-build-debug/CMakeFiles /home/aabedraba/Github/EstructurasDeDatos/Practica_7/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CMakeFiles /home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aabedraba/Github/EstructurasDeDatos/Practica_7/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,125 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Practica_7
+# Target rules for targets named Practica_8
 
 # Build rule for target.
-Practica_7: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Practica_7
-.PHONY : Practica_7
+Practica_8: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Practica_8
+.PHONY : Practica_8
 
 # fast build rule for target.
-Practica_7/fast:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/build
-.PHONY : Practica_7/fast
+Practica_8/fast:
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/build
+.PHONY : Practica_8/fast
 
-Diccionario.o: Diccionario.cpp.o
+img.o: img.cpp.o
 
-.PHONY : Diccionario.o
-
-# target to build an object file
-Diccionario.cpp.o:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Diccionario.cpp.o
-.PHONY : Diccionario.cpp.o
-
-Diccionario.i: Diccionario.cpp.i
-
-.PHONY : Diccionario.i
-
-# target to preprocess a source file
-Diccionario.cpp.i:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Diccionario.cpp.i
-.PHONY : Diccionario.cpp.i
-
-Diccionario.s: Diccionario.cpp.s
-
-.PHONY : Diccionario.s
-
-# target to generate assembly for a file
-Diccionario.cpp.s:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Diccionario.cpp.s
-.PHONY : Diccionario.cpp.s
-
-Palabra.o: Palabra.cpp.o
-
-.PHONY : Palabra.o
+.PHONY : img.o
 
 # target to build an object file
-Palabra.cpp.o:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Palabra.cpp.o
-.PHONY : Palabra.cpp.o
+img.cpp.o:
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/img.cpp.o
+.PHONY : img.cpp.o
 
-Palabra.i: Palabra.cpp.i
+img.i: img.cpp.i
 
-.PHONY : Palabra.i
-
-# target to preprocess a source file
-Palabra.cpp.i:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Palabra.cpp.i
-.PHONY : Palabra.cpp.i
-
-Palabra.s: Palabra.cpp.s
-
-.PHONY : Palabra.s
-
-# target to generate assembly for a file
-Palabra.cpp.s:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Palabra.cpp.s
-.PHONY : Palabra.cpp.s
-
-TextoPredictivo.o: TextoPredictivo.cpp.o
-
-.PHONY : TextoPredictivo.o
-
-# target to build an object file
-TextoPredictivo.cpp.o:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.o
-.PHONY : TextoPredictivo.cpp.o
-
-TextoPredictivo.i: TextoPredictivo.cpp.i
-
-.PHONY : TextoPredictivo.i
+.PHONY : img.i
 
 # target to preprocess a source file
-TextoPredictivo.cpp.i:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.i
-.PHONY : TextoPredictivo.cpp.i
+img.cpp.i:
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/img.cpp.i
+.PHONY : img.cpp.i
 
-TextoPredictivo.s: TextoPredictivo.cpp.s
+img.s: img.cpp.s
 
-.PHONY : TextoPredictivo.s
-
-# target to generate assembly for a file
-TextoPredictivo.cpp.s:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/TextoPredictivo.cpp.s
-.PHONY : TextoPredictivo.cpp.s
-
-Usuario.o: Usuario.cpp.o
-
-.PHONY : Usuario.o
-
-# target to build an object file
-Usuario.cpp.o:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Usuario.cpp.o
-.PHONY : Usuario.cpp.o
-
-Usuario.i: Usuario.cpp.i
-
-.PHONY : Usuario.i
-
-# target to preprocess a source file
-Usuario.cpp.i:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Usuario.cpp.i
-.PHONY : Usuario.cpp.i
-
-Usuario.s: Usuario.cpp.s
-
-.PHONY : Usuario.s
+.PHONY : img.s
 
 # target to generate assembly for a file
-Usuario.cpp.s:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/Usuario.cpp.s
-.PHONY : Usuario.cpp.s
+img.cpp.s:
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/img.cpp.s
+.PHONY : img.cpp.s
 
 main.o: main.cpp.o
 
@@ -237,7 +156,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -246,7 +165,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -255,7 +174,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/Practica_7.dir/build.make CMakeFiles/Practica_7.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -266,19 +185,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... Practica_7"
-	@echo "... Diccionario.o"
-	@echo "... Diccionario.i"
-	@echo "... Diccionario.s"
-	@echo "... Palabra.o"
-	@echo "... Palabra.i"
-	@echo "... Palabra.s"
-	@echo "... TextoPredictivo.o"
-	@echo "... TextoPredictivo.i"
-	@echo "... TextoPredictivo.s"
-	@echo "... Usuario.o"
-	@echo "... Usuario.i"
-	@echo "... Usuario.s"
+	@echo "... Practica_8"
+	@echo "... img.o"
+	@echo "... img.i"
+	@echo "... img.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
