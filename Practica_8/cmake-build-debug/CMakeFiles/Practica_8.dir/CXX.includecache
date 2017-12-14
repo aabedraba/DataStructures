@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.cpp
+CodigoPost.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
+
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
+string
+-
+
 /home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.cpp
 sstream
 -
@@ -25,16 +33,16 @@ iostream
 -
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_8/main.cpp
-fstream
--
 iostream
+-
+fstream
 -
 vector
 -
-cstring
+string
 -
-img.h
-/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
-math.h
+sstream
 -
+CodigoPost.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
 
