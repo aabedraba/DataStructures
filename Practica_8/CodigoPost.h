@@ -10,13 +10,25 @@
 class CodigoPost {
 public:
     CodigoPost(int codPost, std::string ciudad, std::string estado, float latitud, float longitud,
-               char timeZone, bool dst);
+               short timeZone, short dst);
     CodigoPost( const CodigoPost& orig ) = default;
     virtual ~CodigoPost() = default;
 
     CodigoPost &operator=( const CodigoPost& orig );
     bool operator==(const CodigoPost &orig) const;
     bool operator!=(const CodigoPost &orig) const;
+    bool operator<(const CodigoPost &rhs) const;
+    bool operator>(const CodigoPost &rhs) const;
+    bool operator<=(const CodigoPost &rhs) const;
+    bool operator>=(const CodigoPost &rhs) const;
+
+    int get_codPost() const;
+    const std::string &get_ciudad() const;
+    const std::string &get_estado() const;
+    float get_latitud() const;
+    float get_longitud() const;
+    short get_timeZone() const;
+    short get_dst() const;
 
 private:
     int _codPost;
@@ -24,8 +36,8 @@ private:
     std::string _estado;
     float _latitud;
     float _longitud;
-    char _timeZone;
-    bool _dst;
+    short _timeZone;
+    short _dst;
 };
 
 
