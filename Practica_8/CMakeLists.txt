@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(Practica_8
         img.cpp
         img.h
-        main.cpp)
+        main.cpp MallaRegular.h Casilla.h)
