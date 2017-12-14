@@ -11,8 +11,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4f2573d-8ca5-41c5-a38c-45b38d6d3d46" name="Default" comment="">
+    <list default="true" id="c4f2573d-8ca5-41c5-a38c-45b38d6d3d46" name="Default" comment="Añadida la clase CodigoPost">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/Casilla.h" afterPath="$PROJECT_DIR$/Casilla.h" />
+      <change beforePath="$PROJECT_DIR$/MallaRegular.h" afterPath="$PROJECT_DIR$/MallaRegular.h" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/DependInfo.cmake" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/build.make" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/cmake_clean.cmake" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/link.txt" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/progress.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Practica_8.dir/progress.make" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Practica_8.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Practica_8.cbp" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +41,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+            <state relative-caret-position="324">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="e#151#170#0" expanded="true" />
               </folding>
@@ -37,18 +50,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MallaRegular.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MallaRegular.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MallaRegular.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+            <state relative-caret-position="182">
+              <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
               <folding>
                 <element signature="e#113#133#0" expanded="true" />
                 <element signature="e#162#174#0" expanded="true" />
-                <element signature="e#992#1004#0" expanded="true" />
-                <element signature="e#1333#1345#0" expanded="true" />
-                <element signature="e#1530#1542#0" expanded="true" />
-                <element signature="e#1687#1699#0" expanded="true" />
+                <element signature="e#1000#1012#0" expanded="true" />
+                <element signature="e#1341#1353#0" expanded="true" />
+                <element signature="e#1538#1550#0" expanded="true" />
+                <element signature="e#1695#1707#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,16 +70,36 @@
       <file leaf-file-name="Casilla.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Casilla.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="27" />
+            <state relative-caret-position="288">
+              <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
               <folding>
                 <element signature="e#103#118#0" expanded="true" />
                 <element signature="e#155#167#0" expanded="true" />
-                <element signature="e#465#477#0" expanded="true" />
-                <element signature="e#529#541#0" expanded="true" />
-                <element signature="e#628#640#0" expanded="true" />
-                <element signature="e#867#879#0" expanded="true" />
+                <element signature="e#473#485#0" expanded="true" />
+                <element signature="e#537#549#0" expanded="true" />
+                <element signature="e#636#648#0" expanded="true" />
+                <element signature="e#875#887#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CodigoPost.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cmake-build-debug/CodigoPost.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CodigoPost.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmake-build-debug/CodigoPost.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,12 +115,15 @@
         <option value="$PROJECT_DIR$/img.h" />
         <option value="$PROJECT_DIR$/img.cpp" />
         <option value="$PROJECT_DIR$/vector.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/Casilla.h" />
         <option value="$PROJECT_DIR$/MallaRegular.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/CodigoPost.h" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/CodigoPost.cpp" />
       </list>
     </option>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="993" />
     <option name="y" value="27" />
@@ -117,6 +153,11 @@
               <item name="Practica_8" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="Practica_8" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Practica_8" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="Practica_8" type="462c0819:PsiDirectoryNode" />
+              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -126,7 +167,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="commi&#9;ACTION&#9;CheckinProject&#10;rena&#9;ACTION&#9;RenameElement&#10;renam&#9;ACTION&#9;RenameElement&#10;ren&#9;ACTION&#9;RenameElement&#10;rename&#9;ACTION&#9;RenameElement" />
+    <property name="SearchEverywhereHistoryKey" value="comm&#9;ACTION&#9;CheckinProject&#10;rena&#9;ACTION&#9;RenameElement&#10;ren&#9;ACTION&#9;RenameElement&#10;commi&#9;ACTION&#9;CheckinProject&#10;renam&#9;ACTION&#9;RenameElement&#10;rename&#9;ACTION&#9;RenameElement" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -165,7 +206,7 @@
       <workItem from="1513189321464" duration="5607000" />
       <workItem from="1513203859134" duration="22000" />
       <workItem from="1513272106900" duration="2640000" />
-      <workItem from="1513282943786" duration="62000" />
+      <workItem from="1513282943786" duration="2684000" />
     </task>
     <task id="LOCAL-00001" summary="Añadidas nuevas clases MallaRegular y Casilla">
       <created>1513275015143</created>
@@ -174,11 +215,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513275015143</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Añadidas nuevas clases MallaRegular y Casilla">
+      <created>1513283009603</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1513283009603</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8331000" />
+    <option name="totallyTimeSpent" value="10953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="993" y="27" width="1853" height="1055" extended-state="6" />
@@ -186,6 +234,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12466271" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -195,7 +244,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39915523" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -209,7 +257,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Añadidas nuevas clases MallaRegular y Casilla" />
-    <option name="LAST_COMMIT_MESSAGE" value="Añadidas nuevas clases MallaRegular y Casilla" />
+    <MESSAGE value="Añadida la clase CodigoPost" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadida la clase CodigoPost" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -235,10 +284,10 @@
           <folding>
             <element signature="e#103#118#0" expanded="true" />
             <element signature="e#155#167#0" expanded="true" />
-            <element signature="e#465#477#0" expanded="true" />
-            <element signature="e#529#541#0" expanded="true" />
-            <element signature="e#628#640#0" expanded="true" />
-            <element signature="e#867#879#0" expanded="true" />
+            <element signature="e#473#485#0" expanded="true" />
+            <element signature="e#537#549#0" expanded="true" />
+            <element signature="e#636#648#0" expanded="true" />
+            <element signature="e#875#887#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -250,10 +299,10 @@
           <folding>
             <element signature="e#113#133#0" expanded="true" />
             <element signature="e#162#174#0" expanded="true" />
-            <element signature="e#992#1004#0" expanded="true" />
-            <element signature="e#1333#1345#0" expanded="true" />
-            <element signature="e#1530#1542#0" expanded="true" />
-            <element signature="e#1687#1699#0" expanded="true" />
+            <element signature="e#1000#1012#0" expanded="true" />
+            <element signature="e#1341#1353#0" expanded="true" />
+            <element signature="e#1538#1550#0" expanded="true" />
+            <element signature="e#1695#1707#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -280,6 +329,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -305,6 +355,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -312,6 +363,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
           <caret line="86" column="4" lean-forward="false" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="4" />
+          <folding>
+            <element signature="e#38#54#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -334,48 +388,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
           <caret line="74" column="10" lean-forward="false" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vector.h" />
     <entry file="file://$PROJECT_DIR$/vector.cpp" />
-    <entry file="file://$PROJECT_DIR$/Casilla.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <element signature="e#103#118#0" expanded="true" />
-            <element signature="e#155#167#0" expanded="true" />
-            <element signature="e#465#477#0" expanded="true" />
-            <element signature="e#529#541#0" expanded="true" />
-            <element signature="e#628#640#0" expanded="true" />
-            <element signature="e#867#879#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="324">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="e#151#170#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Casilla.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+          <folding>
+            <element signature="e#103#118#0" expanded="true" />
+            <element signature="e#155#167#0" expanded="true" />
+            <element signature="e#473#485#0" expanded="true" />
+            <element signature="e#537#549#0" expanded="true" />
+            <element signature="e#636#648#0" expanded="true" />
+            <element signature="e#875#887#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MallaRegular.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+        <state relative-caret-position="182">
+          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
           <folding>
             <element signature="e#113#133#0" expanded="true" />
             <element signature="e#162#174#0" expanded="true" />
-            <element signature="e#992#1004#0" expanded="true" />
-            <element signature="e#1333#1345#0" expanded="true" />
-            <element signature="e#1530#1542#0" expanded="true" />
-            <element signature="e#1687#1699#0" expanded="true" />
+            <element signature="e#1000#1012#0" expanded="true" />
+            <element signature="e#1341#1353#0" expanded="true" />
+            <element signature="e#1538#1550#0" expanded="true" />
+            <element signature="e#1695#1707#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/CodigoPost.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/CodigoPost.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>

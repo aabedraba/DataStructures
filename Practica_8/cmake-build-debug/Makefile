@@ -123,6 +123,33 @@ Practica_8/fast:
 	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/build
 .PHONY : Practica_8/fast
 
+CodigoPost.o: CodigoPost.cpp.o
+
+.PHONY : CodigoPost.o
+
+# target to build an object file
+CodigoPost.cpp.o:
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/CodigoPost.cpp.o
+.PHONY : CodigoPost.cpp.o
+
+CodigoPost.i: CodigoPost.cpp.i
+
+.PHONY : CodigoPost.i
+
+# target to preprocess a source file
+CodigoPost.cpp.i:
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/CodigoPost.cpp.i
+.PHONY : CodigoPost.cpp.i
+
+CodigoPost.s: CodigoPost.cpp.s
+
+.PHONY : CodigoPost.s
+
+# target to generate assembly for a file
+CodigoPost.cpp.s:
+	$(MAKE) -f CMakeFiles/Practica_8.dir/build.make CMakeFiles/Practica_8.dir/CodigoPost.cpp.s
+.PHONY : CodigoPost.cpp.s
+
 img.o: img.cpp.o
 
 .PHONY : img.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Practica_8"
+	@echo "... CodigoPost.o"
+	@echo "... CodigoPost.i"
+	@echo "... CodigoPost.s"
 	@echo "... img.o"
 	@echo "... img.i"
 	@echo "... img.s"

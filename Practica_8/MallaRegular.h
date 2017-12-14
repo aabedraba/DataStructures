@@ -13,7 +13,7 @@ class MallaRegular {
 public:
     MallaRegular( int XMin,int YMin, int XMax, int YMax, int aNDiv );
     MallaRegular( const MallaRegular& orig ) = default;
-    ~MallaRegular() = default;
+    virtual ~MallaRegular() = default;
 
     void insertar(float x, float y, const T &dato);
     T *buscar(float x, float y, const T &dato);

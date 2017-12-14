@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CodigoPost.cpp" "/home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CMakeFiles/Practica_8.dir/CodigoPost.cpp.o"
   "/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.cpp" "/home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CMakeFiles/Practica_8.dir/img.cpp.o"
   "/home/aabedraba/Github/EstructurasDeDatos/Practica_8/main.cpp" "/home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CMakeFiles/Practica_8.dir/main.cpp.o"
   )

@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(Practica_8
         img.cpp
         img.h
-        main.cpp MallaRegular.h Casilla.h)
+        main.cpp MallaRegular.h Casilla.h cmake-build-debug/CodigoPost.cpp cmake-build-debug/CodigoPost.h)

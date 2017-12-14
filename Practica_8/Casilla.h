@@ -14,7 +14,7 @@ public:
     friend class MallaRegular<T>;
     Casilla();
     Casilla( const Casilla& orig ) = default;
-    ~Casilla() = default;
+    virtual ~Casilla() = default;
 
     void insertar( const T &dato );
     T *buscar( const T &dato );

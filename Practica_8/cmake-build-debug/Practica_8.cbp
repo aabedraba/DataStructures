@@ -90,6 +90,12 @@
 		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/Practica_8/MallaRegular.h">
 			<Option target="Practica_8"/>
 		</Unit>
+		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CodigoPost.cpp">
+			<Option target="Practica_8"/>
+		</Unit>
+		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/Practica_8/cmake-build-debug/CodigoPost.h">
+			<Option target="Practica_8"/>
+		</Unit>
 		<Unit filename="/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.cpp">
 			<Option target="Practica_8"/>
 		</Unit>
