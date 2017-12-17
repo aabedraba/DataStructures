@@ -6,12 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/Casilla.h
+list
+-
+MallaRegular.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/MallaRegular.h
+
 /home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.cpp
 CodigoPost.h
 /home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
 string
+-
+
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/MallaRegular.h
+Casilla.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/Casilla.h
+vector
 -
 
 /home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.cpp
@@ -43,6 +55,8 @@ string
 -
 sstream
 -
+MallaRegular.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/MallaRegular.h
 CodigoPost.h
 /home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
 

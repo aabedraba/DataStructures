@@ -8,10 +8,11 @@
 #include "Casilla.h"
 #include <vector>
 
+
 template <typename T>
 class MallaRegular {
 public:
-    MallaRegular( int XMin,int YMin, int XMax, int YMax, int aNDiv );
+    MallaRegular( int XMin, int YMin, int XMax, int YMax, int aNDiv );
     MallaRegular( const MallaRegular& orig ) = default;
     virtual ~MallaRegular() = default;
 
@@ -60,6 +61,27 @@ template<typename T>
 bool MallaRegular<T>::borrar(float x, float y, const T& dato) {
     Casilla<T> *c = obtenerCasilla( x, y );
     return c->borrar( dato );
+}
+
+//TODO: finish
+template <typename T>
+std::vector<T> MallaRegular<T>::buscarRengo(float rxmin, float rymin, float rxmax, float rymax) {
+    std::vector<T> aDevolver;
+    std::list<Casilla<T>> listaEntreRango;
+    int i = ( rxmax - rxmin ) / _tamaCasillaX;
+    int j = ( rymax - rymin ) / _tamaCasillaY;
+    int contador = 0;
+    while( contador < i && contador < j ) {
+        Casilla<T> *aux = obtenerCasilla( contador + rxmin, contador + rymin );
+        auto iter = aux->_puntos.begin();
+        while ( iter != aux->_puntos.end() ){
+            if ( (*iter).x > rxmin && (*iter).y < rymin )
+                aDevolver.push_back( (*iter) );
+            iter++;
+
+        }
+    }
+    return aDevolver;
 }
 
 #endif //PRACTICA_8_MALLAREGULAR_H

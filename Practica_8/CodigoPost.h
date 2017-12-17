@@ -17,16 +17,13 @@ public:
     CodigoPost &operator=( const CodigoPost& orig );
     bool operator==(const CodigoPost &orig) const;
     bool operator!=(const CodigoPost &orig) const;
-    bool operator<(const CodigoPost &rhs) const;
-    bool operator>(const CodigoPost &rhs) const;
-    bool operator<=(const CodigoPost &rhs) const;
-    bool operator>=(const CodigoPost &rhs) const;
+
+    float x;
+    float y;
 
     int get_codPost() const;
     const std::string &get_ciudad() const;
     const std::string &get_estado() const;
-    float get_latitud() const;
-    float get_longitud() const;
     short get_timeZone() const;
     short get_dst() const;
 
@@ -34,8 +31,6 @@ private:
     int _codPost;
     std::string _ciudad;
     std::string _estado;
-    float _latitud;
-    float _longitud;
     short _timeZone;
     short _dst;
 };

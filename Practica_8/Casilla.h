@@ -11,7 +11,7 @@
 template <typename T>
 class Casilla {
 public:
-    friend class MallaRegular<T>;
+//    friend class MallaRegular;
     Casilla();
     Casilla( const Casilla& orig ) = default;
     virtual ~Casilla() = default;
@@ -19,6 +19,8 @@ public:
     void insertar( const T &dato );
     T *buscar( const T &dato );
     bool borrar( const T &dato );
+
+    const std::list<T> &get_puntos() const;
 
 private:
     std::list<T> _puntos;
@@ -36,7 +38,7 @@ void Casilla<T>::insertar(const T &dato) {
 
 template <typename T>
 T* Casilla<T>::buscar(const T &dato) {
-    std::list<T>::iterator iter;
+    typename std::list<T>::iterator iter;
     iter = _puntos.begin();
     for (; iter != _puntos.end(); ++iter)
         if ( *iter == dato )
@@ -46,7 +48,7 @@ T* Casilla<T>::buscar(const T &dato) {
 
 template <typename T>
 bool Casilla<T>::borrar(const T &dato) {
-    std::list<T>::iterator iter;
+    typename std::list<T>::iterator iter;
     iter = _puntos.begin();
     for ( ; iter != _puntos.end() ; ++iter)
         if ( *iter == dato ){
@@ -54,6 +56,11 @@ bool Casilla<T>::borrar(const T &dato) {
             return true;
         }
     return false;
+}
+
+template<typename T>
+const std::list<T> &Casilla<T>::get_puntos() const {
+    return _puntos;
 }
 
 #endif //PRACTICA_8_CASILLA_H

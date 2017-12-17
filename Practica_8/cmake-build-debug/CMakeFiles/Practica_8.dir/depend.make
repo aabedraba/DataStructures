@@ -7,6 +7,8 @@ CMakeFiles/Practica_8.dir/CodigoPost.cpp.o: ../CodigoPost.h
 CMakeFiles/Practica_8.dir/img.cpp.o: ../img.cpp
 CMakeFiles/Practica_8.dir/img.cpp.o: ../img.h
 
+CMakeFiles/Practica_8.dir/main.cpp.o: ../Casilla.h
 CMakeFiles/Practica_8.dir/main.cpp.o: ../CodigoPost.h
+CMakeFiles/Practica_8.dir/main.cpp.o: ../MallaRegular.h
 CMakeFiles/Practica_8.dir/main.cpp.o: ../main.cpp
 
