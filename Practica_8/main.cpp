@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     vector<CodigoPost> codigosPostales;
     ifstream archivo;
-    archivo.open("/home/aabedraba/Github/EstructurasDeDatos/Practica_8/zipcode.csv");
+    archivo.open("/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/zipcode.csv");
     if ( !archivo.good() ){
         cout << "te follen" << endl;
         return 1;
