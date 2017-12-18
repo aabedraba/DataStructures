@@ -32,7 +32,7 @@ private:
     float _xMin, _yMin, _xMax, _yMax; ///Tamañoo real global
     float _tamaCasillaX, _tamaCasillaY; ///Tamaño real de cada casilla
 
-    unsigned int _numElementos, _maxElementosEnCelda;
+    unsigned int _numElementos;
 
     std::vector<std::vector<Casilla<T> > > _mr; ///Vector 2D de casillas
 };
@@ -58,7 +58,6 @@ void MallaRegular<T>::insertar(float x, float y, const T& dato){
     Casilla<T> *c = obtenerCasilla( x,y );
     c->insertar( dato );
     _numElementos++;
-    if ( c->numElementosCasilla() > _maxElementosEnCelda ) _maxElementosEnCelda = c->numElementosCasilla();
 }
 
 template<typename T>
@@ -66,7 +65,6 @@ bool MallaRegular<T>::borrar(float x, float y, const T& dato) {
     Casilla<T> *c = obtenerCasilla( x, y );
     if ( c->borrar( dato ) ) {
         _numElementos--;
-        //que hacer aqui con el numElementosEnCelda????
         return true;
     }
     return false;
@@ -100,7 +98,14 @@ unsigned int MallaRegular<T>::numElementos() {
 
 template <typename T>
 unsigned int MallaRegular<T>::maxElementosEnCelda() {
-    return _maxElementosEnCelda;
+    unsigned int maxElem = 0;
+    for ( float i=_xMin; i<=_xMax; i+=_tamaCasillaX ) {
+        for ( float j=_yMin; j<=_yMax; j+=_tamaCasillaY ) {
+            Casilla<T>* casilla = obtenerCasilla( i,j );
+            if ( casilla->numElementosCasilla() > maxElem ) maxElem = casilla->numElementosCasilla();
+        }
+    }
+    return maxElem;
 }
 
 template <typename T>
