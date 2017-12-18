@@ -25,6 +25,8 @@ Casilla.h
 /home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/Casilla.h
 vector
 -
+list
+-
 
 /home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/img.cpp
 sstream
@@ -59,4 +61,20 @@ MallaRegular.h
 /home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/MallaRegular.h
 CodigoPost.h
 /home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/CodigoPost.h
+fstream
+-
+iostream
+-
+vector
+-
+cstring
+-
+img.h
+/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/img.h
+MallaRegular.h
+/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/MallaRegular.h
+CodigoPost.h
+/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/CodigoPost.h
+math.h
+-
 
