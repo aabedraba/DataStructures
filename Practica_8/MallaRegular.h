@@ -7,6 +7,7 @@
 
 #include "Casilla.h"
 #include <vector>
+#include <list>
 
 
 template <typename T>
@@ -71,7 +72,7 @@ bool MallaRegular<T>::borrar(float x, float y, const T& dato) {
 }
 
 //TODO: finish
-template <typename T>
+/*template <typename T>
 std::vector<T> MallaRegular<T>::buscarPorRango(float rxmin, float rymin, float rxmax, float rymax) {
     std::vector<T> aDevolver;
     std::list<Casilla<T>> listaEntreRango;
@@ -89,6 +90,22 @@ std::vector<T> MallaRegular<T>::buscarPorRango(float rxmin, float rymin, float r
         }
     }
     return aDevolver;
+}*/
+
+template <typename T>
+std::vector<T> MallaRegular<T>::buscarPorRango(float rxmin, float rymin, float rxmax, float rymax) {
+    std::vector<T> puntosEnRango;
+    for ( float i=rxmin; i<=rxmax; i+=_tamaCasillaX ) {
+        for ( float j=rymin; i<=rymax; j+=_tamaCasillaY ) {
+            Casilla<T>* casilla = obtenerCasilla( i,j );
+            auto iter = casilla->get_puntos().begin();
+            while ( iter != casilla->get_puntos().end() ) {
+                if ( (*iter).x >= rxmin && (*iter).x <= rxmax && (*iter).y >= rymin && (*iter).y <= rymax )
+                    puntosEnRango.push_back( (*iter) );
+            }
+        }
+    }
+    return puntosEnRango;
 }
 
 template <typename T>
