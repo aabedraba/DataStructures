@@ -21,7 +21,7 @@ class RGBColor {
     
 public:
     /** Iniciar a negro */
-    RGBColor() { r = g = b = 0; }
+    RGBColor() { r = 0; g = 180; b = 167; }
     
     /** Iniciar al color indicado */
     RGBColor(unsigned char r, unsigned char g, unsigned char b) {

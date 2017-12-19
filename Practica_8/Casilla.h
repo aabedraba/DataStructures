@@ -14,8 +14,7 @@ class MallaRegular;
 template <typename U>
 class Casilla {
 public:
-    template <typename T>
-    friend class MallaRegular;
+    friend class MallaRegular<U>;
     Casilla();
     Casilla( const Casilla& orig ) = default;
     virtual ~Casilla() = default;
@@ -24,7 +23,6 @@ public:
     U *buscar( const U &dato );
     bool borrar( const U &dato );
 
-    const std::list<U> &get_puntos() const;
     unsigned int numElementosCasilla();
 
 private:
@@ -34,11 +32,14 @@ private:
 
 template <typename U>
 Casilla<U>::Casilla()
-    : _puntos()
+    : _puntos(), _numElementosCasilla( 0 )
 {}
 
 template <typename U>
-void Casilla<U>::insertar(const U &dato) {
+void Casilla<U>::insertar( const U &dato) {
+//    U *buscado = buscar( dato );
+//    if ( buscado )
+//        return;
     _puntos.push_back( dato );
     _numElementosCasilla++;
 }
@@ -50,7 +51,7 @@ U* Casilla<U>::buscar(const U &dato) {
     for (; iter != _puntos.end(); ++iter)
         if ( *iter == dato )
             return &(*iter);
-    return 0;
+    return nullptr;
 }
 
 template <typename U>
@@ -66,10 +67,6 @@ bool Casilla<U>::borrar(const U &dato) {
     return false;
 }
 
-template<typename U>
-const std::list<U> &Casilla<U>::get_puntos() const {
-    return _puntos;
-}
 
 template <typename U>
 unsigned int Casilla<U>::numElementosCasilla() {

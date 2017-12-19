@@ -6,29 +6,29 @@
 
 #IncludeRegexTransform: 
 
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/Casilla.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/Casilla.h
 list
 -
 MallaRegular.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/MallaRegular.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/MallaRegular.h
 
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/CodigoPost.cpp
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.cpp
 CodigoPost.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/CodigoPost.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
 
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/CodigoPost.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
 string
 -
 
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/MallaRegular.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/MallaRegular.h
 Casilla.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/Casilla.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/Casilla.h
 vector
 -
 list
 -
 
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/img.cpp
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.cpp
 sstream
 -
 fstream
@@ -36,45 +36,29 @@ fstream
 string
 -
 img.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/img.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
 
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/img.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
 img.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/img.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
 string
 -
 iostream
 -
 
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/main.cpp
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/main.cpp
 iostream
 -
 fstream
 -
 vector
--
-string
 -
 sstream
 -
-MallaRegular.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/MallaRegular.h
-CodigoPost.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/CodigoPost.h
-fstream
--
-iostream
--
-vector
--
-cstring
--
 img.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/img.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/img.h
 MallaRegular.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/MallaRegular.h
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/MallaRegular.h
 CodigoPost.h
-/home/suli14/CLionProjects/EstructurasDeDatos/Practica_8/CodigoPost.h
-math.h
--
+/home/aabedraba/Github/EstructurasDeDatos/Practica_8/CodigoPost.h
 

@@ -13,11 +13,11 @@
 template <typename T>
 class MallaRegular {
 public:
-    MallaRegular( int XMin, int YMin, int XMax, int YMax, int aNDiv );
+    MallaRegular(float XMin, float YMin, float XMax, float YMax, int aNDiv);
     MallaRegular( const MallaRegular& orig ) = default;
     virtual ~MallaRegular() = default;
 
-    void insertar(float x, float y, const T &dato);
+    bool insertar(float x, float y, const T &dato);
     T *buscar(float x, float y, const T &dato);
     bool borrar(float x, float y, const T &dato);
 
@@ -33,32 +33,42 @@ private:
     float _xMin, _yMin, _xMax, _yMax; ///Tamañoo real global
     float _tamaCasillaX, _tamaCasillaY; ///Tamaño real de cada casilla
 
-    unsigned int _numElementos;
-
     std::vector<std::vector<Casilla<T> > > _mr; ///Vector 2D de casillas
+
+    unsigned int _numElementos;
 };
 
 template <typename T>
-MallaRegular<T>::MallaRegular(int XMin, int YMin, int XMax, int YMax, int aNDiv)
-    : _xMin ( XMin ), _yMin ( YMin ), _xMax ( XMax ), _yMax ( YMax ) {
+MallaRegular<T>::MallaRegular(float XMin, float YMin, float XMax, float YMax, int aNDiv)
+    : _xMin ( XMin ), _yMin ( YMin ), _xMax ( XMax ), _yMax ( YMax ), _numElementos( 0 ) {
     _tamaCasillaX = ( _xMax - _xMin ) / aNDiv;
     _tamaCasillaY = ( _yMax - _yMin ) / aNDiv;
-    _mr.insert( _mr.begin(), aNDiv, std::vector<Casilla<T> >(aNDiv));
+    _mr.insert( _mr.begin(), aNDiv, std::vector<Casilla<T> >(aNDiv) );
 }
 
 
 template<typename T>
-Casilla<T> *MallaRegular<T>::obtenerCasilla (float x, float y){
-    int i = ( x - _xMin ) / _tamaCasillaX;
-    int j = ( y - _yMin ) / _tamaCasillaY;
-    return &_mr[j][i];
+Casilla<T> *MallaRegular<T>::obtenerCasilla ( float x, float y ){
+    float i = ( x - _xMin ) / _tamaCasillaX;
+    float j = ( y - _yMin ) / _tamaCasillaY;
+    return &_mr[i][j];
 }
 
+template <typename T>
+T* MallaRegular<T>::buscar( float x, float y, const T &dato ) {
+    Casilla<T> *c = obtenerCasilla( x, y );
+    T *aDevolver = c->buscar( dato );
+    if ( aDevolver != nullptr ) return aDevolver;
+    return nullptr;
+}
 template<typename T>
-void MallaRegular<T>::insertar(float x, float y, const T& dato){
+bool MallaRegular<T>::insertar(float x, float y, const T& dato){
+    if (!( x >= _xMin && x <= _xMax && y >= _yMin && y <= _yMax ))
+        return false;
     Casilla<T> *c = obtenerCasilla( x,y );
     c->insertar( dato );
     _numElementos++;
+    return true;
 }
 
 template<typename T>
@@ -71,37 +81,21 @@ bool MallaRegular<T>::borrar(float x, float y, const T& dato) {
     return false;
 }
 
-//TODO: finish
-/*template <typename T>
-std::vector<T> MallaRegular<T>::buscarPorRango(float rxmin, float rymin, float rxmax, float rymax) {
-    std::vector<T> aDevolver;
-    std::list<Casilla<T>> listaEntreRango;
-    int i = ( rxmax - rxmin ) / _tamaCasillaX;
-    int j = ( rymax - rymin ) / _tamaCasillaY;
-    int contador = 0;
-    while( contador < i && contador < j ) {
-        Casilla<T> *aux = obtenerCasilla( contador + rxmin, contador + rymin );
-        auto iter = aux->get_puntos().begin();
-        while ( iter != aux->get_puntos().end() ){
-            if ( (*iter).x > rxmin && (*iter).y < rymin )
-                aDevolver.push_back( (*iter) );
-            iter++;
-
-        }
-    }
-    return aDevolver;
-}*/
-
 template <typename T>
 std::vector<T> MallaRegular<T>::buscarPorRango(float rxmin, float rymin, float rxmax, float rymax) {
     std::vector<T> puntosEnRango;
-    for ( float i=rxmin; i<=rxmax; i+=_tamaCasillaX ) {
-        for ( float j=rymin; i<=rymax; j+=_tamaCasillaY ) {
-            Casilla<T>* casilla = obtenerCasilla( i,j );
-            auto iter = casilla->get_puntos().begin();
-            while ( iter != casilla->get_puntos().end() ) {
-                if ( (*iter).x >= rxmin && (*iter).x <= rxmax && (*iter).y >= rymin && (*iter).y <= rymax )
-                    puntosEnRango.push_back( (*iter) );
+
+    if ( rxmin > rxmax ) swap( rxmin, rxmax );
+    if ( rymin > rymax ) swap( rymin, rymax );
+
+    for ( float i = rxmin; i <= rxmax; i += _tamaCasillaX ) {
+        for ( float j = rymin; j <= rymax; j += _tamaCasillaY) {
+            Casilla<T> *c = obtenerCasilla( i, j );
+            typename std::list<T>::iterator iter = c->_puntos.begin();
+            while ( iter != c->_puntos.end() ) {
+                if ( ( *iter ).y <= rxmax && ( *iter ).y >= rxmin && ( *iter ).x >= rymin && ( *iter ).x <= rymax )
+                    puntosEnRango.push_back(( *iter ));
+                iter++;
             }
         }
     }
@@ -118,8 +112,10 @@ unsigned int MallaRegular<T>::maxElementosEnCelda() {
     unsigned int maxElem = 0;
     for ( float i=_xMin; i<=_xMax; i+=_tamaCasillaX ) {
         for ( float j=_yMin; j<=_yMax; j+=_tamaCasillaY ) {
-            Casilla<T>* casilla = obtenerCasilla( i,j );
-            if ( casilla->numElementosCasilla() > maxElem ) maxElem = casilla->numElementosCasilla();
+            Casilla<T> *casilla = obtenerCasilla( i, j );
+            unsigned int tam = casilla->numElementosCasilla();
+            if (  tam > maxElem )
+                maxElem = casilla->numElementosCasilla();
         }
     }
     return maxElem;
@@ -127,9 +123,8 @@ unsigned int MallaRegular<T>::maxElementosEnCelda() {
 
 template <typename T>
 float MallaRegular<T>::promedioElementosPorCelda() {
-    float x = (_xMax - _xMin) / _tamaCasillaX;
-    float y = (_yMax - _yMin) / _tamaCasillaY;
-    return _numElementos / (x*y);
+    float aNDiv = ( _xMax - _xMin ) / _tamaCasillaX; //despejano número de divisiones
+    return _numElementos / aNDiv;
 }
 
 #endif //PRACTICA_8_MALLAREGULAR_H
