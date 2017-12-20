@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Practica_8.dir/img.cpp.o CMakeFiles/Practica_8.dir/main.cpp.o CMakeFiles/Practica_8.dir/CodigoPost.cpp.o  -o Practica_8 

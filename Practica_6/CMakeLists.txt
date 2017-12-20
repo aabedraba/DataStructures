@@ -4,13 +4,13 @@ project(Practica_6)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(Practica_6
-        Diccionario.cpp
-        Diccionario.h
-        main.cpp
-        Palabra.cpp
-        Palabra.h
-        Sucesor.h
-        TextoPredictivo.cpp
-        TextoPredictivo.h
-        Usuario.cpp
-        Usuario.h)
+        src/Diccionario.cpp
+        src/Diccionario.h
+        src/main.cpp
+        src/Palabra.cpp
+        src/Palabra.h
+        src/Sucesor.h
+        src/TextoPredictivo.cpp
+        src/TextoPredictivo.h
+        src/Usuario.cpp
+        src/Usuario.h)

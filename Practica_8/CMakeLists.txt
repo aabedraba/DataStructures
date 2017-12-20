@@ -4,5 +4,7 @@ project(Practica_8)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(Practica_8
-        img.cpp img.h
-        main.cpp MallaRegular.h Casilla.h CodigoPost.cpp CodigoPost.h)
+        src/img.cpp src/img.h
+        src/main.cpp src/MallaRegular.h 
+        src/Casilla.h src/CodigoPost.cpp 
+        src/CodigoPost.h)
